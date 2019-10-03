@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import Dialog from '@/components/ui/Dialog';
+import Dialog from '../../components/ui/Dialog';
+import Button from '../../components/ui/Button';
+import Input from '../../components/ui/Input';
 import './index.less';
 
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: null,
       name: '',
       visible: false,
       data: []
@@ -37,12 +40,16 @@ export default class Dashboard extends Component {
   };
   onSubmit = e => {
     e.preventDefault();
-    fetch('dashboard/save', {
+    const { id, name } = this.state;
+    fetch(id === null ? 'dashboard/save' : 'dashboard/update' , {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(this.state)
+      body: JSON.stringify({
+        id,
+        name
+      })
     }).then(response => {
       if (!response.ok) {
         return Promise.reject(response.statusText);
@@ -50,9 +57,14 @@ export default class Dashboard extends Component {
       return response.json();
     }).then(rs => {
       this.getList();
+      this.onCancel();
     });
   };
   del = (item, e) => {
+    Dialog.Confirm({
+      onCancel() {}
+    });
+    return false;
     fetch('dashboard/delete', {
       method: 'DELETE',
       headers: {
@@ -71,32 +83,65 @@ export default class Dashboard extends Component {
     });
   };
   edit = (item, e) => {
-    console.log(item);
+    const { id } = item;
+    // this.setState({
+    //   visible: true,
+    //   id,
+    //   name
+    // });
+    fetch(`dashboard/get?id=${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(response => {
+      if (!response.ok) {
+        return Promise.reject(response.statusText);
+      }
+      return response.json();
+    }).then(rs => {
+      const { id, name } = rs.data;
+      this.setState({
+        visible: true,
+        id,
+        name
+      });
+    });
   };
   showDialog = (item, e) => {
     this.setState({
-      visible: !this.state.visible,
+      visible: true,
+      id: null,
+      name: ''
+    });
+  };
+  onCancel = (item, e) => {
+    this.setState({
+      visible: false
     });
   };
   render() {
     return (
       <div>
         <div>
-          <button type="button" onClick={ this.showDialog }>对话框</button>
           <Dialog
-              title="Basic Modal"
+              title={ this.state.id === null ? '新增' : '编辑' }
               visible={ this.state.visible }
+              onCancel={ this.onCancel }
+              onSubmit={ this.onSubmit }
           >
-            <div style={{ width: '600px', height: '500px' }}>Title</div>
+            <div style={{ width: '600px' }}>
+              <form onSubmit={ this.onSubmit }>
+                <div>
+                  <label style={{ padding: '5px 10px 5px 0', display: 'inline-block' }}>名称</label>
+                  <Input type="text" name="name" value={ this.state.name } onChange={ this.handleChange }></Input>
+                </div>
+              </form>
+            </div>
           </Dialog>
         </div>
-        <div>
-          <form onSubmit={ this.onSubmit }>
-            <div style={{ padding: '10px 10px 10px 0' }}>
-              <input type="text" name="name" value={ this.state.name } onChange={ this.handleChange } style={{ padding: '5px 10px' }}/>
-              <input type="submit" value="Save" style={{ padding: '5px 10px' }}/>
-            </div>
-          </form>
+        <div style={{ padding: '10px 10px 10px 0' }}>
+          <Button type="button" onClick={ this.showDialog }>新增</Button>
         </div>
         <div>
           <table cellPadding="0" cellSpacing="0" border="0" className="ui-table">
@@ -119,8 +164,8 @@ export default class Dashboard extends Component {
                     <td>{ item.updateDate }</td>
                     <td>{ item.type }</td>
                     <td style={{ textAlign: 'center' }}>
-                      <button type="button" onClick={ e => this.edit(item, e) } style={{ margin: '0 5px' }}>编辑</button>
-                      <button type="button" onClick={ e => this.del(item, e) } style={{ margin: '0 5px' }}>删除</button>
+                      <Button type="button" onClick={ e => this.edit(item, e) } style={{ margin: '0 5px' }}>编辑</Button>
+                      <Button type="button" onClick={ e => this.del(item, e) } style={{ margin: '0 5px' }}>删除</Button>
                     </td>
                   </tr>
                 );

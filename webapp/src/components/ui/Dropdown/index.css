@@ -3,7 +3,30 @@
   top: 0;
   left: 0;
 }
-.popup-contain {
+.dldh-popup-mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(55, 55, 55, 0.6);
+  filter: alpha(opacity=50);
+  z-index: 1050;
+}
+.dldh-popup-mask-hidden {
+  display: none;
+}
+.dldh-popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.dldh-popup .dldh-popup-inner {
+  position: absolute;
+}
+.dldh-popup .dldh-popup-contain {
   /*visibility: hidden;	
   opacity: 0;
   transform: translateY(5px);
@@ -12,7 +35,7 @@
   -webkit-transition: transform .3s ease 0s,opacity .3s ease 0s;
   -o-transition: transform .3s ease 0s,opacity .3s ease 0s;*/
 }
-.popup-contain-hidden {
+.dldh-popup .dldh-popup-contain-hidden {
   /*visibility: hidden;	
   opacity: 0;
   transform: translateY(5px);
@@ -22,18 +45,18 @@
   -o-transition: transform .3s ease 0s,opacity .3s ease 0s;*/
 
 }
-.popup-contain-open {
+.dldh-popup .dldh-popup-contain-open {
   /*visibility: visible;
   opacity: 1;
   transform: translate(0);
   z-index: 1;*/
   
 }
-.popup-contain-open-ative {
+.dldh-popup .dldh-popup-contain-open-ative {
   opacity: 1;
   transform: translate(0);
 }
-.popup-contain-hidden-ative {
+.dldh-popup .dldh-popup-contain-hidden-ative {
   opacity: 0;
   transform: translateY(5px);
   transition: transform .3s ease 0s,opacity .3s ease 0s;

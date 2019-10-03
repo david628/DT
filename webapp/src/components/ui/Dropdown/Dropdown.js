@@ -168,10 +168,7 @@ class Dropdown extends Component {
   getContainer = () => {
     const { props } = this;
     const popupContainer = document.createElement('div');
-    popupContainer.style.position = 'absolute';
-    popupContainer.style.top = '0';
-    popupContainer.style.left = '0';
-    //popupContainer.style.width = '100%';
+    popupContainer.className = `${ props.sprefix }-popup`;
     const mountNode = props.getPopupContainer ? props.getPopupContainer(findDOMNode(this)) : props.getDocument().body;
     mountNode.appendChild(popupContainer);
     return popupContainer;

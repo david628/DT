@@ -1,19 +1,80 @@
 .dldh-dialog {
     position: absolute;
-    top: 100px;
-    left: 360px;
-    /*right: 0;*/
-    /*bottom: 0;*/
-    /*z-index: 9999;*/
+    left: 0;
+    top: 0;
+}
+.dldh-dialog .dldh-popup-contain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1050;
+    /*-webkit-overflow-scrolling: touch;*/
+    /*outline: 0;*/
     /*text-align: center;*/
     /*display: flex;*/
     /*justify-content: center;*/
     /*align-items: center;*/
-    /*box-shadow: 0 4px 12px rgba(0,0,0,0.15);*/
-    /*background-color: rgba(0,0,0,0.45);*/
 }
-.dldh-dialog .popup-contain {
+.dldh-dialog .dldh-dialog-inner {
     border-radius: 4px;
-    background-color: #fff;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    background-color: #fff;
+}
+.dldh-dialog .dldh-dialog-header {
+    position: relative;
+    padding: 16px 24px;
+    color: rgba(0,0,0,0.65);
+    background: #fff;
+    border-bottom: 1px solid #e8e8e8;
+    border-radius: 4px 4px 0 0;
+}
+.dldh-dialog .dldh-dialog-title {
+    margin: 0;
+    color: rgba(0,0,0,0.85);
+    font-weight: 500;
+    font-size: 16px;
+    min-height: 22px;
+    line-height: 22px;
+    word-wrap: break-word;
+}
+.dldh-dialog .dldh-dialog-center {
+    padding: 24px;
+    font-size: 14px;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+.dldh-dialog .dldh-dialog-footer {
+    padding: 10px 16px;
+    text-align: right;
+    background: transparent;
+    border-top: 1px solid #e8e8e8;
+    border-radius: 0 0 4px 4px;
+}
+.dldh-dialog .dldh-dialog-close {
+    height: 100%;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    padding: 0;
+    color: rgba(0,0,0,0.45);
+    text-decoration: none;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    -webkit-transition: color .3s;
+    transition: color .3s;
+}
+.dldh-dialog-footer button+button {
+    margin-bottom: 0;
+    margin-left: 8px;
+}
+.dldh-dialog-close:focus, .dldh-dialog-close:hover {
+    color: rgba(0,0,0,0.75);
+    text-decoration: none;
 }
