@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Form from '../../components/ui/Form';
+import Input from '../../components/ui/Input';
+import Button from '../../components/ui/Button';
 //import { loginAction } from '@/action/login.action';
 import history from '@/utils/history';
 import './index.less';
@@ -62,19 +65,19 @@ export default class Login extends Component {
   };
   render() {
     return (
-      <form onSubmit={ this.submit }>
-        <div className="login">
-          <div>
-            <input type="text" name="userName" value={ this.state.userName } onChange={ this.handleChange }/>
+      <div className="login" onSubmit={ this.submit }>
+        <Form onSubmit={this.handleSubmit} className="login-form">
+          <div style={{padding: '10px'}}>
+            <Input type="text" name="userName" value={ this.state.userName } onChange={this.handleChange} placeholder="请输入name"/>
           </div>
-          <div>
-            <input type="password" name="password" value={ this.state.password } onChange={ this.handleChange }/>
+          <div style={{padding: '10px'}}>
+            <Input type="password" name="password" value={ this.state.password } onChange={this.handleChange} placeholder="请输入password"/>
           </div>
-          <div>
-            <input type="submit" value="Login"/>
+          <div style={{padding: '10px'}}>
+            <Button type="submit">Login In</Button>
           </div>
-        </div>
-      </form>
+        </Form>
+      </div>
     );
   }
 };
