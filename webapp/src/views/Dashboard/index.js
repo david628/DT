@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Dialog from '../../components/ui/Dialog';
 import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
+import Table from '../../components/ui/Table';
 import './index.less';
 
 export default class Dashboard extends Component {
@@ -11,7 +12,37 @@ export default class Dashboard extends Component {
       id: null,
       name: '',
       visible: false,
-      data: []
+      data: [],
+      cm: [{
+        header: '名称',
+        dataStore: 'name',
+      },
+      {
+        header: '创建者',
+        dataStore: 'createUser',
+        width: 150
+      },
+      {
+        header: '修改时间',
+        dataStore: 'updateDate',
+        width: 150
+      },
+      {
+        header: '类型',
+        dataStore: 'type',
+        width: 150
+      },
+      {
+        header: '操作',
+        width: 200,
+        align: 'center',
+        render: item => (
+            <div>
+              <Button type="button" onClick={ e => this.edit(item, e) } style={{ margin: '0 5px' }}>编辑</Button>
+              <Button type="button" onClick={ e => this.del(item, e) } style={{ margin: '0 5px' }}>删除</Button>
+            </div>
+        )
+      }]
     };
   }
   componentDidMount() {
@@ -61,34 +92,34 @@ export default class Dashboard extends Component {
     });
   };
   del = (item, e) => {
-    Dialog.Confirm({
-      onCancel() {}
-    });
-    return false;
-    fetch('dashboard/delete', {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
+    const confirm = Dialog.Confirm({
+      onSubmit: () => {
+        fetch('dashboard/delete', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            id: item.id
+          })
+        }).then(response => {
+          if (!response.ok) {
+            return Promise.reject(response.statusText);
+          }
+          return response.json();
+        }).then(rs => {
+          this.getList();
+          confirm.close();
+        });
+        return true;
       },
-      body: JSON.stringify({
-        id: item.id
-      })
-    }).then(response => {
-      if (!response.ok) {
-        return Promise.reject(response.statusText);
+      onCancel: () => {
+
       }
-      return response.json();
-    }).then(rs => {
-      this.getList();
     });
   };
   edit = (item, e) => {
     const { id } = item;
-    // this.setState({
-    //   visible: true,
-    //   id,
-    //   name
-    // });
     fetch(`dashboard/get?id=${id}`, {
       method: 'GET',
       headers: {
@@ -143,7 +174,7 @@ export default class Dashboard extends Component {
         <div style={{ padding: '10px 10px 10px 0' }}>
           <Button type="button" onClick={ this.showDialog }>新增</Button>
         </div>
-        <div>
+        <div style={{ display: 'none' }}>
           <table cellPadding="0" cellSpacing="0" border="0" className="ui-table">
             <thead>
               <tr>
@@ -174,6 +205,12 @@ export default class Dashboard extends Component {
             </tbody>
           </table>
         </div>
+        <Table
+            cm={ this.state.cm }
+            data={ this.state.data }
+        >
+
+        </Table>
       </div>
     );
   }

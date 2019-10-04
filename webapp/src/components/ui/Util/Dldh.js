@@ -6,23 +6,23 @@ var Dldh = {
   isIE: navigator.userAgent.toLowerCase().indexOf("msie") > -1,
   getDom: function(el) {
     if(!el) return null;
-    return el.get ? el.get(0) : (typeof el == "string" ? document.getElementById(el) : el);
+    return el.get ? el.get(0) : (typeof el === "string" ? document.getElementById(el) : el);
   },
   preanim: function(a, i) {
-    return !a[i] ? false : (typeof a[i] == "object" ? a[i] : {
+    return !a[i] ? false : (typeof a[i] === "object" ? a[i] : {
       duration: a[i + 1],
       callback: a[i + 2],
       easing: a[i + 3]
     });
   },
   addUnits: function(v, defaultUnit) {
-    if (v === "" || v == "auto") {
+    if (v === "" || v === "auto") {
       return v;
     }
     if (v === undefined) {
       return '';
     }
-    if (typeof v == "number" || !/\d+(px|em|%|en|ex|pt|in|cm|mm|pc)$/i.test(v)) {
+    if (typeof v === "number" || !/\d+(px|em|%|en|ex|pt|in|cm|mm|pc)$/i.test(v)) {
       return v + (defaultUnit || 'px');
     }
     return v;
@@ -30,7 +30,7 @@ var Dldh = {
   Css: {
     hasClass: function(el, className) {
       el = Dldh.getDom(el);
-      return className && (' ' + el.className + ' ').indexOf(' ' + className + ' ') != -1;
+      return className && (' ' + el.className + ' ').indexOf(' ' + className + ' ') !== -1;
     },
     addClass : function(el, className){
       if(className instanceof Array) {
@@ -90,7 +90,7 @@ var Dldh = {
       });
     },
     adjustWidth: function(el, width) {
-      if (typeof width == "number") {
+      if (typeof width === "number") {
         width -= (this.getBorderWidth(el, "lr") + this.getPadding(el, "lr"));
         if (width < 0) {
           width = 0;
@@ -99,7 +99,7 @@ var Dldh = {
       return width;
     },
     adjustHeight: function(el, height) {
-      if (typeof height == "number") {
+      if (typeof height === "number") {
         height -= (this.getBorderWidth(el, "tb") + this.getPadding(el, "tb"));
         if (height < 0) {
           height = 0;
@@ -157,14 +157,14 @@ var Dldh = {
       return full ? this.getDocumentHeight() : this.getViewportHeight();
     },
     getDocumentHeight: function() {
-      var E = (document.compatMode != "CSS1Compat") ? document.body.scrollHeight : document.documentElement.scrollHeight;
+      var E = (document.compatMode !== "CSS1Compat") ? document.body.scrollHeight : document.documentElement.scrollHeight;
       if(Dldh.isSafari) {
         E = document.body.scrollHeight;
       }
       return Math.max(E, this.getViewportHeight());
     },
     getDocumentWidth: function() {
-      var E = (document.compatMode != "CSS1Compat") ? document.body.scrollWidth : document.documentElement.scrollWidth;
+      var E = (document.compatMode !== "CSS1Compat") ? document.body.scrollWidth : document.documentElement.scrollWidth;
       if(Dldh.isSafari) {
         E = document.body.scrollWidth;
       }
@@ -174,7 +174,7 @@ var Dldh = {
       var E = this.innerHeight;
       var F = document.compatMode;
       if ((F || Dldh.isIE) && !Dldh.isOpera) {
-        E = (F == "CSS1Compat") ? document.documentElement.clientHeight : document.body.clientHeight;
+        E = (F === "CSS1Compat") ? document.documentElement.clientHeight : document.body.clientHeight;
       }
       return E;
     },
@@ -182,13 +182,13 @@ var Dldh = {
       var E = this.innerWidth;
       var F = document.compatMode;
       if (F || Dldh.isIE) {
-        E = (F == "CSS1Compat") ? document.documentElement.clientWidth : document.body.clientWidth;
+        E = (F === "CSS1Compat") ? document.documentElement.clientWidth : document.body.clientWidth;
       }
       return E;
     },
     getScroll: function(el) {
       el = Dldh.getDom(el);
-      if (el == document || el == document.body) {
+      if (el === document || el === document.body) {
         var l = window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0;
         var t = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
         return {
@@ -204,11 +204,11 @@ var Dldh = {
     },
     getXY: function(e) {
       var p,
-      pe,
+      //pe,
       b,
       bt,
       bl,
-      dbd,
+      //dbd,
       x = 0,
       y = 0,
       scroll,
@@ -216,22 +216,22 @@ var Dldh = {
       bd = (document.body || document.documentElement),
       ret = [0, 0],
       el = Dldh.getDom(e);
-      if (el != bd) {
+      if (el !== bd) {
         if (el.getBoundingClientRect) {
           b = el.getBoundingClientRect();
           scroll = this.getScroll(document);
           ret = [Math.round(b.left + scroll.left), Math.round(b.top + scroll.top)];
         } else {
           p = el;
-          hasAbsolute = this.getStyle(el, "position") == "absolute";
+          hasAbsolute = this.getStyle(el, "position") === "absolute";
           while (p) {
             x += p.offsetLeft;
             y += p.offsetTop;
-            hasAbsolute = hasAbsolute || this.getStyle(p, "position") == "absolute";
+            hasAbsolute = hasAbsolute || this.getStyle(p, "position") === "absolute";
             if (Dldh.isGecko) {
               y += bt = parseInt(this.getStyle(p, "borderTopWidth"), 10) || 0;
               x += bl = parseInt(this.getStyle(p, "borderLeftWidth"), 10) || 0;
-              if (p != el && !this.getStyle(p, 'overflow') == 'visible') {
+              if (p !== el && !this.getStyle(p, 'overflow') === 'visible') {
                 x += bl;
                 y += bt;
               }
@@ -247,8 +247,8 @@ var Dldh = {
             y += parseInt(this.getStyle(bd, "borderTopWidth"), 10) || 0;
           }
           p = el.parentNode;
-          while (p && p != bd) {
-            if (!Dldh.isOpera || (p.tagName != 'TR' && !this.getStyle(p, "display") == "inline")) {
+          while (p && p !== bd) {
+            if (!Dldh.isOpera || (p.tagName !== 'TR' && !this.getStyle(p, "display") === "inline")) {
               x -= p.scrollLeft;
               y -= p.scrollTop;
             }
@@ -271,7 +271,7 @@ var Dldh = {
     },
     translatePoints: function(e, x, y) {
       var el = Dldh.getDom(e);
-      if (typeof x == 'object' || x instanceof Array) {
+      if (typeof x === 'object' || x instanceof Array) {
         y = x[1];
         x = x[0];
       }
@@ -280,10 +280,10 @@ var Dldh = {
       var l = parseInt(this.getStyle(el, 'left'), 10);
       var t = parseInt(this.getStyle(el, 'top'), 10);
       if (isNaN(l)) {
-        l = (p == "relative") ? 0 : el.offsetLeft;
+        l = (p === "relative") ? 0 : el.offsetLeft;
       }
       if (isNaN(t)) {
-        t = (p == "relative") ? 0 : el.offsetTop;
+        t = (p === "relative") ? 0 : el.offsetTop;
       }
       return {
         left: (x - o[0] + l),
@@ -293,7 +293,7 @@ var Dldh = {
     position: function(e, pos, zIndex, x, y) {
       var el = Dldh.getDom(e);
       if (!pos) {
-        if (this.getStyle(el, 'position') == 'static') {
+        if (this.getStyle(el, 'position') === 'static') {
           el.style.position = 'relative';
         }
       } else {
@@ -314,7 +314,7 @@ var Dldh = {
       var w, h, vp = false;
       el = Dldh.getDom(el);
       if (!s) {
-        if (el == document.body || el == document) {
+        if (el === document.body || el === document) {
           vp = true;
           w = this.getViewWidth();
           h = this.getViewHeight();
@@ -385,9 +385,9 @@ var Dldh = {
       o = o || [0, 0];
       if (!p) {
         p = "tl-bl";
-      } else if (p == "?") {
+      } else if (p === "?") {
         p = "tl-bl?";
-      } else if (p.indexOf("-") == -1) {
+      } else if (p.indexOf("-") === -1) {
         p = "tl-" + p;
       }
       p = p.toLowerCase();
@@ -407,8 +407,8 @@ var Dldh = {
         var dw = this.getViewWidth() - 5, dh = this.getViewHeight() - 5;
         var p1y = p1.charAt(0), p1x = p1.charAt(p1.length - 1);
         var p2y = p2.charAt(0), p2x = p2.charAt(p2.length - 1);
-        var swapY = ((p1y == "t" && p2y == "b") || (p1y == "b" && p2y == "t"));
-        var swapX = ((p1x == "r" && p2x == "l") || (p1x == "l" && p2x == "r"));
+        var swapY = ((p1y === "t" && p2y === "b") || (p1y === "b" && p2y === "t"));
+        var swapX = ((p1x === "r" && p2x === "l") || (p1x === "l" && p2x === "r"));
         var scrollX = (document.documentElement.scrollLeft || document.body.scrollLeft || 0) + 5;
         var scrollY = (document.documentElement.scrollTop || document.body.scrollTop || 0) + 5;
         if ((x + w) > dw + scrollX) {

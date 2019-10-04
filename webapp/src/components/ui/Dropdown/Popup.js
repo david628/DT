@@ -15,6 +15,7 @@ class Popup extends Component {
   };
   static defaultProps = {
     sprefix: 'dldh',
+    didUpdate: function() {},
     onMaskClick: function() {},
     onMouseEnter: function() {},
     onMouseLeave: function() {},
@@ -26,15 +27,16 @@ class Popup extends Component {
   }
   componentDidMount() {
   	this.createContainer();
-  	//console.log('start');
   }
   componentWillReceiveProps(nextProps) {
 
   }
   componentDidUpdate(prevProps, prevState) {
+    if(!this._component.contains(document.activeElement)) {
+      this.focusElement.focus();
+    }
     var didUpdate = this.props.didUpdate;
     if (didUpdate) {
-      //console.log('componentDidUpdate');
       didUpdate(prevProps, this._component);
     }
   }
@@ -50,19 +52,13 @@ class Popup extends Component {
       this._container.parentNode.removeChild(this._container);
     }
   }
-  savePopup = (node) => {
-    this._component = node;
-  }
-  onMaskClick = e => {
-    this.props.onMaskClick(e);
+  saveRef = (name) => (node) => {
+    this[name] = node;
   }
   render() {
   	if (this._container) {
   	  const props = this.props;
-      let sprefix = props.sprefix, className, mask;
-      if(props.mask) {
-        mask = <div className={ this.props.visible ? sprefix + "-popup-mask" : sprefix + "-popup-mask " + sprefix + "-popup-mask-hidden"} onClick={ this.onMaskClick }></div>;
-      }
+      let sprefix = props.sprefix, className;
       if(props.visible) {
         className = `${sprefix}-popup-contain ${sprefix}-popup-contain-open ${sprefix}-dropdown slide-up-enter`;
       } else {
@@ -71,15 +67,20 @@ class Popup extends Component {
   	  //this._container.className = this.props.visible ? 'popup-contain' : 'popup-contain popup-contain-hidden';
       return ReactDOM.createPortal(
         <div className={ sprefix + "-popup-inner" }>
-          { mask }
+          { props.mask }
           <div
             className={ className }
             onMouseEnter={ props.onMouseEnter }
             onMouseLeave={ props.onMouseLeave }
             onMouseDown={ props.onMouseDown }
             onTouchStart={ props.onTouchStart }
-            ref={ this.savePopup }
+            ref={ this.saveRef('_component') }
           >
+            <div
+                tabIndex="0"
+                ref={ this.saveRef('focusElement') }
+                aria-hidden="true"
+            />
             { this.props.children }
           </div>
         </div>,

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import history from '@/utils/history';
+import Button from '@/components/ui/Button';
 import Dropdown from '@/components/ui/Dropdown';
 import './HeaderMenu.less';
 

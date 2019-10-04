@@ -30,13 +30,14 @@ class Input extends Component {
     const { size, onChange, ...others } = props;
     if(props.type == 'textarea') {
       return (
-        <textarea {...others} className="dldh-input"></textarea>
+        <textarea {...others} className="dldh-input" autoComplete="off"></textarea>
       );
     } else {
       return (
         <input className="dldh-input"
-        {...others}
-        onChange={this.handleChange}
+        { ...others }
+        autoComplete="off"
+        onChange={ this.handleChange }
         />
       );
     }

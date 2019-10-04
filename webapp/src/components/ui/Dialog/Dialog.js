@@ -41,22 +41,21 @@ class Dialog extends Component {
         this.state = {
             visible
         };
-        this.prevVisible = this.state.visible;
+        this.prevVisible = visible;
     }
     componentDidMount() {
-        //this.prevVisible = this.state.visible;
+        this.componentDidUpdate({}, {
+            visible: this.state.visible,
+        });
     }
     componentWillReceiveProps(nextProps) {
         const { visible } = nextProps;
-        if(visible !== undefined) {
-            if(this.state.visible) {
-
+        if(this.state.visible !== visible) {
+            if (visible !== undefined) {
+                this.setState({
+                    visible
+                });
             }
-        }
-        if (visible !== undefined) {
-            this.setState({
-                visible
-            });
         }
     }
     componentDidUpdate(prevProps, prevState) {
@@ -65,27 +64,32 @@ class Dialog extends Component {
     componentWillUnmount() {
     }
     handlePortalUpdate = (prevProps, node) => {
-        if (this.prevVisible !== this.state.visible) {
-            this.props.afterPopupVisibleChange(this.state.visible);
+        if(this.prevVisible !== this.state.visible || (this.prevVisible && this.state.visible)) {
+            Dldh.Css.alignTo(findDOMNode(node), this.getMountNode(), this.props.placement);
         }
-        const listNode = findDOMNode(node);
-        if(this.state.visible) {
-            //listNode.style.display = '';
-            Dldh.Css.alignTo(listNode, this.props.getDocument().body, this.props.placement);
-        } else {
-            //listNode.style.display = 'none';
+    }
+    getMountNode() {
+        if(!this.mountNode) {
+            this.mountNode = this.props.getPopupContainer ? this.props.getPopupContainer(findDOMNode(this)) : this.props.getDocument().body;
         }
+        return this.mountNode;
     }
     getContainer = () => {
-        const { props } = this;
-        const popupContainer = document.createElement('div');
-        popupContainer.className = `${ props.sprefix }-dialog`;
-        const mountNode = props.getPopupContainer ? props.getPopupContainer(findDOMNode(this)) : props.getDocument().body;
-        mountNode.appendChild(popupContainer);
-        return popupContainer;
+        const props = this.props;
+        if(props.getContainer !== undefined) {
+            return props.getContainer();
+        } else {
+            const popupContainer = document.createElement('div');
+            popupContainer.className = `${ props.sprefix }-dialog`;
+            const mountNode = this.getMountNode();
+            mountNode.appendChild(popupContainer);
+            return popupContainer;
+        }
     }
     onMaskClick = e => {
-        this.onCancel(e);
+        if(this.props.onMaskClick !== false) {
+            this.onCancel();
+        }
     }
     onSubmit = e => {
         this.props.onSubmit(e);
@@ -100,9 +104,7 @@ class Dialog extends Component {
         const { visible } = this.state;
         const props = this.props;
         const popupProps = {
-            sprefix: props.sprefix,
-            mask: true,
-            onMaskClick: this.onMaskClick
+            sprefix: props.sprefix
         };
         let popup;
         if(visible || this._component) {
@@ -116,12 +118,14 @@ class Dialog extends Component {
                     </i>
                 );
             }
+            this.mask = <div className={ visible ? props.sprefix + "-popup-mask" : props.sprefix + "-popup-mask " + props.sprefix + "-popup-mask-hidden"} onClick={ this.onMaskClick }></div>;
             popup = (
                 <Popup
                     { ...popupProps }
                     visible={ visible }
                     getContainer={ this.getContainer }
                     didUpdate={ this.handlePortalUpdate }
+                    mask={ this.mask }
                     ref={ this.savePopup }
                 >
                     <div className={ props.sprefix + "-dialog-inner" }>
@@ -148,17 +152,65 @@ class Dialog extends Component {
     }
 }
 function Msg(props) {
-    let div = document.createElement('div');
+    let sprefix = 'dldh', div = document.createElement('div'), parent = document.body;
+    div.className = `${sprefix}-dialog`;
     document.body.appendChild(div);
+    const getContainer = function() {
+        return div;
+    }
+    const onClose = function() {
+        const unmountResult = ReactDOM.unmountComponentAtNode(div);
+        if (unmountResult && div.parentNode) {
+            div.parentNode.removeChild(div);
+        }
+    }
+
+    function onSubmit() {
+        let onSubmit = props.onSubmit;
+        if (onSubmit) {
+            let ret = onSubmit();
+            if (!ret) {
+                onClose();
+            }
+            if (ret && ret.then) {
+                ret.then(onClose);
+            }
+        } else {
+            onClose();
+        }
+    }
+
+    function onCancel() {
+        let onCancel = props.onCancel;
+        if (onCancel) {
+            let ret = onCancel();
+            if (!ret) {
+                onClose();
+            }
+            if (ret && ret.then) {
+                ret.then(onClose);
+            }
+        } else {
+            onClose();
+        }
+    }
+
     ReactDOM.render(
         <Dialog
-            //className={ classString }
+            //className={ className }
             visible={ true }
             closable={ false }
             title=""
+            getContainer={ getContainer }
+            onSubmit={ onSubmit }
+            onCancel={ onCancel }
+            //onMaskClick = { false }
         >
             <div style={{ width: '360px', zoom: 1, overflow: 'hidden' }}>MSG</div>
         </Dialog>, div);
+    return {
+        close: onClose
+    };
 }
 Dialog.Confirm = function (props) {
     const config = {

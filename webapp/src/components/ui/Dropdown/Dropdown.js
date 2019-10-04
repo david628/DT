@@ -173,11 +173,11 @@ class Dropdown extends Component {
     mountNode.appendChild(popupContainer);
     return popupContainer;
   }
-  handlePortalUpdate = () => {
+  handlePortalUpdate = (prevProps) => {
     if (this.prevVisible !== this.state.visible) {
       this.props.afterPopupVisibleChange(this.state.visible);
     }
-    if(this.state.visible) {
+    if(prevProps.visible) {
       const node = findDOMNode(this);
       const listNode = findDOMNode(this._component);
       listNode.style.width = node.offsetWidth + 'px';
