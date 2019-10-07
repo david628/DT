@@ -1,0 +1,77 @@
+.dldh-pagination {
+  margin: 16px 0;
+}
+.dldh-pagination .dldh-pagination-list {
+  margin: 0;
+  padding: 0;
+  color: rgba(0,0,0,0.65);
+  font-size: 14px;
+  list-style: none;
+  box-sizing: border-box;
+}
+.dldh-pagination-list .dldh-pagination-item {
+  display: inline-block;
+  min-width: 32px;
+  height: 32px;
+  line-height: 32px;
+  margin-right: 8px;
+  text-align: center;
+  vertical-align: middle;
+  list-style: none;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  outline: 0;
+  font-family: Arial;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  background-color: #fff;
+}
+.dldh-pagination-item .dldh-pagination-link {
+  display: block;
+  padding: 0 6px;
+}
+.dldh-pagination-item:focus, .dldh-pagination-item:hover, .dldh-pagination-list .ant-pagination-item-active {
+  border-color: #1890ff;
+}
+.dldh-pagination-item:focus .dldh-pagination-link, .dldh-pagination-item:hover .dldh-pagination-link, .ant-pagination-item-active .dldh-pagination-link {
+  color: #1890ff;
+}
+.dldh-pagination-list .dldh-pagination-options {
+  display: inline-block;
+  margin-left: 16px;
+  vertical-align: middle;
+}
+.dldh-pagination-search {
+  display: inline-block;
+}
+.dldh-pagination-search .dldh-pagination-search-input {
+  position: relative;
+  display: inline-block;
+  width: 24px;
+  padding: 0 10px;
+  color: rgba(0, 0, 0, 0.65);
+  line-height: 32px;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  outline: none;
+}
+.dldh-pagination-divider {
+  padding: 0 5px;
+  vertical-align: middle;
+}
+.dldh-pagination-total {
+  vertical-align: middle;
+}
+.dldh-pagination-unit {
+  vertical-align: middle;
+}

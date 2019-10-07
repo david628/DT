@@ -3,6 +3,7 @@ import Dialog from '../../components/ui/Dialog';
 import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
 import Table from '../../components/ui/Table';
+import Pagination from '../../components/ui/Pagination';
 import './index.less';
 
 export default class Dashboard extends Component {
@@ -209,8 +210,10 @@ export default class Dashboard extends Component {
             cm={ this.state.cm }
             data={ this.state.data }
         >
-
         </Table>
+        <div style={{ float: 'right' }}>
+          <Pagination></Pagination>
+        </div>
       </div>
     );
   }

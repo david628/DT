@@ -2,10 +2,10 @@ import React ,{ Component } from 'react';
 import PropTypes from 'prop-types';
 class Table extends Component {
     static propTypes = {
-
+        sprefix: PropTypes.string,
     };
     static defaultProps = {
-
+        sprefix: 'dldh',
     };
     constructor(props) {
         super(props);
@@ -20,15 +20,15 @@ class Table extends Component {
 
     }
     renderHeaders() {
-        const { cm } = this.props;
+        const { cm, sprefix } = this.props;
         return cm.map((item, index) => {
             return (
-                <td key={ "dldh-grid-hd" + index } className="dldh-grid-hd dldh-grid-cell" style={{ width: item.width,textAlign: item.align }}>
-                    <div className="dldh-grid-hd-inner dldh-grid-hd-{id}">
-                        <a className="dldh-grid-hd-btn" href=""></a>
-                        <a className="dldh-grid-hd-custombtn" href=""></a>
+                <td key={ sprefix + "-grid-hd" + index } className={ sprefix + "-grid-hd dldh-grid-cell" } style={{ width: item.width,textAlign: item.align }}>
+                    <div className={ sprefix + "-grid-hd-inner" }>
+                        <a className={ sprefix + "-grid-hd-btn" } href=""></a>
+                        <a className={ sprefix + "-grid-hd-custombtn" } href=""></a>
                         <span>{ item.header }</span>
-                        <span className="dldh-grid-sort-icon"></span>
+                        <span className={ sprefix + "-grid-sort-icon" }></span>
                     </div>
                 </td>
             );
@@ -49,20 +49,20 @@ class Table extends Component {
         // return hcell;
     }
     loadData() {
-        const { cm, data } = this.props;
+        const { cm, data, sprefix } = this.props;
         let rs = [];
         if(Array.isArray(data) && data.length) {
             for(let i = 0; i < data.length; i++) {
                 rs.push(
-                    <div key={ "dldh-grid-row" + i } className="dldh-grid-row">
-                        <table className="dldh-grid-row-table" border="0" cellPadding="0" cellSpacing="0">
+                    <div key={ sprefix + "-grid-row" + i } className={ sprefix + "-grid-row" }>
+                        <table className={ sprefix + "-grid-row-table" } border="0" cellPadding="0" cellSpacing="0">
                             <tbody>
                             <tr>
                                 {
                                     cm.map((item, index) => {
                                         return (
-                                            <td key={ "dldh-grid-row" + i + "dldh-grid-col" + index } className="dldh-grid-col dldh-grid-cell" tabIndex="0" style={{ width: item.width,textAlign: item.align }}>
-                                                <div className="dldh-grid-cell-inner">
+                                            <td key={ sprefix + "-grid-row" + i + sprefix + "-grid-col" + index } className={ sprefix + "-grid-col " + sprefix + "-grid-cell" } tabIndex="0" style={{ width: item.width,textAlign: item.align }}>
+                                                <div className={ sprefix + "-grid-cell-inner" }>
                                                     { item.render ? item.render(data[i]) : data[i][item.dataStore] }
                                                 </div>
                                             </td>
@@ -80,33 +80,34 @@ class Table extends Component {
         return rs;
     }
     render() {
+        const { sprefix } = this.props;
         return (
-            <div className="dldh-grid" hidefocus="true">
-                <div className="dldh-grid-viewport">
-                    <div className="dldh-grid-header">
-                        <div className="dldh-grid-header-inner">
-                            <div className="dldh-grid-header-offset">
+            <div className={ sprefix + "-grid" } hidefocus="true">
+                <div className={ sprefix + "-grid-viewport" }>
+                    <div className={ sprefix + "-grid-header" }>
+                        <div className={ sprefix + "-grid-header-inner" }>
+                            <div className={ sprefix + "-grid-header-offset" }>
                                 <table border="0" cellSpacing="0" cellPadding="0">
                                     <thead>
-                                        <tr className="dldh-grid-hd-row">
+                                        <tr className={ sprefix + "-grid-hd-row" }>
                                             { this.renderHeaders() }
                                         </tr>
                                     </thead>
                                 </table>
                             </div>
                         </div>
-                        <div className="dldh-clear"></div>
+                        <div className={ sprefix + "-clear" }></div>
                     </div>
-                    <div className="dldh-grid-scroller">
-                        <div className="dldh-grid-body">
+                    <div className={ sprefix + "-grid-scroller" }>
+                        <div className={ sprefix + "-grid-body" }>
                             { this.loadData() }
                         </div>
-                        <a href="#" className="dldh-grid-focus" tabIndex="-1"></a>
-                        <div className="dldh-grid-loading"></div>
+                        <a href="#" className={ sprefix + "-grid-focus" } tabIndex="-1"></a>
+                        <div className={ sprefix + "-grid-loading" }></div>
                     </div>
                 </div>
-                <div className="dldh-grid-resize-marker">&#160;</div>
-                <div className="dldh-grid-resize-proxy">&#160;</div>
+                <div className={ sprefix + "-grid-resize-marker" }>&#160;</div>
+                <div className={ sprefix + "-grid-resize-proxy" }>&#160;</div>
             </div>
         );
     }
