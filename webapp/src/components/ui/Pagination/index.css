@@ -35,10 +35,10 @@
   display: block;
   padding: 0 6px;
 }
-.dldh-pagination-item:focus, .dldh-pagination-item:hover, .dldh-pagination-list .ant-pagination-item-active {
+.dldh-pagination-item:focus, .dldh-pagination-item:hover, .dldh-pagination-list .dldh-pagination-item-active {
   border-color: #1890ff;
 }
-.dldh-pagination-item:focus .dldh-pagination-link, .dldh-pagination-item:hover .dldh-pagination-link, .ant-pagination-item-active .dldh-pagination-link {
+.dldh-pagination-item:focus .dldh-pagination-link, .dldh-pagination-item:hover .dldh-pagination-link, .dldh-pagination-item-active .dldh-pagination-link {
   color: #1890ff;
 }
 .dldh-pagination-list .dldh-pagination-options {

@@ -3,40 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="92712626-cb38-4a09-8cd9-0b16cfc1de35" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dialog-master/.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dialog-master/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dialog-master/.travis.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dialog-master/HISTORY.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dialog-master/LICENSE.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dialog-master/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dialog-master/assets/bootstrap.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dialog-master/assets/bootstrap/Dialog.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dialog-master/assets/bootstrap/effect.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dialog-master/assets/bootstrap/variables.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dialog-master/assets/index.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dialog-master/assets/index/Dialog.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dialog-master/assets/index/Mask.less" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dialog-master/examples/ant-design.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dialog-master/examples/ant-design.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dialog-master/examples/bootstrap.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dialog-master/examples/bootstrap.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dialog-master/examples/multiple-Portal.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dialog-master/examples/multiple-Portal.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dialog-master/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dialog-master/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dialog-master/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dialog-master/src/Dialog.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dialog-master/src/DialogWrap.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dialog-master/src/IDialogPropTypes.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dialog-master/src/LazyRenderBox.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dialog-master/tests/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dialog-master/tsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dialog-master/typings/custom.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dialog-master/typings/index.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/db" beforeDir="false" afterPath="$PROJECT_DIR$/server/db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/src/components/ui/Table/Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/src/components/ui/Table/Table.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/src/components/ui/Table/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/src/components/ui/Table/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/src/components/ui/Pagination/Pagination.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/src/components/ui/Pagination/Pagination.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/src/components/ui/Pagination/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/src/components/ui/Pagination/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webapp/src/views/Dashboard/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/src/views/Dashboard/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -49,116 +17,133 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.7022364">
+    <splitter split-orientation="horizontal" split-proportion="0.8312236">
       <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/webapp/src/views/Dashboard/index.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="547">
-                  <caret line="213" column="36" lean-forward="true" selection-start-line="213" selection-start-column="36" selection-end-line="213" selection-end-column="36" />
-                  <folding>
-                    <element signature="e#0#41#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Table/Table.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1025">
-                  <caret line="104" column="70" selection-start-line="104" selection-start-column="70" selection-end-line="104" selection-end-column="70" />
-                  <folding>
-                    <element signature="e#0#41#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Table/index.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="50">
-                  <caret line="2" selection-start-line="2" selection-end-line="2" />
-                  <folding>
-                    <element signature="e#0#21#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Table/index.css">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="280">
-                  <caret line="95" column="2" selection-start-line="95" selection-start-column="4" selection-end-line="95" selection-end-column="20" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/webapp/src/index.css">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="475">
-                  <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Pagination/Pagination.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="427">
-                  <caret line="51" column="14" lean-forward="true" selection-start-line="51" selection-start-column="14" selection-end-line="51" selection-end-column="14" />
-                  <folding>
-                    <element signature="e#0#41#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Menu/Menu.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="500">
-                  <caret line="59" column="24" selection-start-line="59" selection-start-column="19" selection-end-line="59" selection-end-column="24" />
-                  <folding>
-                    <element signature="e#0#41#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Pagination/index.css">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="58">
-                  <caret line="49" column="24" selection-start-line="49" selection-start-column="24" selection-end-line="49" selection-end-column="24" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Pagination/index.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="75">
-                  <caret line="3" column="26" lean-forward="true" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
-                  <folding>
-                    <element signature="e#0#21#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
+        <splitter split-orientation="horizontal" split-proportion="0.5627266">
+          <split-first>
+            <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+              <file pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/webapp/src/views/Dashboard/index.js">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="722">
+                      <caret line="217" column="21" selection-start-line="217" selection-start-column="21" selection-end-line="217" selection-end-column="21" />
+                      <folding>
+                        <element signature="e#0#41#0" expanded="true" />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Table/Table.js">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="2575">
+                      <caret line="104" column="70" selection-start-line="104" selection-start-column="70" selection-end-line="104" selection-end-column="70" />
+                      <folding>
+                        <element signature="e#0#41#0" expanded="true" />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Table/index.js">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="25">
+                      <caret line="2" selection-start-line="2" selection-end-line="2" />
+                      <folding>
+                        <element signature="e#0#21#0" expanded="true" />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Table/index.css">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="2375">
+                      <caret line="95" column="2" selection-start-line="95" selection-start-column="4" selection-end-line="95" selection-end-column="20" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/webapp/src/index.css">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="625">
+                      <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Pagination/Pagination.js">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="525">
+                      <caret line="96" column="23" lean-forward="true" selection-start-line="96" selection-start-column="23" selection-end-line="96" selection-end-column="23" />
+                      <folding>
+                        <element signature="e#0#41#0" expanded="true" />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Menu/Menu.js">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="1425">
+                      <caret line="59" column="24" selection-start-line="59" selection-start-column="19" selection-end-line="59" selection-end-column="24" />
+                      <folding>
+                        <element signature="e#0#41#0" expanded="true" />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Pagination/index.css">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="583">
+                      <caret line="40" column="107" selection-start-line="40" selection-start-column="107" selection-end-line="40" selection-end-column="107" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Pagination/index.js">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="50">
+                      <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+                      <folding>
+                        <element signature="e#0#21#0" expanded="true" />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+            </leaf>
+          </split-first>
+          <split-second>
+            <leaf>
+              <file pinned="false" current-in-tab="true">
+                <entry file="file://$USER_HOME$/Desktop/pageView.html">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="250">
+                      <caret line="31" column="77" selection-start-line="31" selection-start-column="39" selection-end-line="31" selection-end-column="77" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+            </leaf>
+          </split-second>
+        </splitter>
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
             <entry file="file://F:/暂存/UED/js/dbapp.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="280">
+                <state relative-caret-position="97150">
                   <caret line="3886" column="74" selection-start-line="3886" selection-start-column="65" selection-end-line="3886" selection-end-column="74" />
                 </state>
               </provider>
@@ -188,13 +173,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>!=</find>
-      <find>getDocument</find>
-      <find>handlePortalUpdate</find>
-      <find>createContainer</find>
-      <find>prevVisible</find>
-      <find>handleChange</find>
-      <find>componentDidUpdate</find>
       <find>this.prevVisible</find>
       <find>_component</find>
       <find>this.wrap</find>
@@ -218,6 +196,13 @@
       <find>cls-</find>
       <find>font-size: 12</find>
       <find>sprefix + &quot;</find>
+      <find>min</find>
+      <find>max</find>
+      <find>this.max</find>
+      <find>this.current</find>
+      <find>this.count</find>
+      <find>count</find>
+      <find>cur</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -245,15 +230,16 @@
         <option value="$PROJECT_DIR$/webapp/src/views/Login/index.js" />
         <option value="$PROJECT_DIR$/webapp/src/components/ui/Pagination/index.js" />
         <option value="$PROJECT_DIR$/webapp/src/components/ui/Table/Table.js" />
-        <option value="$PROJECT_DIR$/webapp/src/views/Dashboard/index.js" />
         <option value="$PROJECT_DIR$/webapp/src/components/ui/Table/index.css" />
         <option value="$PROJECT_DIR$/webapp/src/index.css" />
+        <option value="$USER_HOME$/Desktop/pageView.html" />
         <option value="$PROJECT_DIR$/webapp/src/components/ui/Pagination/index.css" />
         <option value="$PROJECT_DIR$/webapp/src/components/ui/Pagination/Pagination.js" />
+        <option value="$PROJECT_DIR$/webapp/src/views/Dashboard/index.js" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="260" />
     <option name="y" value="20" />
     <option name="width" value="1400" />
@@ -264,7 +250,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -432,6 +417,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -474,17 +460,18 @@
       <workItem from="1570074827543" duration="30398000" />
       <workItem from="1570153584507" duration="44617000" />
       <workItem from="1570241803117" duration="12100000" />
+      <workItem from="1570450209837" duration="19498000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87115000" />
+    <option name="totallyTimeSpent" value="106613000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17544784" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12539515" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -582,20 +569,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dialog-master/src/IDialogPropTypes.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="541">
-          <caret line="37" column="14" selection-start-line="37" selection-start-column="2" selection-end-line="37" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dialog-master/src/LazyRenderBox.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="20" lean-forward="true" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/dialog-master/src/IDialogPropTypes.tsx" />
+    <entry file="file://$PROJECT_DIR$/dialog-master/src/LazyRenderBox.tsx" />
     <entry file="file://$PROJECT_DIR$/webapp/src/components/Layout/HeaderMenu.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1075">
@@ -642,9 +617,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dialog-master/examples/bootstrap.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/dialog-master/examples/bootstrap.html" />
     <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Dialog/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="25">
@@ -679,30 +652,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dialog-master/examples/ant-design.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="111" column="35" selection-start-line="111" selection-start-column="35" selection-end-line="111" selection-end-column="35" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dialog-master/typings/custom.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dialog-master/src/DialogWrap.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/dialog-master/examples/ant-design.tsx" />
+    <entry file="file://$PROJECT_DIR$/dialog-master/typings/custom.d.ts" />
+    <entry file="file://$PROJECT_DIR$/dialog-master/src/DialogWrap.tsx" />
     <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Dropdown/Dropdown.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="430">
@@ -713,16 +665,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dialog-master/src/Dialog.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="131" column="10" selection-start-line="131" selection-start-column="2" selection-end-line="131" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/dialog-master/src/Dialog.tsx" />
     <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Dropdown/Popup.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
@@ -794,82 +737,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://F:/暂存/UED/css/dbapp.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130250">
-          <caret line="5210" column="1" selection-start-line="4717" selection-end-line="5210" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Dialog/Dialog.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
           <caret line="21" column="24" lean-forward="true" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Table/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Table/Table.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1025">
-          <caret line="104" column="70" selection-start-line="104" selection-start-column="70" selection-end-line="104" selection-end-column="70" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://F:/暂存/UED/js/dbapp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="3886" column="74" selection-start-line="3886" selection-start-column="65" selection-end-line="3886" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/src/views/Dashboard/index.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="8" column="15" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Table/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="95" column="2" selection-start-line="95" selection-start-column="4" selection-end-line="95" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/src/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Pagination/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="49" column="24" selection-start-line="49" selection-start-column="24" selection-end-line="49" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/src/views/Dashboard/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="213" column="36" lean-forward="true" selection-start-line="213" selection-start-column="36" selection-end-line="213" selection-end-column="36" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
@@ -886,9 +757,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Table/Table.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2575">
+          <caret line="104" column="70" selection-start-line="104" selection-start-column="70" selection-end-line="104" selection-end-column="70" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Table/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Table/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2375">
+          <caret line="95" column="2" selection-start-line="95" selection-start-column="4" selection-end-line="95" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/src/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="625">
+          <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Menu/Menu.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
+        <state relative-caret-position="1425">
           <caret line="59" column="24" selection-start-line="59" selection-start-column="19" selection-end-line="59" selection-end-column="24" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
@@ -898,18 +803,63 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Pagination/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="3" column="26" lean-forward="true" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+        <state relative-caret-position="50">
+          <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://F:/暂存/UED/js/dbapp.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97150">
+          <caret line="3886" column="74" selection-start-line="3886" selection-start-column="65" selection-end-line="3886" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://F:/暂存/UED/css/dbapp.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130250">
+          <caret line="5210" column="1" selection-start-line="4717" selection-end-line="5210" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/src/views/Dashboard/index.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="8" column="15" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Pagination/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="583">
+          <caret line="40" column="107" selection-start-line="40" selection-start-column="107" selection-end-line="40" selection-end-column="107" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/pageView.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="31" column="77" selection-start-line="31" selection-start-column="39" selection-end-line="31" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Pagination/Pagination.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="51" column="14" lean-forward="true" selection-start-line="51" selection-start-column="14" selection-end-line="51" selection-end-column="14" />
+        <state relative-caret-position="525">
+          <caret line="96" column="23" lean-forward="true" selection-start-line="96" selection-start-column="23" selection-end-line="96" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/src/views/Dashboard/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="722">
+          <caret line="217" column="21" selection-start-line="217" selection-start-column="21" selection-end-line="217" selection-end-column="21" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>

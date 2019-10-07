@@ -212,7 +212,11 @@ export default class Dashboard extends Component {
         >
         </Table>
         <div style={{ float: 'right' }}>
-          <Pagination></Pagination>
+          <Pagination
+            current={ 3 }
+            total={ 1000 }
+            size={ 20 }
+          ></Pagination>
         </div>
       </div>
     );

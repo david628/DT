@@ -12,7 +12,9 @@ class Pagination extends Component {
         sprefix: PropTypes.string,
         current: PropTypes.number,
         size: PropTypes.number,
+        max: PropTypes.number,
         total: PropTypes.number,
+        totalPage: PropTypes.number,
         onChange: PropTypes.func,
         onSizeChange: PropTypes.func
     };
@@ -20,24 +22,38 @@ class Pagination extends Component {
         sprefix: 'dldh',
         current: 1,
         size: 20,
+        max: 5,
+        totalPage: 0,
         total: 100,
         onChange: () => {},
         onSizeChange: () => {}
     };
     constructor(props) {
         super(props);
-        let current = props.current;
-        if ('current' in props) {
-            current = props.current;
-        }
         let size = props.size;
         if ('size' in props) {
             size = props.size;
         }
+        let total = props.total;
+        if ('total' in props) {
+            total = props.total;
+        }
+        let totalPage = Math.ceil(total / size);
+        let current;
+        if ('current' in props) {
+            if(props.current < 1) {
+                current = 1;
+            } else if(props.current > totalPage) {
+                current = totalPage;
+            } else {
+                current = props.current;
+            }
+        }
         this.state = {
             current,
-            inputValue: current,
-            size
+            size,
+            totalPage,
+            inputValue: current
         };
     }
     componentDidMount() {
@@ -49,12 +65,130 @@ class Pagination extends Component {
     componentDidUpdate() {
 
     }
+    getCls(is) {
+        return is ? `${ this.props.sprefix }-pagination-item ${ this.props.sprefix }-pagination-item-active` : `${ this.props.sprefix }-pagination-item`;
+    }
+    handleClick = (param) => {
+        return (e) => {
+            if(param === 'first') {
+                this.setState({
+                    current: 1
+                });
+            } else if(param === 'prev') {
+                this.setState({
+                    current: Math.max(1, this.state.current - 1)
+                });
+            } else if(param === 'next') {
+                this.setState({
+                    current: Math.min(this.state.totalPage, this.state.current + 1)
+                });
+            } else if(param === 'last') {
+                this.setState({
+                    current: this.state.totalPage
+                });
+            } else {
+                this.setState({
+                    current: Number(param)
+                });
+            }
+        }
+    }
+    onChange = e => {
+        this.setState({
+            current: Number(e.target.value)
+        });
+    }
+    renderElement() {
+        const { sprefix, max } = this.props;
+        const rs = [];
+        console.log(this.state.current);
+        if(this.state.totalPage <= max + 2) {
+            for(let i = 0; i < this.state.totalPage; i++) {
+                rs.push(
+                    <li key={ i + 1 } className={ this.getCls(this.state.current === i + 1) } onClick={ this.handleClick(i + 1) }>
+                        <a className={ `${ sprefix }-pagination-link` }>{ i + 1 }</a>
+                    </li>
+                );
+            }
+        } else {
+            if(this.state.current < max) {
+                for(let i = 0; i < max; i++) {
+                    rs.push(
+                        <li key={ i + 1 } className={ this.getCls(this.state.current === i + 1) } onClick={ this.handleClick(i + 1) }>
+                            <a className={ `${ sprefix }-pagination-link` }>{ i + 1 }</a>
+                        </li>
+                    );
+                }
+                rs.push(
+                    <li key={ -4 } className={ this.getCls() }>
+                        <a className={ `${ sprefix }-pagination-link` }>...</a>
+                    </li>
+                );
+                rs.push(
+                    <li key={ this.state.totalPage } className={ this.getCls(this.state.current === this.state.totalPage) } onClick={ this.handleClick(this.state.totalPage) }>
+                        <a className={ `${ sprefix }-pagination-link` }>{ this.state.totalPage }</a>
+                    </li>
+                );
+            }  else {
+                rs.push(
+                    <li key={ 1 } className={ this.getCls(this.state.current === 1) } onClick={ this.handleClick(1) }>
+                        <a className={ `${ sprefix }-pagination-link` }>{ 1 }</a>
+                    </li>
+                );
+                rs.push(
+                    <li key={ -3 } className={ this.getCls() }>
+                        <a className={ `${ sprefix }-pagination-link` }>...</a>
+                    </li>
+                );
+                let start = 0, end = this.state.current - 1 + max;
+                if(end >= this.state.totalPage) {
+                    if(end - this.state.totalPage === 1) {
+                        start = 0;
+                    } else if(end - this.state.totalPage >= 2) {
+                        start = end - this.state.totalPage - 1;
+                    }
+                    end = this.state.totalPage + 1;
+                }
+                for(let i = this.state.current - 1 - start; i < end; i++) {
+                    rs.push(
+                        <li key={ i } className={ this.getCls(this.state.current === i) } onClick={ this.handleClick(i) }>
+                            <a className={ `${ sprefix }-pagination-link` }>{ i }</a>
+                        </li>
+                    );
+                }
+                if(this.state.current + max < this.state.totalPage) {
+                    rs.push(
+                        <li key={ -4 } className={ this.getCls() }>
+                            <a className={ `${ sprefix }-pagination-link` }>...</a>
+                        </li>
+                    );
+                    rs.push(
+                        <li key={ this.state.totalPage } className={ this.getCls(this.state.current === this.state.totalPage) } onClick={ this.handleClick(this.state.totalPage) }>
+                            <a className={ `${ sprefix }-pagination-link` }>{ this.state.totalPage }</a>
+                        </li>
+                    );
+                } else if(this.state.current + max === this.state.totalPage) {
+                    rs.push(
+                        <li key={ this.state.totalPage - 1 } className={ this.getCls(this.state.current === this.state.totalPage - 1) } onClick={ this.handleClick(this.state.totalPage - 1) }>
+                            <a className={ `${ sprefix }-pagination-link` }>{ this.state.totalPage - 1 }</a>
+                        </li>
+                    );
+                    rs.push(
+                        <li key={ this.state.totalPage } className={ this.getCls(this.state.current === this.state.totalPage) } onClick={ this.handleClick(this.state.totalPage) }>
+                            <a className={ `${ sprefix }-pagination-link` }>{ this.state.totalPage }</a>
+                        </li>
+                    );
+                }
+            }
+        }
+        return rs;
+    }
     render() {
-        const { sprefix, current, total } = this.props;
+        const { sprefix } = this.props;
         return (
             <div className={ `${ sprefix }-pagination` }>
                 <ul className={ `${ sprefix }-pagination-list` }>
-                    <li className={ `${ sprefix }-pagination-item` }>
+                    <li className={ `${ sprefix }-pagination-item` } onClick={ this.handleClick('first') }>
                         <a className={ `${ sprefix }-pagination-link` }>
                             <i className={ `${ sprefix }-icon` }>
                                 <svg viewBox="64 64 896 896" focusable="false" data-icon="double-left" width="1em" height="1em" fill="currentColor" aria-hidden="true">
@@ -63,7 +197,7 @@ class Pagination extends Component {
                             </i>
                         </a>
                     </li>
-                    <li className={ `${ sprefix }-pagination-item` }>
+                    <li className={ `${ sprefix }-pagination-item` } onClick={ this.handleClick('prev') }>
                         <a className={ `${ sprefix }-pagination-link` }>
                             <i className={ `${ sprefix }-icon` }>
                                 <svg viewBox="64 64 896 896" focusable="false" data-icon="left" width="1em" height="1em" fill="currentColor" aria-hidden="true">
@@ -72,16 +206,8 @@ class Pagination extends Component {
                             </i>
                         </a>
                     </li>
-                    <li className={ `${ sprefix }-pagination-item ant-pagination-item-active` }>
-                        <a className={ `${ sprefix }-pagination-link` }>1</a>
-                    </li>
-                    <li className={ `${ sprefix }-pagination-item` }>
-                        <a className={ `${ sprefix }-pagination-link` }>2</a>
-                    </li>
-                    <li className={ `${ sprefix }-pagination-item` }>
-                        <a className={ `${ sprefix }-pagination-link` }>3</a>
-                    </li>
-                    <li className={ `${ sprefix }-pagination-item` }>
+                    { this.renderElement() }
+                    <li className={ `${ sprefix }-pagination-item` } onClick={ this.handleClick('next') }>
                         <a className={ `${ sprefix }-pagination-link` }>
                             <i className={ `${ sprefix }-icon` }>
                                 <svg viewBox="64 64 896 896" focusable="false" data-icon="right" width="1em" height="1em" fill="currentColor" aria-hidden="true">
@@ -90,7 +216,7 @@ class Pagination extends Component {
                             </i>
                         </a>
                     </li>
-                    <li className={ `${ sprefix }-pagination-item` }>
+                    <li className={ `${ sprefix }-pagination-item` } onClick={ this.handleClick('last') }>
                         <a className={ `${ sprefix }-pagination-link` }>
                             <i className={ `${ sprefix }-icon` }>
                                 <svg viewBox="64 64 896 896" focusable="false" data-icon="double-right" width="1em" height="1em" fill="currentColor" aria-hidden="true">
@@ -101,7 +227,7 @@ class Pagination extends Component {
                     </li>
                     <li className={ `${ sprefix }-pagination-options` }>
                         <div className={ `${ sprefix }-pagination-search` }>
-                            <input className={ `${ sprefix }-pagination-search-input` } type="text"/>
+                            <input className={ `${ sprefix }-pagination-search-input` } value={ this.state.current } onChange={ this.onChange } type="text"/>
                             <span className={ `${ sprefix }-pagination-divider` }>/</span>
                             <span className={ `${ sprefix }-pagination-total` }>100</span>
                             <span className={ `${ sprefix }-pagination-unit` }>页</span>
