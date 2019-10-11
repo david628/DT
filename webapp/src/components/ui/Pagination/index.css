@@ -75,3 +75,17 @@
 .dldh-pagination-unit {
   vertical-align: middle;
 }
+.dldh-pagination-list .dldh-pagination-disabled,
+.dldh-pagination-list .dldh-pagination-disabled:hover,
+.dldh-pagination-list .dldh-pagination-disabled:focus {
+  color: rgba(0,0,0,0.25);
+  border-color: #d9d9d9;
+  cursor: not-allowed;
+}
+.dldh-pagination-list .dldh-pagination-disabled .dldh-pagination-link,
+.dldh-pagination-list .dldh-pagination-disabled:hover .dldh-pagination-link,
+.dldh-pagination-list .dldh-pagination-disabled:focus .dldh-pagination-link {
+  color: rgba(0,0,0,0.25);
+  border-color: #d9d9d9;
+  cursor: not-allowed;
+}

@@ -10,7 +10,10 @@ function calculatePage(p, state, props) {
 class Pagination extends Component {
     static propTypes = {
         sprefix: PropTypes.string,
+        disabled: PropTypes.bool,
         current: PropTypes.number,
+        defaultCurrent: PropTypes.number,
+        defaultSize: PropTypes.number,
         size: PropTypes.number,
         max: PropTypes.number,
         total: PropTypes.number,
@@ -20,8 +23,9 @@ class Pagination extends Component {
     };
     static defaultProps = {
         sprefix: 'dldh',
-        current: 1,
-        size: 20,
+        disabled: false,
+        defaultCurrent: 1,
+        defaultSize: 20,
         max: 5,
         totalPage: 0,
         total: 100,
@@ -30,29 +34,25 @@ class Pagination extends Component {
     };
     constructor(props) {
         super(props);
-        let size = props.size;
+
+        let current = props.defaultCurrent;
+        if ('current' in props) {
+            current = props.current;
+        }
+
+        let size = props.defaultSize;
         if ('size' in props) {
             size = props.size;
         }
+
         let total = props.total;
         if ('total' in props) {
             total = props.total;
         }
-        let totalPage = Math.ceil(total / size);
-        let current;
-        if ('current' in props) {
-            if(props.current < 1) {
-                current = 1;
-            } else if(props.current > totalPage) {
-                current = totalPage;
-            } else {
-                current = props.current;
-            }
-        }
+
         this.state = {
             current,
             size,
-            totalPage,
             inputValue: current
         };
     }
@@ -65,31 +65,32 @@ class Pagination extends Component {
     componentDidUpdate() {
 
     }
-    getCls(is) {
-        return is ? `${ this.props.sprefix }-pagination-item ${ this.props.sprefix }-pagination-item-active` : `${ this.props.sprefix }-pagination-item`;
+    getCls(is, isDisable) {
+        let rs = [`${this.props.sprefix}-pagination-item`];
+        if(is) {
+            rs.push(`${ this.props.sprefix }-pagination-item-active`);
+        }
+        if(isDisable) {
+            rs.push(`${ this.props.sprefix }-pagination-disabled`);
+        }
+        return rs.join(' ');
     }
-    handleClick = (param) => {
+    handleClick = (param, isDisabled) => {
+        if(isDisabled) {
+            return;
+        }
         return (e) => {
+            let totalPage = this.getTotalPage();
             if(param === 'first') {
-                this.setState({
-                    current: 1
-                });
+                this.setCurrentPage(1);
             } else if(param === 'prev') {
-                this.setState({
-                    current: Math.max(1, this.state.current - 1)
-                });
+                this.setCurrentPage(Math.max(1, this.state.current - 1));
             } else if(param === 'next') {
-                this.setState({
-                    current: Math.min(this.state.totalPage, this.state.current + 1)
-                });
+                this.setCurrentPage(Math.min(totalPage, this.state.current + 1));
             } else if(param === 'last') {
-                this.setState({
-                    current: this.state.totalPage
-                });
+                this.setCurrentPage(totalPage);
             } else {
-                this.setState({
-                    current: Number(param)
-                });
+                this.setCurrentPage(Number(param));
             }
         }
     }
@@ -98,14 +99,73 @@ class Pagination extends Component {
             current: Number(e.target.value)
         });
     }
+    getTotalPage() {
+        return Math.ceil(this.props.total / this.state.size);
+    }
+    handleChange = (e) => {
+        //let v = e.target.value;
+        //v = isNaN(v) ? this.state.current : Number(v);
+        //inputValue
+        //this.setCurrentPage(v);
+        this.setState({
+            inputValue: e.target.value,
+        });
+    }
+    isInteger(value) {
+        return typeof value === 'number' && isFinite(value) && Math.floor(value) === value;
+    }
+    isValid(page) {
+        return this.isInteger(page) && page !== this.state.current;
+    }
+    getInputValue() {
+        const { inputValue, current } = this.state;
+        return isNaN(inputValue) ? current : Number(inputValue);
+    }
+    handleBlur = (e) => {
+        const { current } = this.state;
+        let v = this.getInputValue();
+        if(v !== this.state.current) {
+            this.setCurrentPage(v);
+        } else {
+            this.setState({
+                inputValue: this.state.current
+            });
+        }
+    }
+    handleKeyUp = (e) => {
+        if (e.keyCode === 13) {
+            e.target.blur();
+        }
+    }
+    setCurrentPage = (p) => {
+        const { disabled } = this.props;
+        let page = p;
+        if (this.isValid(page) && !disabled) {
+            let totalPage = this.getTotalPage();
+            if (page > totalPage) {
+                page = totalPage;
+            } else if (page < 1) {
+                page = 1;
+            }
+            if (!('current' in this.props)) {
+                this.setState({
+                    current: page,
+                    inputValue: page
+                });
+            }
+            this.props.onChange(page, this.state.size);
+            return page;
+        }
+        return this.state.current;
+    }
     renderElement() {
         const { sprefix, max } = this.props;
         const rs = [];
-        console.log(this.state.current);
-        if(this.state.totalPage <= max + 2) {
-            for(let i = 0; i < this.state.totalPage; i++) {
+        let totalPage = this.getTotalPage();
+        if(totalPage <= max + 2) {
+            for(let i = 0; i < totalPage; i++) {
                 rs.push(
-                    <li key={ i + 1 } className={ this.getCls(this.state.current === i + 1) } onClick={ this.handleClick(i + 1) }>
+                    <li key={ i + 1 } className={ this.getCls(this.state.current === i + 1) } onClick={ this.handleClick(i + 1, this.state.current === i + 1) }>
                         <a className={ `${ sprefix }-pagination-link` }>{ i + 1 }</a>
                     </li>
                 );
@@ -114,7 +174,7 @@ class Pagination extends Component {
             if(this.state.current < max) {
                 for(let i = 0; i < max; i++) {
                     rs.push(
-                        <li key={ i + 1 } className={ this.getCls(this.state.current === i + 1) } onClick={ this.handleClick(i + 1) }>
+                        <li key={ i + 1 } className={ this.getCls(this.state.current === i + 1) } onClick={ this.handleClick(i + 1, this.state.current === i + 1) }>
                             <a className={ `${ sprefix }-pagination-link` }>{ i + 1 }</a>
                         </li>
                     );
@@ -125,13 +185,13 @@ class Pagination extends Component {
                     </li>
                 );
                 rs.push(
-                    <li key={ this.state.totalPage } className={ this.getCls(this.state.current === this.state.totalPage) } onClick={ this.handleClick(this.state.totalPage) }>
-                        <a className={ `${ sprefix }-pagination-link` }>{ this.state.totalPage }</a>
+                    <li key={ totalPage } className={ this.getCls(this.state.current === totalPage) } onClick={ this.handleClick(totalPage, this.state.current === totalPage) }>
+                        <a className={ `${ sprefix }-pagination-link` }>{ totalPage }</a>
                     </li>
                 );
             }  else {
                 rs.push(
-                    <li key={ 1 } className={ this.getCls(this.state.current === 1) } onClick={ this.handleClick(1) }>
+                    <li key={ 1 } className={ this.getCls(this.state.current === 1) } onClick={ this.handleClick(1, this.state.current === 1) }>
                         <a className={ `${ sprefix }-pagination-link` }>{ 1 }</a>
                     </li>
                 );
@@ -141,41 +201,41 @@ class Pagination extends Component {
                     </li>
                 );
                 let start = 0, end = this.state.current - 1 + max;
-                if(end >= this.state.totalPage) {
-                    if(end - this.state.totalPage === 1) {
+                if(end >= totalPage) {
+                    if(end - totalPage === 1) {
                         start = 0;
-                    } else if(end - this.state.totalPage >= 2) {
-                        start = end - this.state.totalPage - 1;
+                    } else if(end - totalPage >= 2) {
+                        start = end - totalPage - 1;
                     }
-                    end = this.state.totalPage + 1;
+                    end = totalPage + 1;
                 }
                 for(let i = this.state.current - 1 - start; i < end; i++) {
                     rs.push(
-                        <li key={ i } className={ this.getCls(this.state.current === i) } onClick={ this.handleClick(i) }>
+                        <li key={ i } className={ this.getCls(this.state.current === i) } onClick={ this.handleClick(i, this.state.current === i) }>
                             <a className={ `${ sprefix }-pagination-link` }>{ i }</a>
                         </li>
                     );
                 }
-                if(this.state.current + max < this.state.totalPage) {
+                if(this.state.current + max < totalPage) {
                     rs.push(
                         <li key={ -4 } className={ this.getCls() }>
                             <a className={ `${ sprefix }-pagination-link` }>...</a>
                         </li>
                     );
                     rs.push(
-                        <li key={ this.state.totalPage } className={ this.getCls(this.state.current === this.state.totalPage) } onClick={ this.handleClick(this.state.totalPage) }>
-                            <a className={ `${ sprefix }-pagination-link` }>{ this.state.totalPage }</a>
+                        <li key={ totalPage } className={ this.getCls(this.state.current === totalPage) } onClick={ this.handleClick(totalPage, this.state.current === totalPage) }>
+                            <a className={ `${ sprefix }-pagination-link` }>{ totalPage }</a>
                         </li>
                     );
-                } else if(this.state.current + max === this.state.totalPage) {
+                } else if(this.state.current + max === totalPage) {
                     rs.push(
-                        <li key={ this.state.totalPage - 1 } className={ this.getCls(this.state.current === this.state.totalPage - 1) } onClick={ this.handleClick(this.state.totalPage - 1) }>
-                            <a className={ `${ sprefix }-pagination-link` }>{ this.state.totalPage - 1 }</a>
+                        <li key={ totalPage - 1 } className={ this.getCls(this.state.current === totalPage - 1) } onClick={ this.handleClick(totalPage - 1, this.state.current === totalPage - 1) }>
+                            <a className={ `${ sprefix }-pagination-link` }>{ totalPage - 1 }</a>
                         </li>
                     );
                     rs.push(
-                        <li key={ this.state.totalPage } className={ this.getCls(this.state.current === this.state.totalPage) } onClick={ this.handleClick(this.state.totalPage) }>
-                            <a className={ `${ sprefix }-pagination-link` }>{ this.state.totalPage }</a>
+                        <li key={ totalPage } className={ this.getCls(this.state.current === totalPage) } onClick={ this.handleClick(totalPage, this.state.current === totalPage) }>
+                            <a className={ `${ sprefix }-pagination-link` }>{ totalPage }</a>
                         </li>
                     );
                 }
@@ -185,10 +245,11 @@ class Pagination extends Component {
     }
     render() {
         const { sprefix } = this.props;
+        let totalPage = this.getTotalPage();
         return (
             <div className={ `${ sprefix }-pagination` }>
                 <ul className={ `${ sprefix }-pagination-list` }>
-                    <li className={ `${ sprefix }-pagination-item` } onClick={ this.handleClick('first') }>
+                    <li className={ this.getCls(false, this.state.current === 1) } onClick={ this.handleClick('first', this.state.current === 1) }>
                         <a className={ `${ sprefix }-pagination-link` }>
                             <i className={ `${ sprefix }-icon` }>
                                 <svg viewBox="64 64 896 896" focusable="false" data-icon="double-left" width="1em" height="1em" fill="currentColor" aria-hidden="true">
@@ -197,7 +258,7 @@ class Pagination extends Component {
                             </i>
                         </a>
                     </li>
-                    <li className={ `${ sprefix }-pagination-item` } onClick={ this.handleClick('prev') }>
+                    <li className={ this.getCls(false, this.state.current === 1) } onClick={ this.handleClick('prev', this.state.current === 1) }>
                         <a className={ `${ sprefix }-pagination-link` }>
                             <i className={ `${ sprefix }-icon` }>
                                 <svg viewBox="64 64 896 896" focusable="false" data-icon="left" width="1em" height="1em" fill="currentColor" aria-hidden="true">
@@ -207,7 +268,7 @@ class Pagination extends Component {
                         </a>
                     </li>
                     { this.renderElement() }
-                    <li className={ `${ sprefix }-pagination-item` } onClick={ this.handleClick('next') }>
+                    <li className={ this.getCls(false, this.state.current === totalPage) } onClick={ this.handleClick('next', this.state.current === totalPage) }>
                         <a className={ `${ sprefix }-pagination-link` }>
                             <i className={ `${ sprefix }-icon` }>
                                 <svg viewBox="64 64 896 896" focusable="false" data-icon="right" width="1em" height="1em" fill="currentColor" aria-hidden="true">
@@ -216,7 +277,7 @@ class Pagination extends Component {
                             </i>
                         </a>
                     </li>
-                    <li className={ `${ sprefix }-pagination-item` } onClick={ this.handleClick('last') }>
+                    <li className={ this.getCls(false, this.state.current === totalPage) } onClick={ this.handleClick('last', this.state.current === totalPage) }>
                         <a className={ `${ sprefix }-pagination-link` }>
                             <i className={ `${ sprefix }-icon` }>
                                 <svg viewBox="64 64 896 896" focusable="false" data-icon="double-right" width="1em" height="1em" fill="currentColor" aria-hidden="true">
@@ -227,7 +288,16 @@ class Pagination extends Component {
                     </li>
                     <li className={ `${ sprefix }-pagination-options` }>
                         <div className={ `${ sprefix }-pagination-search` }>
-                            <input className={ `${ sprefix }-pagination-search-input` } value={ this.state.current } onChange={ this.onChange } type="text"/>
+                            <input
+                                className={ `${ sprefix }-pagination-search-input` }
+                                //value={ this.state.current }
+                                type="text"
+                                value={ this.state.inputValue }
+                                onChange={ this.handleChange }
+                                onKeyUp={ this.handleKeyUp }
+                                onBlur={ this.handleBlur }
+                                type="text"
+                            />
                             <span className={ `${ sprefix }-pagination-divider` }>/</span>
                             <span className={ `${ sprefix }-pagination-total` }>100</span>
                             <span className={ `${ sprefix }-pagination-unit` }>页</span>

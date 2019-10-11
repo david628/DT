@@ -14,6 +14,9 @@ export default class Dashboard extends Component {
       name: '',
       visible: false,
       data: [],
+      current: 1,
+      size: 5,
+      total: 0,
       cm: [{
         header: '名称',
         dataStore: 'name',
@@ -49,8 +52,15 @@ export default class Dashboard extends Component {
   componentDidMount() {
     this.getList();
   }
+  onChange = (e) => {
+    this.getList();
+  }
   getList() {
-    fetch('dashboard/list', {
+    const { current, size } = this.state;
+    let param = {};
+    param.start = (current - 1) * size;
+    param.limit = size;
+    fetch(`dashboard/list?start=${ param.start }&limit=${ param.limit }`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -62,7 +72,8 @@ export default class Dashboard extends Component {
       return response.json();
     }).then(rs => {
       this.setState({
-        data: rs.data
+        data: rs.data,
+        total: rs.total
       });
     });
   }
@@ -213,9 +224,11 @@ export default class Dashboard extends Component {
         </Table>
         <div style={{ float: 'right' }}>
           <Pagination
-            current={ 3 }
-            total={ 1000 }
-            size={ 20 }
+            defaultCurrent={ 1 }
+            defaultSize={ this.state.size }
+            current={ this.state.current }
+            total={ this.state.total }
+            onChange={ this.onChange }
           ></Pagination>
         </div>
       </div>
