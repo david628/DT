@@ -194,37 +194,6 @@ export default class Dashboard extends Component {
         <div style={{ padding: '10px 10px 10px 0' }}>
           <Button type="button" onClick={ this.showDialog }>新增</Button>
         </div>
-        <div style={{ display: 'none' }}>
-          <table cellPadding="0" cellSpacing="0" border="0" className="ui-table">
-            <thead>
-              <tr>
-                <th>名称</th>
-                <th>创建者</th>
-                <th>修改时间</th>
-                <th>类型</th>
-                <th style={{ width: '160px', textAlign: 'center' }}>操作</th>
-              </tr>
-            </thead>
-            <tbody>
-            {
-              this.state.data.map((item, index) => {
-                return (
-                  <tr key={index}>
-                    <td>{ item.name }</td>
-                    <td>{ item.createUser }</td>
-                    <td>{ item.updateDate }</td>
-                    <td>{ item.type }</td>
-                    <td style={{ textAlign: 'center' }}>
-                      <Button type="button" onClick={ e => this.edit(item, e) } style={{ margin: '0 5px' }}>编辑</Button>
-                      <Button type="button" onClick={ e => this.del(item, e) } style={{ margin: '0 5px' }}>删除</Button>
-                    </td>
-                  </tr>
-                );
-              })
-            }
-            </tbody>
-          </table>
-        </div>
         <Table
             cm={ this.state.cm }
             data={ this.state.data }

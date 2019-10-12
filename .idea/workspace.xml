@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92712626-cb38-4a09-8cd9-0b16cfc1de35" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/db" beforeDir="false" afterPath="$PROJECT_DIR$/server/db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/src/components/ui/Pagination/Pagination.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/src/components/ui/Pagination/Pagination.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webapp/src/views/Dashboard/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/src/views/Dashboard/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -26,8 +22,8 @@
               <file pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/webapp/src/views/Dashboard/index.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="750">
-                      <caret line="243" column="6" lean-forward="true" selection-start-line="243" selection-start-column="6" selection-end-line="243" selection-end-column="6" />
+                    <state relative-caret-position="400">
+                      <caret line="195" column="14" selection-start-line="195" selection-start-column="14" selection-end-line="195" selection-end-column="14" />
                       <folding>
                         <element signature="e#0#41#0" expanded="true" />
                       </folding>
@@ -39,7 +35,7 @@
                 <entry file="file://$PROJECT_DIR$/server/routes/dashboard.js">
                   <provider selected="true" editor-type-id="text-editor">
                     <state relative-caret-position="-217">
-                      <caret line="24" column="3" lean-forward="true" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
+                      <caret line="24" column="3" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
                     </state>
                   </provider>
                 </entry>
@@ -71,7 +67,7 @@
                 <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Pagination/Pagination.js">
                   <provider selected="true" editor-type-id="text-editor">
                     <state relative-caret-position="405">
-                      <caret line="64" column="23" lean-forward="true" selection-start-line="64" selection-start-column="23" selection-end-line="64" selection-end-column="23" />
+                      <caret line="64" column="23" selection-start-line="64" selection-start-column="23" selection-end-line="64" selection-end-column="23" />
                       <folding>
                         <element signature="e#0#41#0" expanded="true" />
                       </folding>
@@ -237,8 +233,8 @@
         <option value="$USER_HOME$/Desktop/pageView.html" />
         <option value="$PROJECT_DIR$/webapp/src/components/ui/Pagination/index.css" />
         <option value="$PROJECT_DIR$/webapp/src/components/ui/Pagination/Pagination.js" />
-        <option value="$PROJECT_DIR$/webapp/src/views/Dashboard/index.js" />
         <option value="$PROJECT_DIR$/server/routes/dashboard.js" />
+        <option value="$PROJECT_DIR$/webapp/src/views/Dashboard/index.js" />
       </list>
     </option>
   </component>
@@ -377,12 +373,12 @@
       <workItem from="1570450209837" duration="20095000" />
       <workItem from="1570542080599" duration="579000" />
       <workItem from="1570803130283" duration="13540000" />
-      <workItem from="1570881406322" duration="4262000" />
+      <workItem from="1570881406322" duration="4516000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="125591000" />
+    <option name="totallyTimeSpent" value="125845000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -765,7 +761,7 @@
     <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Pagination/Pagination.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
-          <caret line="64" column="23" lean-forward="true" selection-start-line="64" selection-start-column="23" selection-end-line="64" selection-end-column="23" />
+          <caret line="64" column="23" selection-start-line="64" selection-start-column="23" selection-end-line="64" selection-end-column="23" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
@@ -775,14 +771,14 @@
     <entry file="file://$PROJECT_DIR$/server/routes/dashboard.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-217">
-          <caret line="24" column="3" lean-forward="true" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
+          <caret line="24" column="3" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/webapp/src/views/Dashboard/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="750">
-          <caret line="243" column="6" lean-forward="true" selection-start-line="243" selection-start-column="6" selection-end-line="243" selection-end-column="6" />
+        <state relative-caret-position="400">
+          <caret line="195" column="14" selection-start-line="195" selection-start-column="14" selection-end-line="195" selection-end-column="14" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
