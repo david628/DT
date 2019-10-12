@@ -1,4 +1,4 @@
-依次进入目录
+杩涘叆鐩綍
 server/
 
 npm install
