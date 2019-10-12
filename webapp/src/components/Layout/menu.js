@@ -25,6 +25,49 @@ const menuData = [
         path: 'Schema'
       }
     ]
+  },
+  {
+    name: '组件页',
+    text: '组件页',
+    icon: 'home',
+    path: 'component',
+    children: [
+      {
+        name: 'menu',
+        text: 'Menu',
+        path: 'menu'
+      },
+      {
+        name: 'button',
+        text: 'Button',
+        path: 'button'
+      },
+      {
+        name: 'input',
+        text: 'Input',
+        path: 'input'
+      },
+      {
+        name: 'checkbox',
+        text: 'Checkbox',
+        path: 'checkbox'
+      },
+      {
+        name: 'form',
+        text: 'Form',
+        path: 'form'
+      },
+      {
+        name: 'select',
+        text: 'Select',
+        path: 'select'
+      },
+      {
+        name: 'dropdown',
+        text: 'Dropdown',
+        path: 'dropdown'
+      }
+    ]
   }
 ];
 

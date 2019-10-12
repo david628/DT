@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92712626-cb38-4a09-8cd9-0b16cfc1de35" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/webapp/src/views/Dashboard/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/src/views/Dashboard/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/src/components/Layout/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/src/components/Layout/menu.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -14,12 +14,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.76861167">
+    <splitter split-orientation="horizontal" split-proportion="0.58685446">
       <split-first>
-        <splitter split-orientation="horizontal" split-proportion="0.8768559">
+        <splitter split-orientation="horizontal" split-proportion="0.8453608">
           <split-first>
             <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-              <file pinned="false" current-in-tab="true">
+              <file pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/webapp/src/views/Dashboard/index.js">
                   <provider selected="true" editor-type-id="text-editor">
                     <state relative-caret-position="400">
@@ -36,20 +36,6 @@
                   <provider selected="true" editor-type-id="text-editor">
                     <state relative-caret-position="-217">
                       <caret line="24" column="3" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/server/utils/db.js">
-                  <provider selected="true" editor-type-id="text-editor" />
-                </entry>
-              </file>
-              <file pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Table/index.css">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="2375">
-                      <caret line="95" column="2" selection-start-line="95" selection-start-column="4" selection-end-line="95" selection-end-column="20" />
                     </state>
                   </provider>
                 </entry>
@@ -78,8 +64,8 @@
               <file pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Dropdown/Dropdown.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="305">
-                      <caret line="49" column="19" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="19" />
+                    <state relative-caret-position="380">
+                      <caret line="52" column="15" lean-forward="true" selection-start-line="52" selection-start-column="15" selection-end-line="52" selection-end-column="15" />
                       <folding>
                         <element signature="e#0#41#0" expanded="true" />
                       </folding>
@@ -88,13 +74,31 @@
                 </entry>
               </file>
               <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Util/Dldh.js">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="5500">
+                      <caret line="220" column="41" selection-start-line="220" selection-start-column="41" selection-end-line="220" selection-end-column="41" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Menu/Menu.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="1425">
+                    <state relative-caret-position="747">
                       <caret line="59" column="24" selection-start-line="59" selection-start-column="19" selection-end-line="59" selection-end-column="24" />
                       <folding>
                         <element signature="e#0#41#0" expanded="true" />
                       </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/webapp/src/components/Layout/menu.js">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="422">
+                      <caret line="33" column="15" lean-forward="true" selection-start-line="33" selection-start-column="15" selection-end-line="33" selection-end-column="15" />
                     </state>
                   </provider>
                 </entry>
@@ -139,11 +143,20 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://F:/暂存/UED/js/dbapp.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="555">
+                <state relative-caret-position="1675">
                   <caret line="3424" column="52" selection-start-line="3423" selection-start-column="16" selection-end-line="3424" selection-end-column="52" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/../src - 副本/components/Layout/menu.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="175">
+                  <caret line="65" column="2" selection-start-line="65" selection-start-column="2" selection-end-line="107" selection-end-column="3" />
                 </state>
               </provider>
             </entry>
@@ -235,6 +248,7 @@
         <option value="$PROJECT_DIR$/webapp/src/components/ui/Pagination/Pagination.js" />
         <option value="$PROJECT_DIR$/server/routes/dashboard.js" />
         <option value="$PROJECT_DIR$/webapp/src/views/Dashboard/index.js" />
+        <option value="$PROJECT_DIR$/webapp/src/components/Layout/menu.js" />
       </list>
     </option>
   </component>
@@ -298,7 +312,7 @@
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
+              <item name="Layout" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="DT" type="b2602c69:ProjectViewProjectNode" />
@@ -307,22 +321,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="ui" type="462c0819:PsiDirectoryNode" />
-              <item name="Dropdown" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DT" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DT" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="Dashboard" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -373,12 +371,12 @@
       <workItem from="1570450209837" duration="20095000" />
       <workItem from="1570542080599" duration="579000" />
       <workItem from="1570803130283" duration="13540000" />
-      <workItem from="1570881406322" duration="4516000" />
+      <workItem from="1570881406322" duration="5250000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="125845000" />
+    <option name="totallyTimeSpent" value="126579000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -419,15 +417,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Menu/MenuItem.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1778">
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webapp/src - 副本/views/dropdown/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-203">
@@ -484,13 +473,6 @@
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Util/Dldh.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3532">
-          <caret line="220" column="41" lean-forward="true" selection-start-line="220" selection-start-column="41" selection-end-line="220" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -693,16 +675,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Menu/Menu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1425">
-          <caret line="59" column="24" selection-start-line="59" selection-start-column="19" selection-end-line="59" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Pagination/index.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2150">
@@ -727,13 +699,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://F:/暂存/UED/js/dbapp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="3424" column="52" selection-start-line="3423" selection-start-column="16" selection-end-line="3424" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://F:/暂存/UED/css/dbapp.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="130250">
@@ -745,16 +710,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="8" column="15" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Dropdown/Dropdown.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="49" column="19" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -782,6 +737,54 @@
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Dropdown/Dropdown.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="52" column="15" lean-forward="true" selection-start-line="52" selection-start-column="15" selection-end-line="52" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Util/Dldh.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5500">
+          <caret line="220" column="41" selection-start-line="220" selection-start-column="41" selection-end-line="220" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/src/components/ui/Menu/Menu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="747">
+          <caret line="59" column="24" selection-start-line="59" selection-start-column="19" selection-end-line="59" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://F:/暂存/UED/js/dbapp.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1675">
+          <caret line="3424" column="52" selection-start-line="3423" selection-start-column="16" selection-end-line="3424" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../src - 副本/components/Layout/menu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="65" column="2" selection-start-line="65" selection-start-column="2" selection-end-line="107" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/src/components/Layout/menu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="33" column="15" lean-forward="true" selection-start-line="33" selection-start-column="15" selection-end-line="33" selection-end-column="15" />
         </state>
       </provider>
     </entry>
