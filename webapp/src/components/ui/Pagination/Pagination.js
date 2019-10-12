@@ -60,7 +60,12 @@ class Pagination extends Component {
 
     }
     componentWillReceiveProps(nextProps) {
-
+        // const { size } = nextProps;
+        // if(this.isInteger(size) && size !== this.state.size) {
+        //     this.setState({
+        //         size
+        //     });
+        // }
     }
     componentDidUpdate() {
 
@@ -94,12 +99,13 @@ class Pagination extends Component {
             }
         }
     }
-    onChange = e => {
-        this.setState({
-            current: Number(e.target.value)
-        });
-    }
+    // onChange = e => {
+    //     this.setState({
+    //         current: Number(e.target.value)
+    //     });
+    // }
     getTotalPage() {
+        console.log(this.state.size);
         return Math.ceil(this.props.total / this.state.size);
     }
     handleChange = (e) => {
@@ -157,6 +163,12 @@ class Pagination extends Component {
             return page;
         }
         return this.state.current;
+    }
+    getParam() {
+        let param = {};
+        param.start = (this.state.current - 1) * this.state.size;
+        param.limit = this.state.size;
+        return param;
     }
     renderElement() {
         const { sprefix, max } = this.props;

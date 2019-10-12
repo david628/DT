@@ -14,8 +14,8 @@ export default class Dashboard extends Component {
       name: '',
       visible: false,
       data: [],
-      current: 1,
-      size: 5,
+      //current: 1,
+      size: 10,
       total: 0,
       cm: [{
         header: '名称',
@@ -50,16 +50,18 @@ export default class Dashboard extends Component {
     };
   }
   componentDidMount() {
-    this.getList();
+    this.getList({
+      start: 0,
+      limit: this.state.size
+    });
   }
-  onChange = (e) => {
-    this.getList();
-  }
-  getList() {
-    const { current, size } = this.state;
+  onChange = (current, size) => {
     let param = {};
     param.start = (current - 1) * size;
     param.limit = size;
+    this.getList(param);
+  }
+  getList(param) {
     fetch(`dashboard/list?start=${ param.start }&limit=${ param.limit }`, {
       method: 'GET',
       headers: {
@@ -99,7 +101,10 @@ export default class Dashboard extends Component {
       }
       return response.json();
     }).then(rs => {
-      this.getList();
+      this.getList({
+        start: 0,
+        limit: this.state.size
+      });
       this.onCancel();
     });
   };
@@ -120,7 +125,10 @@ export default class Dashboard extends Component {
           }
           return response.json();
         }).then(rs => {
-          this.getList();
+          this.getList({
+            start: 0,
+            limit: this.state.size
+          });
           confirm.close();
         });
         return true;
@@ -225,8 +233,9 @@ export default class Dashboard extends Component {
         <div style={{ float: 'right' }}>
           <Pagination
             defaultCurrent={ 1 }
-            defaultSize={ this.state.size }
-            current={ this.state.current }
+            //defaultSize={ 5 }
+            //current={ this.state.current }
+            size={ this.state.size }
             total={ this.state.total }
             onChange={ this.onChange }
           ></Pagination>

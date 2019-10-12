@@ -1,0 +1,13 @@
+依次进入目录
+server/
+
+npm install
+npm start
+
+
+
+webapp/
+
+npm install
+npm start
+

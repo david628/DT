@@ -8,9 +8,12 @@ router.get('/', function (ctx, next) {
 })
 
 router.get('/list', async function (ctx, next) {
-  const data = await db.query("SELECT * FROM dashboard");
+  const { start, limit } = ctx.request.query;
+  const data = await db.query("SELECT * FROM dashboard ORDER BY id DESC LIMIT ?, ?", [start, limit]);
+  const total = await db.query("SELECT COUNT(id) FROM dashboard");
   ctx.body = {
-    data: data
+    data,
+    total: total[0]['COUNT(id)']
   }
 })
 
@@ -18,7 +21,7 @@ router.post('/save', async function (ctx, next) {
   const { name, status } = ctx.request.body;
   const data = await db.insert("INSERT INTO dashboard (name, status) VALUES (?, ?)", [name, status]);
   ctx.body = {
-    data: data
+    data
   }
 })
 
@@ -26,7 +29,7 @@ router.post('/update', async function (ctx, next) {
   const { id, name } = ctx.request.body;
   const data = await db.insert("UPDATE dashboard SET name = ? WHERE id = ?", [name, id]);
   ctx.body = {
-    data: data
+    data
   }
 })
 
@@ -34,7 +37,7 @@ router.delete('/delete', async function (ctx, next) {
   const { id } = ctx.request.body;
   const data = await db.del("DELETE FROM dashboard WHERE id = ?", [id]);
   ctx.body = {
-    data: data
+    data
   }
 })
 
