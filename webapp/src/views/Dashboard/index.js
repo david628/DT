@@ -4,6 +4,7 @@ import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
 import Table from '../../components/ui/Table';
 import Pagination from '../../components/ui/Pagination';
+import Message from '../../components/ui/Message';
 import './index.less';
 
 export default class Dashboard extends Component {
@@ -171,6 +172,11 @@ export default class Dashboard extends Component {
       visible: false
     });
   };
+  showMessage = () => {
+    Message.open({
+      msg: <div>{ new Date().toLocaleString() }</div>
+    });
+  }
   render() {
     return (
       <div>
@@ -193,6 +199,7 @@ export default class Dashboard extends Component {
         </div>
         <div style={{ padding: '10px 10px 10px 0' }}>
           <Button type="button" onClick={ this.showDialog }>新增</Button>
+          <Button type="button" onClick={ this.showMessage } style={{ marginLeft: '10px' }}>测试消息Message</Button>
         </div>
         <Table
             cm={ this.state.cm }

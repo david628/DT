@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 class Popup extends Component {
   static propTypes = {
     sprefix: PropTypes.string,
+    isAimated: PropTypes.bool,
+    enterCls: PropTypes.string,
+    leaveCls: PropTypes.string,
     getContainer: PropTypes.func.isRequired,
     children: PropTypes.node.isRequired,
     didUpdate: PropTypes.func,
@@ -15,6 +18,9 @@ class Popup extends Component {
   };
   static defaultProps = {
     sprefix: 'dldh',
+    isAimated: true,
+    enter: 'slideInUp',
+    leave: 'slideOutUp',
     didUpdate: function() {},
     onMaskClick: function() {},
     onMouseEnter: function() {},
@@ -24,20 +30,32 @@ class Popup extends Component {
   };
   constructor(props) {
     super(props);
+    this.timeoutId;
   }
   componentDidMount() {
   	this.createContainer();
   }
-  componentWillReceiveProps(nextProps) {
-
-  }
+  componentWillReceiveProps(nextProps) {}
   componentDidUpdate(prevProps, prevState) {
+    clearTimeout(this.timeoutId);
+    if(this.props.visible) {
+      this._component.style.display = 'block';
+    }
     if(!this._component.contains(document.activeElement)) {
       this.focusElement.focus();
     }
-    var didUpdate = this.props.didUpdate;
+    const didUpdate = this.props.didUpdate;
     if (didUpdate) {
       didUpdate(prevProps, this._component);
+    }
+    if(!this.props.visible) {
+      this.timeoutId = setTimeout(() => {
+        if(this._component) {
+          this._component.style.display = 'none';
+        }
+        clearTimeout(this.timeoutId);
+        this.timeoutId = null;
+      }, 200);
     }
   }
   componentWillUnmount() {
@@ -55,16 +73,31 @@ class Popup extends Component {
   saveRef = (name) => (node) => {
     this[name] = node;
   }
+  getCls(is) {
+    const { sprefix, isAimated, enter, leave } = this.props;
+    let rs = [`${ sprefix }-popup-contain`];
+    if(is) {
+      rs.push(`${ sprefix }-dropdown`);
+      rs.push(`${ sprefix }-popup-contain-open`);
+      if(isAimated) {
+        rs.push(`animated`);
+      }
+      rs.push(`${ enter }`);
+    } else {
+      rs.push(`${ sprefix }-dropdown`);
+      rs.push(`${ sprefix }-popup-contain-hidden`);
+      if(isAimated) {
+        rs.push(`animated`);
+      }
+      rs.push(`${ leave }`);
+    }
+    return rs.join(' ');
+  }
   render() {
   	if (this._container) {
   	  const props = this.props;
-      let sprefix = props.sprefix, className;
-      if(props.visible) {
-        className = `${sprefix}-popup-contain ${sprefix}-popup-contain-open ${sprefix}-dropdown slide-up-enter`;
-      } else {
-        className = `${sprefix}-popup-contain ${sprefix}-popup-contain-hidden ${sprefix}-dropdown slide-up-leave`;
-      }
-  	  //this._container.className = this.props.visible ? 'popup-contain' : 'popup-contain popup-contain-hidden';
+  	  const { sprefix } = props;
+      let className = this.getCls(props.visible);
       return ReactDOM.createPortal(
         <div className={ sprefix + "-popup-inner" }>
           { props.mask }

@@ -1,0 +1,31 @@
+.dldh-message {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.dldh-message .dldh-message-item {
+    padding: 5px 16px;
+    text-align: center;
+}
+.dldh-message .dldh-message-item-inner {
+    padding: 10px 16px;
+    border-radius: 4px;
+    background: #fff;
+    -webkit-box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    pointer-events: all;
+}
+.dldh-message .dldh-message-success {
+    color: #52c41a;
+    display: inline-block;
+}
+.dldh-message .dldh-message-content {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: rgba(0,0,0,0.65);
+    font-size: 12px;
+    list-style: none;
+    pointer-events: none;
+    box-sizing: border-box;
+}

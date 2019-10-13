@@ -1,34 +1,22 @@
 import React, { Component } from 'react';
 import ReactDOM, { findDOMNode } from "react-dom";
 import Popup from '../Dropdown/Popup';
-import Button from '../Button';
 import Dldh from '../Util/Dldh';
 import PropTypes from "prop-types";
+import Dialog from "../Dialog";
 
-class Dialog extends Component {
+class MessageItem extends Component {
     static propTypes = {
         //sprefix: PropTypes.string,
         placement: PropTypes.string,
         title: PropTypes.string,
-        closable: PropTypes.bool,
-        submitTitle: PropTypes.string,
-        cancelTitle: PropTypes.string,
-        getDocument: PropTypes.func,
-        onSubmit: PropTypes.func,
-        onCancel: PropTypes.func
+        closable: PropTypes.bool
     };
     static defaultProps = {
         sprefix: 'dldh',
         placement: 'c-c',
         title: '',
-        submitTitle: '确定',
-        cancelTitle: '取消',
-        closable: true,
-        onSubmit: () => {},
-        onCancel: () => {},
-        getDocument: () => {
-            return window.document;
-        }
+        closable: true
     };
     constructor(props) {
         super(props);
@@ -58,10 +46,8 @@ class Dialog extends Component {
     }
     componentDidUpdate(prevProps, prevState) {
         this.prevVisible = prevState.visible;
-
     }
     componentWillUnmount() {
-
     }
     handlePortalUpdate = (prevProps, node) => {
         if(this.prevVisible !== this.state.visible || (this.prevVisible && this.state.visible)) {
@@ -85,14 +71,6 @@ class Dialog extends Component {
             mountNode.appendChild(popupContainer);
             return popupContainer;
         }
-    }
-    onMaskClick = e => {
-        if(this.props.onMaskClick !== false) {
-            this.onCancel();
-        }
-    }
-    onSubmit = e => {
-        this.props.onSubmit(e);
     }
     onCancel = e => {
         const props = this.props;
@@ -124,27 +102,21 @@ class Dialog extends Component {
                     </i>
                 );
             }
-            this.mask = <div className={ visible ? props.sprefix + "-popup-mask" : props.sprefix + "-popup-mask " + props.sprefix + "-popup-mask-hidden"} onClick={ this.onMaskClick }></div>;
             popup = (
                 <Popup
                     { ...popupProps }
                     visible={ visible }
                     getContainer={ this.getContainer }
                     didUpdate={ this.handlePortalUpdate }
-                    mask={ this.mask }
                     ref={ this.savePopup }
                 >
-                    <div className={ props.sprefix + "-dialog-inner" }>
-                        <div className={ props.sprefix + "-dialog-header" }>
-                            <div className={ props.sprefix + "-dialog-title" }>{ props.title }</div>
+                    <div className={ props.sprefix + "-message-inner" }>
+                        <div className={ props.sprefix + "-message-header" }>
+                            <div className={ props.sprefix + "-message-title" }>{ props.title }</div>
                             { closable }
                         </div>
-                        <div className={ props.sprefix + "-dialog-center" }>
+                        <div className={ props.sprefix + "-message-center" }>
                             { props.children }
-                        </div>
-                        <div className={ props.sprefix + "-dialog-footer" }>
-                            <Button onClick={ this.onCancel }>{ props.cancelTitle }</Button>
-                            <Button onClick={ this.onSubmit }>{ props.submitTitle }</Button>
                         </div>
                     </div>
                 </Popup>
@@ -157,73 +129,4 @@ class Dialog extends Component {
         );
     }
 }
-function Msg(props) {
-    let sprefix = 'dldh', timeout, div = document.createElement('div'), parent = document.body;
-    div.className = `${sprefix}-dialog`;
-    document.body.appendChild(div);
-    const getContainer = function() {
-        return div;
-    }
-    const onClose = function() {
-        timeout = setTimeout(() => {
-            const unmountResult = ReactDOM.unmountComponentAtNode(div);
-            if (unmountResult && div.parentNode) {
-                div.parentNode.removeChild(div);
-            }
-            clearTimeout(timeout);
-            timeout = null;
-        }, 200);
-    }
-    function onSubmit() {
-        let onSubmit = props.onSubmit;
-        if (onSubmit) {
-            let ret = onSubmit();
-            if (!ret) {
-                onClose();
-            }
-            if (ret && ret.then) {
-                ret.then(onClose);
-            }
-        } else {
-            onClose();
-        }
-    }
-    function onCancel() {
-        let onCancel = props.onCancel;
-        if (onCancel) {
-            let ret = onCancel();
-            if (!ret) {
-                onClose();
-            }
-            if (ret && ret.then) {
-                ret.then(onClose);
-            }
-        } else {
-            onClose();
-        }
-    }
-    ReactDOM.render(
-        <Dialog
-            //className={ className }
-            defaultVisible={ true }
-            closable={ false }
-            title=""
-            getContainer={ getContainer }
-            onSubmit={ onSubmit }
-            onCancel={ onCancel }
-            //onMaskClick = { false }
-        >
-            <div style={{ width: '360px', zoom: 1, overflow: 'hidden' }}>MSG</div>
-        </Dialog>, div);
-    return {
-        close: onClose
-    };
-}
-Dialog.Confirm = function (props) {
-    const config = {
-        type: 'confirm',
-        ...props
-    };
-    return Msg(config);
-};
-export default Dialog;
+export default MessageItem;

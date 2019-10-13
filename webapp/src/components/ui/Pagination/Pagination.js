@@ -1,12 +1,6 @@
 import React ,{ Component } from 'react';
 import PropTypes from 'prop-types';
-function calculatePage(p, state, props) {
-    let size = p;
-    if (typeof size === 'undefined') {
-        size = state.size;
-    }
-    return Math.floor((props.total - 1) / size) + 1;
-}
+
 class Pagination extends Component {
     static propTypes = {
         sprefix: PropTypes.string,
@@ -105,7 +99,6 @@ class Pagination extends Component {
     //     });
     // }
     getTotalPage() {
-        console.log(this.state.size);
         return Math.ceil(this.props.total / this.state.size);
     }
     handleChange = (e) => {
