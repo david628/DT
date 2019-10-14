@@ -1,13 +1,23 @@
 .dldh-message {
-    position: absolute;
+    width: 100%;
+    position: fixed;
+    top: 16px;
     left: 0;
-    top: 0;
+    z-index: 1100;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    pointer-events: none;
+}
+.dldh-message .dldh-popup-inner {
+    position: static;
 }
 .dldh-message .dldh-message-item {
     padding: 5px 16px;
     text-align: center;
 }
 .dldh-message .dldh-message-item-inner {
+    display: inline-block;
     padding: 10px 16px;
     border-radius: 4px;
     background: #fff;
@@ -15,17 +25,25 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     pointer-events: all;
 }
+.dldh-message .dldh-message-content {
+
+}
+.dldh-message .dldh-message-icon {
+    color: #faad14;
+    float: left;
+    margin-right: 10px;
+}
 .dldh-message .dldh-message-success {
     color: #52c41a;
-    display: inline-block;
 }
-.dldh-message .dldh-message-content {
-    width: 100%;
-    margin: 0;
-    padding: 0;
+.dldh-message .dldh-message-warning {
+    color: #faad14;
+}
+.dldh-message .dldh-message-center {
+    overflow: hidden;
     color: rgba(0,0,0,0.65);
+    text-align: left;
     font-size: 12px;
     list-style: none;
     pointer-events: none;
-    box-sizing: border-box;
 }

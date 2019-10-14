@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import Form from '../../components/ui/Form';
 import Input from '../../components/ui/Input';
 import Button from '../../components/ui/Button';
+import Message from '../../components/ui/Message';
 //import { loginAction } from '@/action/login.action';
 import history from '@/utils/history';
 import './index.less';
@@ -61,6 +62,12 @@ export default class Login extends Component {
   };
   submit = (e) => {
     e.preventDefault();
+    if(this.state.userName == '' || this.state.password == '') {
+      Message.warning({
+        msg: <div>用户名或密码错误！</div>
+      });
+      return;
+    }
     this.props.login(this.state);
   };
   render() {

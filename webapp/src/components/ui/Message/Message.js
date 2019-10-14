@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM, { findDOMNode } from "react-dom";
+import MessageItem from './MessageItem';
 import Popup from '../Dropdown/Popup';
 import Dldh from '../Util/Dldh';
 import PropTypes from "prop-types";
@@ -11,16 +12,18 @@ function getId() {
 
 class Message extends Component {
     static propTypes = {
-        //sprefix: PropTypes.string,
+        sprefix: PropTypes.string,
         placement: PropTypes.string,
-        title: PropTypes.string,
-        closable: PropTypes.bool
+        closable: PropTypes.bool,
+        duration: PropTypes.number,
+        onClose: PropTypes.func,
     };
     static defaultProps = {
         sprefix: 'dldh',
         placement: 'c-c',
-        title: '',
         closable: true,
+        duration: 1.5,
+        onClose: () => {},
         getDocument: () => {
             return window.document;
         }
@@ -35,7 +38,6 @@ class Message extends Component {
             visible,
             items: []
         };
-        this.prevVisible = visible;
     }
     componentDidMount() {
         this.componentDidUpdate({}, {
@@ -53,12 +55,12 @@ class Message extends Component {
         }
     }
     componentDidUpdate(prevProps, prevState) {
-        this.prevVisible = prevState.visible;
+
     }
     componentWillUnmount() {
     }
     handlePortalUpdate = (prevProps, node) => {
-        if(this.prevVisible !== this.state.visible || (this.prevVisible && this.state.visible)) {
+        if(this.state.visible) {
             let listElement = findDOMNode(node);
             Dldh.Css.alignTo(listElement, this.getMountNode(), this.props.placement);
             listElement.style.top = 0;
@@ -106,7 +108,14 @@ class Message extends Component {
         }
         this.setState({
             items: newItems
-        })
+        });
+    }
+    remove = (key) => {
+        const { items } = this.state;
+        const newItems = items.filter(msg => msg.key !== key);
+        this.setState({
+            items: newItems
+        });
     }
     render() {
         const { visible, items } = this.state;
@@ -116,28 +125,30 @@ class Message extends Component {
         };
         let popup;
         if(visible || this._component) {
-            let closable;
-            if(props.closable) {
-                closable = (
-                    <i className={ props.sprefix + "-message-close" } onClick={ this.onCancel }>
-                        <svg viewBox="64 64 896 896" focusable="false" data-icon="close" width="1em" height="1em" fill="currentColor" aria-hidden="true">
-                            <path d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"></path>
-                        </svg>
-                    </i>
-                );
-            }
+            // let closable;
+            // if(props.closable) {
+            //     closable = (
+            //         <i className={ props.sprefix + "-message-close" } onClick={ this.onCancel }>
+            //             <svg viewBox="64 64 896 896" focusable="false" data-icon="close" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+            //                 <path d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"></path>
+            //             </svg>
+            //         </i>
+            //     );
+            // }
+
             const itemsElement = items.map((item, index) => {
+                const key = item.key;
+                const onClose = (e) => {
+                    this.remove(key);
+                };
                 return (
-                    <div key={ index } className={ props.sprefix + "-message-item" }>
-                        <div className={ props.sprefix + "-message-item-inner animated slideInUp" }>
-                            <i className={ `${ props.sprefix }-message-success` }>
-                                <svg viewBox="64 64 896 896" focusable="false" data-icon="check-circle" width="1em" height="1em" fill="currentColor" aria-hidden="true">
-                                    <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm193.5 301.7l-210.6 292a31.8 31.8 0 0 1-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.2 0 19.9 4.9 25.9 13.3l71.2 98.8 157.2-218c6-8.3 15.6-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.5 12.7z"></path>
-                                </svg>
-                            </i>
-                            <span className={ `${ props.sprefix }-message-content` }>{ item.msg }</span>
-                        </div>
-                    </div>
+                    <MessageItem
+                        key={ key }
+                        defaultVisible={ true }
+                        onClose={ onClose }
+                    >
+                        { item.msg }
+                    </MessageItem>
                 );
             });
             popup = (
@@ -160,7 +171,7 @@ class Message extends Component {
     }
 }
 let instance;
-Message.open = (props, callback) => {
+Message.warning = (props, callback) => {
     if(instance) {
         instance.add(props);
         return;
@@ -176,14 +187,9 @@ Message.open = (props, callback) => {
             //className={ className }
             defaultVisible={ true }
             closable={ false }
-            title=""
             getContainer={ getContainer }
             //onCancel={ onCancel }
             { ...props }
-            ref={(item) => {
-                //console.log(item);
-                item.add(props);
-            }}
         />, div);
     instance.add(props);
 }

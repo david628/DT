@@ -87,6 +87,10 @@ export default class Dashboard extends Component {
   onSubmit = e => {
     e.preventDefault();
     const { id, name } = this.state;
+    if(name == '') {
+      this.showMessage(`名称不能为空！`);
+      return;
+    }
     fetch(id === null ? 'dashboard/save' : 'dashboard/update' , {
       method: 'POST',
       headers: {
@@ -172,10 +176,19 @@ export default class Dashboard extends Component {
       visible: false
     });
   };
-  showMessage = () => {
-    Message.open({
-      msg: <div>{ new Date().toLocaleString() }</div>
+  showMessage = (msg) => {
+    let m = 'Test...';
+    if(msg !== undefined) {
+      m = msg;
+    }
+    Message.warning({
+      msg: <div>{ m }</div>
     });
+  };
+  testMsg = (msg) => {
+    return (e) => {
+      this.showMessage(msg);
+    }
   }
   render() {
     return (
@@ -199,7 +212,7 @@ export default class Dashboard extends Component {
         </div>
         <div style={{ padding: '10px 10px 10px 0' }}>
           <Button type="button" onClick={ this.showDialog }>新增</Button>
-          <Button type="button" onClick={ this.showMessage } style={{ marginLeft: '10px' }}>测试消息Message</Button>
+          <Button type="button" onClick={ this.testMsg() } style={{ marginLeft: '10px' }}>测试消息Message</Button>
         </div>
         <Table
             cm={ this.state.cm }
