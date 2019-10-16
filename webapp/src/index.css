@@ -125,3 +125,89 @@ a, area, button, [role='button'], input:not([type='range']), label, select, summ
   -webkit-animation-name: fadeOutDown;
   animation-name: fadeOutDown;
 }
+
+
+
+.moveDownIn {
+    -webkit-animation-name: moveDownIn;
+    animation-name: moveDownIn;
+}
+.moveDownOut {
+    -webkit-animation-name: moveDownOut;
+    animation-name: moveDownOut;
+}
+@keyframes moveDownIn {
+    0% {
+        -webkit-transform: translateY(100%);
+        transform: translateY(100%);
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        opacity: 0
+    }
+
+    100% {
+        -webkit-transform: translateY(0%);
+        transform: translateY(0%);
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        opacity: 1
+    }
+}
+@keyframes moveDownOut {
+    0% {
+        max-height: 150px;
+        padding: 8px;
+        opacity: 1
+    }
+
+    100% {
+        max-height: 0;
+        padding: 0;
+        opacity: 0
+    }
+}
+
+
+.moveUpIn {
+    -webkit-animation-name: moveUpIn;
+    animation-name: moveUpIn;
+}
+.moveUpOut {
+    -webkit-animation-name: moveUpOut;
+    animation-name: moveUpOut;
+}
+@keyframes moveUpIn {
+    0% {
+        -webkit-transform: translateY(-100%);
+        transform: translateY(-100%);
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        opacity: 0
+    }
+
+    100% {
+        -webkit-transform: translateY(0%);
+        transform: translateY(0%);
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        opacity: 1
+    }
+}
+@keyframes moveUpOut {
+    0% {
+        -webkit-transform: translateY(0%);
+        transform: translateY(0%);
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        opacity: 1
+    }
+
+    100% {
+        -webkit-transform: translateY(-100%);
+        transform: translateY(-100%);
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        opacity: 0
+    }
+}
+

@@ -16,7 +16,6 @@
   padding: 8px 16px;
   //color: rgba(0,0,0,0.45);
   font-size: 14px;
-  line-height: 1.5;
   -webkit-transition: all .3s;
   transition: all .3s;
 }
@@ -131,7 +130,6 @@
   position: relative;
   display: block;
   padding: 7px 15px;
-  font-weight: 400;
   color: #666;
   cursor: pointer;
   white-space: nowrap;
@@ -154,7 +152,6 @@
 }
 .dldh-select-dropdown-menu-item-selected, .dldh-select-dropdown-menu-item-selected:hover {
   background-color: #f7f7f7;
-  font-weight: 700;
   color: #666;
 }
 .dldh-select-dropdown-menu-item-divider {
@@ -173,16 +170,12 @@
   color: transparent;
   display: inline-block;
   font-size: 12px;
-  font-size: 10px\9;
-  -webkit-transform: scale(.83333333) rotate(0deg);
-  -ms-transform: scale(.83333333) rotate(0deg);
   transform: scale(.83333333) rotate(0deg);
-  -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=1, M12=0, M21=0, M22=1)";
-  zoom:1;-webkit-transition: all .2s ease;
   transition: all .2s ease;
+  zoom: 1;
   position: absolute;
   right: 15px;
   font-weight: 700;
-  text-shadow: 0 .1px 0,.1px 0 0,0 -.1px 0,-.1px 0;
+  text-shadow: 0 0.1px 0, 0.1px 0 0,0 -0.1px 0,-0.1px 0;
 }
 

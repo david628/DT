@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {findDOMNode, createPortal} from 'react-dom';
 import PropTypes from 'prop-types';
-import Dldh from '@/components/ui/Util/Dldh';
+import Dldh from '../Util/Dldh';
 import Popup from './Popup';
 class Dropdown extends Component {
   static propTypes = {
@@ -33,6 +33,7 @@ class Dropdown extends Component {
   constructor(props) {
     super(props);
     let visible;
+    visible = !!props.defaultValue;
     if ('visible' in props) {
       visible = !!props.visible;
     }
@@ -135,8 +136,9 @@ class Dropdown extends Component {
   }
   onClick = (e) => {
     e.preventDefault();
+    const v = !this.state.visible;
     if (this.isClickToHide() && this.isClickToShow()) {
-      this.setPopupVisible(!this.state.visible, e);
+      this.setPopupVisible(v, e);
     }
   }
   onMouseDown = (e) => {
@@ -173,15 +175,15 @@ class Dropdown extends Component {
     mountNode.appendChild(popupContainer);
     return popupContainer;
   }
-  handlePortalUpdate = (prevProps) => {
-    if (this.prevVisible !== this.state.visible) {
-      this.props.afterPopupVisibleChange(this.state.visible);
-    }
+  handlePortalUpdate = (prevProps, node) => {
     if(prevProps.visible) {
-      const node = findDOMNode(this);
-      const listNode = findDOMNode(this._component);
-      listNode.style.width = node.offsetWidth + 'px';
-      Dldh.Css.alignTo(listNode, node, this.props.placement);
+      const target = findDOMNode(this);
+      const listNode = findDOMNode(node);
+      listNode.style.width = target.offsetWidth + 'px';
+      Dldh.Css.alignTo(listNode, target, this.props.placement);
+    }
+    if(this.prevVisible !== this.state.visible) {
+      this.props.afterPopupVisibleChange(this.state.visible);
     }
   }
   savePopup = (node) => {
@@ -305,13 +307,13 @@ class Dropdown extends Component {
     if(visible || this._component) {
       popup = (
         <Popup
-          {...popupProps}
-          visible={visible}
-          getContainer={this.getContainer}
-          didUpdate={this.handlePortalUpdate}
-          ref={this.savePopup}
+          { ...popupProps }
+          visible={ visible }
+          getContainer={ this.getContainer }
+          didUpdate={ this.handlePortalUpdate }
+          ref={ this.savePopup }
         >
-        {this.props.menu}
+        { this.props.menu }
         </Popup>
       );
     }
@@ -323,7 +325,7 @@ class Dropdown extends Component {
           (c, i) => this.renderChildren(c, i)
         )
       }
-      {popup}
+      { popup }
       </React.Fragment>
     );
   }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Dropdown from '@/components/ui/Dropdown';
-import Menu, { Item as MenuItem, ItemGroup as MenuItemGroup } from '@/components/ui/Menu';
+import Dropdown from '../Dropdown';
+import Menu, { Item as MenuItem, ItemGroup as MenuItemGroup } from '../Menu';
 class Select extends Component {
   static propTypes = {
   };
@@ -11,7 +11,7 @@ class Select extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false,
+      //visible: false,
       inputValue: '',
       value: ''
     }
@@ -62,8 +62,8 @@ class Select extends Component {
         );
         if (innerItems.length) {
           options.push(
-            <MenuItemGroup key={key} title={label}>
-              {innerItems}
+            <MenuItemGroup key={ key } title={ label }>
+              { innerItems }
             </MenuItemGroup>
           );
         }
@@ -71,10 +71,10 @@ class Select extends Component {
         const childValue = this.getValuePropValue(child);
         const menuItem = (
           <MenuItem
-            value={childValue}
-            key={childValue}
+            value={ childValue }
+            key={ childValue }
             role="option"
-            {...child.props}
+            { ...child.props }
           />
         );
         menuItems.push(menuItem);
@@ -95,15 +95,26 @@ class Select extends Component {
   onInputChange = (event) => {
     const v = event.target.value;
     this.setInputValue(v);
-    this.setState({
-      open: true,
-    });
+    // this.setState({
+    //   open: true
+    // });
   }
+  onSelect = (a, b) => {
+    console.log(a, b);
+    // this.setState({
+    //   open: false
+    // });
+  };
+  onClick = (v) => {
+    this.setState({
+      visible: v
+    });
+  };
   render() {
     const { props, state } = this;
     const menuItems = [];
     const childrenKeys = [];
-    const sprefix = `dldh-select`;
+    const sprefix = `dldh`;
     let hidden = false;
     if (state.inputValue) {
       hidden = true;
@@ -113,22 +124,31 @@ class Select extends Component {
     }
     const menu = (
       <Menu
-        sprefix={`${sprefix}-dropdown`}
+        sprefix={`${ sprefix }-select-dropdown`}
+        onSelect={ this.onSelect }
       >
-        {this.getOptions(this.props.children, childrenKeys, menuItems)}
+        { this.getOptions(this.props.children, childrenKeys, menuItems) }
       </Menu>
     );
     return (
-      <Dropdown sprefix={sprefix} menu={menu} trigger={["click"]}>
-        <div className="dldh-select">
-          <div className="dldh-select-selection ant-select-selection--multiple">
-            <div className="dldh-select-selection__rendered">
-              <div className="dldh-select-selection__placeholder" unselectable="unselectable" style={{display: hidden ? 'none' : 'block'}}>Please select</div>
-              <ul className="dldh-select-ul">
-                <li className="dldh-select-search dldh-select-search--inline">
-                  <div className="dldh-select-search__field__wrap">
-                    <input className="dldh-select-search__field" onChange={this.onInputChange}/>
-                    <span className="dldh-select-search__field__mirror"></span>
+      <Dropdown sprefix={ `${ sprefix }-select` }
+        menu={ menu }
+        //visible={ this.state.visible }
+        onClick={ this.onClick }
+        trigger={ "click" }
+      >
+        <div className={ `${ sprefix }-select` } style={{ width: '300px' }}>
+          <div className={ `${ sprefix }-select-selection ${ sprefix }-select-selection--multiple` }>
+            <div className={ `${ sprefix }-select-selection__rendered` }>
+              <div className={ `${ sprefix }-select-selection__placeholder` }
+                 unselectable="unselectable"
+                 style={{ display: hidden ? 'none' : 'block' }}
+              >Please select</div>
+              <ul className={ `${ sprefix }-select-ul` }>
+                <li className={ `${ sprefix }-select-search ${ sprefix }-select-search--inline` }>
+                  <div className={ `${ sprefix }-select-search__field__wrap` }>
+                    <input className={ `${ sprefix }-select-search__field` } onChange={ this.onInputChange }/>
+                    <span className={ `${ sprefix }-select-search__field__mirror` }></span>
                   </div>
                 </li>
               </ul>

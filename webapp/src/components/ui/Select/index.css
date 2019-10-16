@@ -1,21 +1,19 @@
+.dldh-select-popup-inner {
+  position: absolute;
+}
 .dldh-select {
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   color: rgba(0,0,0,0.65);
   font-size: 14px;
-  font-variant: tabular-nums;
-  line-height: 1.5;
   list-style: none;
-  -webkit-font-feature-settings: 'tnum';
-  font-feature-settings: 'tnum';
   position: relative;
   display: inline-block;
   outline: 0;
 }
 .dldh-select .dldh-select-selection {
-	display: block;
+  display: block;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   background-color: #fff;
@@ -42,7 +40,7 @@
   zoom: 1;
 }
 .dldh-select .dldh-select-selection .dldh-select-selection__rendered {
-	position: relative;
+  position: relative;
   display: block;
   margin-right: 11px;
   margin-left: 11px;
@@ -104,7 +102,6 @@
   cursor: text;
 }
 .dldh-select .dldh-select-selection--multiple .dldh-select-search--inline .dldh-select-search__field {
-  width: .75em;
 }
 .dldh-select .dldh-select-selection--multiple .dldh-select-selection__rendered>ul>li, .dldh-select .dldh-select-selection--multiple>ul>li {
   margin-top: 4px;
@@ -112,26 +109,21 @@
   line-height: 20px;
 }
 .dldh-select-dropdown {
+  width: 100%;
   margin: 0;
   padding: 0;
   color: rgba(0,0,0,0.65);
-  font-variant: tabular-nums;
-  line-height: 1.5;
   list-style: none;
-  -webkit-font-feature-settings: 'tnum';
-  font-feature-settings: 'tnum';
   position: absolute;
   /*top: -9999px;
   left: -9999px;*/
   z-index: 1050;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   font-size: 14px;
-  font-variant: initial;
-  background-color: #fff;
   border-radius: 4px;
+  border: 0;
   outline: none;
-  -webkit-box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  background-color: #fff;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 .dldh-select-dropdown-menu {
@@ -141,20 +133,6 @@
   overflow: auto;
   list-style: none;
   outline: none;
-}
-.dldh-select-dropdown-menu-item {
-  position: relative;
-  display: block;
-  padding: 5px 12px;
-  overflow: hidden;
-  color: rgba(0,0,0,0.65);
-  font-weight: normal;
-  line-height: 22px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  cursor: pointer;
-  -webkit-transition: background .3s ease;
-  transition: background .3s ease;
 }
 .dldh-select-dropdown-menu-item {
   position: relative;
@@ -181,8 +159,7 @@
 }
 .dldh-select-dropdown-menu-item-selected {
   color: rgba(0,0,0,0.65);
-  font-weight: 600;
-  background-color: #fafafa;
+  background-color: #e6f7ff;
 }
 .dldh-select-dropdown-menu-item-disabled {
   color: rgba(0,0,0,0.25);

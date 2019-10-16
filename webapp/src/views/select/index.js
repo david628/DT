@@ -11,8 +11,15 @@ class User extends Component {
     return (
       <div>
         <div style={{padding: '10px'}}>
-          <Select
-          >
+          <Select>
+            <Option value="aa">aa</Option>
+            <Option value="bb">bb</Option>
+            <Option value="cc">cc</Option>
+            <Option value="dd">dd</Option>
+          </Select>
+        </div>
+        <div style={{padding: '10px'}}>
+          <Select>
             <OptGroup label="a">
               <Option value="aa">aa</Option>
               <Option value="bb">bb</Option>

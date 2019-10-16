@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Dialog from '../../components/ui/Dialog';
 import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
+import Select, { Option, OptGroup } from '../../components/ui/Select';
 import Table from '../../components/ui/Table';
 import Pagination from '../../components/ui/Pagination';
 import Message from '../../components/ui/Message';
@@ -202,9 +203,27 @@ export default class Dashboard extends Component {
           >
             <div style={{ width: '600px' }}>
               <form onSubmit={ this.onSubmit }>
-                <div>
-                  <label style={{ padding: '5px 10px 5px 0', display: 'inline-block' }}>名称</label>
-                  <Input type="text" name="name" value={ this.state.name } onChange={ this.handleChange }></Input>
+                <div style={{ marginBottom: '10px' }}>
+                  <label style={{ width: '80px', float: 'left', padding: '5px 10px 5px 0', display: 'inline-block' }}>名称</label>
+                  <div style={{ overflow: 'hidden' }}>
+                    <Input type="text" name="name" value={ this.state.name } onChange={ this.handleChange } style={{ width: '194px' }}></Input>
+                  </div>
+                </div>
+                <div style={{ marginBottom: '10px' }}>
+                  <label style={{ width: '80px', float: 'left', padding: '5px 10px 5px 0', display: 'inline-block' }}>类型</label>
+                  <div style={{ overflow: 'hidden' }}>
+                    <Select>
+                      <OptGroup label="a">
+                        <Option value="aa">aa</Option>
+                        <Option value="bb">bb</Option>
+                        <OptGroup label="a1">
+                          <Option value="aa1">aa1</Option>
+                          <Option value="bb1">bb1</Option>
+                        </OptGroup>
+                      </OptGroup>
+                      <Option value="cc">cc</Option>
+                    </Select>
+                  </div>
                 </div>
               </form>
             </div>

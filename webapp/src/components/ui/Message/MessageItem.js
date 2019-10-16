@@ -14,8 +14,8 @@ class MessageItem extends Component {
     static defaultProps = {
         sprefix: 'dldh',
         isAimated: true,
-        enter: 'slideInUp',
-        leave: 'slideOutUp',
+        enter: 'moveUpIn',
+        leave: 'moveUpOut',
         closable: true,
         duration: 3,
         onClose: () => {}
