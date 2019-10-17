@@ -11,7 +11,7 @@ class Select extends Component {
   };
   constructor(props) {
     super(props);
-    let value = props.defaultValue;
+    let value = props.defaultValue || [];
     if ('value' in props) {
       value = props.value || [];
     }
