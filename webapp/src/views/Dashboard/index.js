@@ -14,6 +14,7 @@ export default class Dashboard extends Component {
     this.state = {
       id: null,
       name: '',
+      type: '0',
       visible: false,
       data: [],
       //current: 1,
@@ -36,7 +37,18 @@ export default class Dashboard extends Component {
       {
         header: '类型',
         dataStore: 'type',
-        width: 150
+        width: 150,
+        render: item => {
+          let rs;
+          if (item.type == 0) {
+            rs = <div>报表</div>;
+          } else if (item.type == 1) {
+            rs = <div>大屏</div>;
+          } else {
+            rs = <div>-</div>;
+          }
+          return rs;
+        }
       },
       {
         header: '操作',
@@ -87,9 +99,13 @@ export default class Dashboard extends Component {
   };
   onSubmit = e => {
     e.preventDefault();
-    const { id, name } = this.state;
+    const { id, name, type } = this.state;
     if(name == '') {
       this.showMessage(`名称不能为空！`);
+      return;
+    }
+    if(type == '') {
+      this.showMessage(`类型不能为空！`);
       return;
     }
     fetch(id === null ? 'dashboard/save' : 'dashboard/update' , {
@@ -99,7 +115,8 @@ export default class Dashboard extends Component {
       },
       body: JSON.stringify({
         id,
-        name
+        name,
+        type
       })
     }).then(response => {
       if (!response.ok) {
@@ -157,11 +174,12 @@ export default class Dashboard extends Component {
       }
       return response.json();
     }).then(rs => {
-      const { id, name } = rs.data;
+      const { id, name, type } = rs.data;
       this.setState({
         visible: true,
         id,
-        name
+        name,
+        type
       });
     });
   };
@@ -191,6 +209,11 @@ export default class Dashboard extends Component {
       this.showMessage(msg);
     }
   }
+  selectChange = (v) => {
+    this.setState({
+      type: v
+    });
+  }
   render() {
     return (
       <div>
@@ -201,27 +224,20 @@ export default class Dashboard extends Component {
               onCancel={ this.onCancel }
               onSubmit={ this.onSubmit }
           >
-            <div style={{ width: '600px' }}>
+            <div style={{ width: '560px', padding: '0 30px' }}>
               <form onSubmit={ this.onSubmit }>
                 <div style={{ marginBottom: '10px' }}>
                   <label style={{ width: '80px', float: 'left', padding: '5px 10px 5px 0', display: 'inline-block' }}>名称</label>
                   <div style={{ overflow: 'hidden' }}>
-                    <Input type="text" name="name" value={ this.state.name } onChange={ this.handleChange } style={{ width: '194px' }}></Input>
+                    <Input type="text" name="name" value={ this.state.name } onChange={ this.handleChange }></Input>
                   </div>
                 </div>
                 <div style={{ marginBottom: '10px' }}>
                   <label style={{ width: '80px', float: 'left', padding: '5px 10px 5px 0', display: 'inline-block' }}>类型</label>
                   <div style={{ overflow: 'hidden' }}>
-                    <Select>
-                      <OptGroup label="a">
-                        <Option value="aa">aa</Option>
-                        <Option value="bb">bb</Option>
-                        <OptGroup label="a1">
-                          <Option value="aa1">aa1</Option>
-                          <Option value="bb1">bb1</Option>
-                        </OptGroup>
-                      </OptGroup>
-                      <Option value="cc">cc</Option>
+                    <Select value={ [this.state.type] } onChange={ this.selectChange }>
+                      <Option value="0">报表</Option>
+                      <Option value="1">大屏</Option>
                     </Select>
                   </div>
                 </div>

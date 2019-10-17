@@ -13,6 +13,7 @@ class Dropdown extends Component {
     trigger: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
     showTrigger: PropTypes.any,
     hideTrigger: PropTypes.any,
+    onPopupVisibleChange: PropTypes.func,
     afterPopupVisibleChange: PropTypes.func
   };
   static defaultProps = {
@@ -25,6 +26,7 @@ class Dropdown extends Component {
     hideTrigger: [],
     //trigger: 'hover',
     placement: 'tl-bl',
+    onPopupVisibleChange: () => {},
     afterPopupVisibleChange: () => {},
     getDocument: () => {
       return window.document;
@@ -214,11 +216,8 @@ class Dropdown extends Component {
       if (!('visible' in this.props)) {
         this.setState({ visible });
       }
-      //this.props.onPopupVisibleChange(popupVisible);
+      this.props.onPopupVisibleChange(visible);
     }
-    //if (alignPoint && event) {
-      //this.setPoint(event);
-    //}
   }
   onPopupMouseEnter = (e) => {
     this.clearDelayTimer();

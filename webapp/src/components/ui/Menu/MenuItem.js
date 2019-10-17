@@ -41,10 +41,11 @@ class MenuItem extends Component {
 
   }
   onClick = (e) => {
-    const { eventKey, multiple, onClick, onSelect, onDeselect, isSelected } = this.props;
+    const { eventKey, multiple, onClick, onSelect, onDeselect, isSelected, children } = this.props;
     const info = {
       key: eventKey,
       keyPath: [eventKey],
+      children,
       item: this,
       domEvent: e,
     };
@@ -102,7 +103,7 @@ class MenuItem extends Component {
         { ...mouseEvent }
         style={ style }
       >
-        {this.props.children}
+        { this.props.children }
       </li>
     );
   }
