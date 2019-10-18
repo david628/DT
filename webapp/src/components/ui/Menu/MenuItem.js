@@ -8,7 +8,7 @@ class MenuItem extends Component {
     eventKey: PropTypes.string,
     active: PropTypes.bool,
     // children: PropTypes.any,
-    selectedKeys: PropTypes.array,
+    selectedKeys: PropTypes.arrayOf(PropTypes.string),
     disabled: PropTypes.bool,
     title: PropTypes.string,
     // onItemHover: PropTypes.func,

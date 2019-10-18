@@ -58,7 +58,6 @@ class PopupMenu extends Component {
     const childProps = child.props;
     const key = child.key;
     const isActive = key === state.activeKey;
-
     const newChildProps = {
       sprefix: props.sprefix,
       mode: childProps.mode || props.mode,

@@ -14,7 +14,7 @@ export default class Dashboard extends Component {
     this.state = {
       id: null,
       name: '',
-      type: '0',
+      type: ['0'],
       visible: false,
       data: [],
       //current: 1,
@@ -40,9 +40,9 @@ export default class Dashboard extends Component {
         width: 150,
         render: item => {
           let rs;
-          if (item.type == 0) {
+          if (item.type == '0') {
             rs = <div>报表</div>;
-          } else if (item.type == 1) {
+          } else if (item.type == '1') {
             rs = <div>大屏</div>;
           } else {
             rs = <div>-</div>;
@@ -175,11 +175,12 @@ export default class Dashboard extends Component {
       return response.json();
     }).then(rs => {
       const { id, name, type } = rs.data;
+      let v = type + '';
       this.setState({
         visible: true,
         id,
         name,
-        type
+        type: [v]
       });
     });
   };
@@ -187,7 +188,8 @@ export default class Dashboard extends Component {
     this.setState({
       visible: true,
       id: null,
-      name: ''
+      name: '',
+      type: ['1']
     });
   };
   onCancel = (item, e) => {
@@ -209,10 +211,11 @@ export default class Dashboard extends Component {
       this.showMessage(msg);
     }
   }
-  selectChange = (v) => {
+  selectChange = (v, label) => {
+    console.log(typeof v);
     this.setState({
-      type: v
-    });
+       type: [v]
+    })
   }
   render() {
     return (
@@ -235,9 +238,9 @@ export default class Dashboard extends Component {
                 <div style={{ marginBottom: '10px' }}>
                   <label style={{ width: '80px', float: 'left', padding: '5px 10px 5px 0', display: 'inline-block' }}>类型</label>
                   <div style={{ overflow: 'hidden' }}>
-                    <Select value={ [this.state.type] } onChange={ this.selectChange }>
-                      <Option value="0">报表</Option>
-                      <Option value="1">大屏</Option>
+                    <Select value={ this.state.type } onChange={ this.selectChange }>
+                      <Option value={ 0 }>报表</Option>
+                      <Option value={ 1 }>大屏</Option>
                     </Select>
                   </div>
                 </div>

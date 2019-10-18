@@ -7,8 +7,8 @@ class SubMenu extends Component {
     // title: PropTypes.node,
     // children: PropTypes.any,
     sprefix: PropTypes.string,
-    selectedKeys: PropTypes.array,
-    openKeys: PropTypes.array,
+    selectedKeys: PropTypes.arrayOf(PropTypes.string),
+    openKeys: PropTypes.arrayOf(PropTypes.string),
     onClick: PropTypes.func,
     onOpenChange: PropTypes.func,
     // rootPrefixCls: PropTypes.string,
@@ -38,6 +38,7 @@ class SubMenu extends Component {
     // onMouseLeave: function() {},
     // onTitleMouseEnter: function() {},
     // onTitleMouseLeave: function() {},
+    onClick: function() {},
     onTitleClick: function() {},
     // manualRef: function() {},
     // mode: 'vertical',
@@ -60,11 +61,7 @@ class SubMenu extends Component {
     };
   };
   onSubMenuClick = (info) => {
-    // in the case of overflowed submenu
-    // onClick is not copied over
-    if (typeof this.props.onClick === 'function') {
-      this.props.onClick(this.addKeyPath(info));
-    }
+    this.props.onClick(this.addKeyPath(info));
   };
   onSelect = (info) => {
     this.props.onSelect(info);

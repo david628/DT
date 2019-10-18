@@ -88,7 +88,6 @@ class Menu extends Component {
   onSelect = (selectInfo) => {
     const props = this.props;
     if (props.selectable) {
-      // root menu
       let { selectedKeys } = this.state;
       const selectedKey = selectInfo.key;
       if (props.multiple) {

@@ -4,6 +4,8 @@ import Dropdown from '../Dropdown';
 import Menu, { Item as MenuItem, ItemGroup as MenuItemGroup } from '../Menu';
 class Select extends Component {
   static propTypes = {
+    defaultValue: PropTypes.arrayOf(PropTypes.string),
+    value: PropTypes.arrayOf(PropTypes.string),
     onChange: PropTypes.func
   };
   static defaultProps = {
@@ -25,9 +27,58 @@ class Select extends Component {
 
   }
   componentWillReceiveProps(nextProps) {
+    if('value' in nextProps) {
+      const { value } = nextProps;
+      if(nextProps.value !== this.state.value) {
+        this.setState({
+          value: nextProps.value
+        });
+      }
+    }
   }
   componentDidUpdate() {
 
+  }
+  getKey(singleValue) {
+    return `option-${ singleValue }`;
+  }
+  getLableFromProps(props, value) {
+    const options = this.getComopentFromChildren(props.children);
+    //const optionsInfo = {};
+    for(let i = 0; i < options.length; i++) {
+      const item = options[i];
+      const singleValue = this.getValuePropValue(item);
+      if(value == singleValue) {
+        return item.props.children;
+      }
+    }
+    // options.forEach(item => {
+    //   const singleValue = this.getValuePropValue(item);
+    //   console.log(value == singleValue);
+    //   if(value == singleValue) {
+    //     return item.props.children
+    //   }
+    //   // optionsInfo[this.getKey(singleValue)] = {
+    //   //   item,
+    //   //   value: singleValue,
+    //   //   label: item.props.children,
+    //   //   title: item.props.title
+    //   // };
+    // });
+    return '';
+  }
+  getComopentFromChildren(children, options = []) {
+    children.forEach(item => {
+      if (!item) {
+        return;
+      }
+      if (item.type.isSelectOptGroup) {
+        this.getComopentFromChildren(item.props.children, options);
+      } else {
+        options.push(item);
+      }
+    });
+    return options;
   }
   getValuePropValue(child) {
     if (!child) {
@@ -88,7 +139,7 @@ class Select extends Component {
   };
   setValue(value) {
     this.setState({
-      value
+      value: [value]
     });
   }
   setInputValue(inputValue) {
@@ -105,11 +156,14 @@ class Select extends Component {
     this.setInputValue(v);
   }
   onSelect = (item) => {
-    this.setInputValue(item.children);
-    this.setValue([item.key]);
+    if(!('value' in this.props)) {
+      if(this.state.value.indexOf(item.key) == -1) {
+        this.setInputValue(item.children);
+        this.setValue(item.key);
+      }
+    }
     this.onPopupVisibleChange(false);
-    this.props.onChange(item.key);
-    console.log('onSelect: ', this.state.value);
+    this.props.onChange(item.key, item.children, item);
   };
   onPopupVisibleChange = (visible) => {
     this.setState({
@@ -121,6 +175,8 @@ class Select extends Component {
     const menuItems = [];
     const childrenKeys = [];
     const sprefix = `dldh`;
+    let value = state.value;
+    let values;
     let hidden = false;
     if (state.inputValue) {
       hidden = true;
@@ -128,12 +184,11 @@ class Select extends Component {
     if (state.value.length) {
       hidden = true;
     }
-    console.log(this.state.value);
     const menu = (
       <Menu
         sprefix={`${ sprefix }-select-dropdown`}
         selectedKeys={ this.state.value }
-        onSelect={ this.onSelect }
+        onClick={ this.onSelect }
       >
         { this.getOptions(this.props.children, childrenKeys, menuItems) }
       </Menu>
@@ -157,9 +212,12 @@ class Select extends Component {
           </li>
         </ul>
       );
+      values = value;
     } else {
       selectionCls.push(`${ sprefix }-select-selection-single`);
+      values = value[0];
     }
+    const label = this.getLableFromProps(props, values);
     return (
       <Dropdown sprefix={ `${ sprefix }-select` }
         menu={ menu }
@@ -174,7 +232,7 @@ class Select extends Component {
                 unselectable="unselectable"
                 style={{ display: hidden ? 'none' : 'block' }}
               >Please Select</div>
-              <div className={ `${ sprefix }-select-selection-selected-value` } title={ this.state.inputValue }>{ this.state.inputValue }</div>
+              <div className={ `${ sprefix }-select-selection-selected-value` } title={ label }>{ label }</div>
               { multipleElement }
             </div>
             <span className={ `${ sprefix }-select-arrow` } unselectable="on">
