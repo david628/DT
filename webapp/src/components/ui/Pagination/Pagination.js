@@ -1,5 +1,7 @@
 import React ,{ Component } from 'react';
 import PropTypes from 'prop-types';
+import Select, { Option } from '../Select';
+import Dldh from '../Util/Dldh';
 
 class Pagination extends Component {
     static propTypes = {
@@ -46,7 +48,7 @@ class Pagination extends Component {
 
         this.state = {
             current,
-            size,
+            size: [size + ''],
             inputValue: current
         };
     }
@@ -137,7 +139,7 @@ class Pagination extends Component {
         }
     }
     setCurrentPage = (p) => {
-        const { disabled } = this.props;
+        const { disabled, onChange } = this.props;
         let page = p;
         if (this.isValid(page) && !disabled) {
             let totalPage = this.getTotalPage();
@@ -152,10 +154,22 @@ class Pagination extends Component {
                     inputValue: page
                 });
             }
-            this.props.onChange(page, this.state.size);
+            onChange(page, this.state.size);
             return page;
         }
         return this.state.current;
+    }
+    onSizeChange = (v) => {
+        const { disabled, onChange } = this.props;
+        if (!disabled) {
+            const current = 1;
+            const size = [v];
+            this.setState({
+                current,
+                size
+            });
+            onChange(current, v);
+        }
     }
     getParam() {
         let param = {};
@@ -254,6 +268,15 @@ class Pagination extends Component {
         return (
             <div className={ `${ sprefix }-pagination` }>
                 <ul className={ `${ sprefix }-pagination-list` }>
+                    <li className={ `${ sprefix }-pagination-size` }>
+                        <Select value={ this.state.size } onChange={ this.onSizeChange }>
+                            <Option value={ '5' }>5</Option>
+                            <Option value={ '10' }>10</Option>
+                            <Option value={ '20' }>20</Option>
+                            <Option value={ '50' }>50</Option>
+                            <Option value={ '100' }>100</Option>
+                        </Select>
+                    </li>
                     <li className={ this.getCls(false, this.state.current === 1) } onClick={ this.handleClick('first', this.state.current === 1) }>
                         <a className={ `${ sprefix }-pagination-link` }>
                             <i className={ `${ sprefix }-icon` }>

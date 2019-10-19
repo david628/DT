@@ -25,7 +25,7 @@ class Dropdown extends Component {
     showTrigger: [],
     hideTrigger: [],
     //trigger: 'hover',
-    placement: 'tl-bl',
+    placement: 'tl-bl?',
     onPopupVisibleChange: () => {},
     afterPopupVisibleChange: () => {},
     getDocument: () => {
@@ -178,7 +178,7 @@ class Dropdown extends Component {
     return popupContainer;
   }
   handlePortalUpdate = (prevProps, node) => {
-    if(prevProps.visible) {
+    if(this.state.visible) {
       const target = findDOMNode(this);
       const listNode = findDOMNode(node);
       listNode.style.width = target.offsetWidth + 'px';

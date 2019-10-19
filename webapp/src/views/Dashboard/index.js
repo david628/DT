@@ -19,7 +19,7 @@ export default class Dashboard extends Component {
       visible: false,
       data: [],
       //current: 1,
-      size: 5,
+      size: 10,
       total: 0,
       cm: [{
         header: '名称',

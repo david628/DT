@@ -28,8 +28,8 @@ var Dldh = {
     return v;
   },
   Css: {
-    hasClass: function(el, className) {
-      el = Dldh.getDom(el);
+    hasClass: function(dom, className) {
+      var el = Dldh.getDom(dom);
       return className && (' ' + el.className + ' ').indexOf(' ' + className + ' ') !== -1;
     },
     addClass : function(el, className){
@@ -107,8 +107,8 @@ var Dldh = {
       }
       return height;
     },
-    setBounds: function(el, x, y, width, height) {
-      el = Dldh.getDom(el);
+    setBounds: function(dom, x, y, width, height) {
+      var el = Dldh.getDom(dom);
       this.setSize(el, width, height);
       this.setXY(el, [x, y]);
       return el;
@@ -186,29 +186,28 @@ var Dldh = {
       }
       return E;
     },
-    getScroll: function(el) {
-      el = Dldh.getDom(el);
+    getScroll: function(dom) {
+      var el = Dldh.getDom(dom), pos;
       if (el === document || el === document.body) {
         var l = window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0;
         var t = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-        return {
+        pos = {
           left: l,
           top: t
         };
       } else {
-        return {
+        pos = {
           left: el.scrollLeft,
           top: el.scrollTop
         };
       }
+      return pos;
     },
     getXY: function(e) {
       var p,
-      //pe,
       b,
       bt,
       bl,
-      //dbd,
       x = 0,
       y = 0,
       scroll,
@@ -259,8 +258,8 @@ var Dldh = {
       }
       return ret;
     },
-    setXY: function(el, xy) {
-      el = Dldh.getDom(el);
+    setXY: function(dom, xy) {
+      var el = Dldh.getDom(dom);
       this.position(el);
       var pts = this.translatePoints(el, xy), style = el.style, pos;
       for (pos in pts) {
@@ -310,9 +309,9 @@ var Dldh = {
         this.setY(el, y);
       }
     },
-    getAnchorXY: function(el, anchor, local, s) {
+    getAnchorXY: function(dom, anchor, local, s) {
       var w, h, vp = false;
-      el = Dldh.getDom(el);
+      var el = Dldh.getDom(dom);
       if (!s) {
         if (el === document.body || el === document) {
           vp = true;
@@ -375,13 +374,14 @@ var Dldh = {
       var o = this.getXY(el);
       return [x + o[0], y + o[1]];
     },
-    getAlignToXY: function(el, pel, p, o) {
-      pel = Dldh.getDom(pel);
+    getAlignToXY: function(e, dom, p, o) {
+      //debugger;
+      var pel = Dldh.getDom(dom);
       if (!pel) {
         throw "Element.alignTo with an element that doesn't exist";
       }
       var c = false, p1 = "", p2 = "";
-      el = Dldh.getDom(el);
+      var el = Dldh.getDom(e);
       o = o || [0, 0];
       if (!p) {
         p = "tl-bl";
@@ -439,14 +439,12 @@ var Dldh = {
     center: function(el, centerIn) {
       return this.alignTo(el, centerIn || document, 'c-c');
     },
-    getHeight: function(el, contentHeight) {
-      el = Dldh.getDom(el);
-      var h = el.offsetHeight || 0;
+    getHeight: function(dom, contentHeight) {
+      var el = Dldh.getDom(dom), h = el.offsetHeight || 0;
       return contentHeight !== true ? h : h - this.getBorderWidth(el, "tb") - this.getPadding(el, "tb");
     },
-    getWidth: function(el, contentWidth) {
-      el = Dldh.getDom(el);
-      var w = el.offsetWidth || 0;
+    getWidth: function(dom, contentWidth) {
+      var el = Dldh.getDom(dom), w = el.offsetWidth || 0;
       return contentWidth !== true ? w : w - this.getBorderWidth(el, "lr") - this.getPadding(el, "lr");
     },
   },
@@ -495,13 +493,13 @@ Dldh.lib.Region.prototype = {
     return this;
   }
 };
-Dldh.lib.Region.getRegion = function(el) {
-  el = Dldh.getDom(el);
-  var J = Dldh.Css.getXY(el);
-  var G = J[1];
-  var I = J[0] + el.offsetWidth;
-  var E = J[1] + el.offsetHeight;
-  var F = J[0];
+Dldh.lib.Region.getRegion = function(dom) {
+  var el = Dldh.getDom(dom),
+  J = Dldh.Css.getXY(el),
+  G = J[1],
+  I = J[0] + el.offsetWidth,
+  E = J[1] + el.offsetHeight,
+  F = J[0];
   return new Dldh.lib.Region(G, I, E, F);
 }
 // Dldh.lib.Point = function(E, F) {
