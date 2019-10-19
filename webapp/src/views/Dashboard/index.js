@@ -198,7 +198,7 @@ export default class Dashboard extends Component {
     });
   };
   showMessage = (msg) => {
-    let m = 'Test...';
+    let m = `世界互联网大会“互联网之光”博览会开幕`;
     if(msg !== undefined) {
       m = msg;
     }
@@ -212,7 +212,6 @@ export default class Dashboard extends Component {
     }
   }
   selectChange = (v, label) => {
-    console.log(typeof v);
     this.setState({
        type: [v]
     })
@@ -230,14 +229,14 @@ export default class Dashboard extends Component {
             <div style={{ width: '560px', padding: '0 30px' }}>
               <form onSubmit={ this.onSubmit }>
                 <div style={{ marginBottom: '10px' }}>
-                  <label style={{ width: '80px', float: 'left', padding: '5px 10px 5px 0', display: 'inline-block' }}>名称</label>
-                  <div style={{ overflow: 'hidden' }}>
+                  <label style={{ width: '50px', float: 'left', padding: '10px', display: 'inline-block' }}>名称</label>
+                  <div style={{ padding: '5px 10px', overflow: 'hidden' }}>
                     <Input type="text" name="name" value={ this.state.name } onChange={ this.handleChange }></Input>
                   </div>
                 </div>
                 <div style={{ marginBottom: '10px' }}>
-                  <label style={{ width: '80px', float: 'left', padding: '5px 10px 5px 0', display: 'inline-block' }}>类型</label>
-                  <div style={{ overflow: 'hidden' }}>
+                  <label style={{ width: '50px', float: 'left', padding: '10px', display: 'inline-block' }}>类型</label>
+                  <div style={{ padding: '5px 10px', overflow: 'hidden' }}>
                     <Select value={ this.state.type } onChange={ this.selectChange }>
                       <Option value={ 0 }>报表</Option>
                       <Option value={ 1 }>大屏</Option>

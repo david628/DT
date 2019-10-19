@@ -207,13 +207,13 @@ function Msg(props) {
             //className={ className }
             defaultVisible={ true }
             closable={ false }
-            title=""
+            title={ props.title }
             getContainer={ getContainer }
             onSubmit={ onSubmit }
             onCancel={ onCancel }
             //onMaskClick = { false }
         >
-            <div style={{ width: '360px', zoom: 1, overflow: 'hidden' }}>MSG</div>
+            <div style={{ width: '360px', zoom: 1, overflow: 'hidden' }}>{ props.msg }</div>
         </Dialog>, div);
     return {
         close: onClose

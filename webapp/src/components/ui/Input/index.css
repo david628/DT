@@ -21,12 +21,15 @@
 }
 .dldh-input:hover {
   border-color: #40a9ff;
+  outline: 0;
+  -webkit-box-shadow: 0 0 0 2px rgba(24,144,255,0.2);
+  box-shadow: 0 0 0 2px rgba(24,144,255,0.2);
 }
 .dldh-input:focus, .dldh-input:active {
   border-color: #40a9ff;
   outline: 0;
   -webkit-box-shadow: 0 0 0 2px rgba(24,144,255,0.2);
-  box-shadow: 0 0 0 2px rgba(24,144,255,0.2)
+  box-shadow: 0 0 0 2px rgba(24,144,255,0.2);
 }
 
 .dldh-input::-webkit-input-placeholder {
