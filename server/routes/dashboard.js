@@ -18,16 +18,16 @@ router.get('/list', async function (ctx, next) {
 })
 
 router.post('/save', async function (ctx, next) {
-  const { name, status } = ctx.request.body;
-  const data = await db.insert("INSERT INTO dashboard (name, status) VALUES (?, ?)", [name, status]);
+  const { name, type, status } = ctx.request.body;
+  const data = await db.insert("INSERT INTO dashboard (name, type, status) VALUES (?, ?, ?)", [name, type, status]);
   ctx.body = {
     data
   }
 })
 
 router.post('/update', async function (ctx, next) {
-  const { id, name } = ctx.request.body;
-  const data = await db.insert("UPDATE dashboard SET name = ? WHERE id = ?", [name, id]);
+  const { id, type, name } = ctx.request.body;
+  const data = await db.insert("UPDATE dashboard SET name = ?, type = ? WHERE id = ?", [name, type, id]);
   ctx.body = {
     data
   }
