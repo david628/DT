@@ -19,7 +19,7 @@ class Message extends Component {
         onClose: PropTypes.func,
     };
     static defaultProps = {
-        sprefix: 'dldh',
+        sprefix: 'dwrui',
         placement: 'c-c',
         closable: true,
         duration: 1.5,
@@ -176,7 +176,7 @@ Message.warning = (props, callback) => {
         instance.add(props);
         return;
     }
-    let sprefix = 'dldh', timeout, div = document.createElement('div'), parent = document.body;
+    let sprefix = 'dwrui', timeout, div = document.createElement('div'), parent = document.body;
     div.className = `${sprefix}-message`;
     document.body.appendChild(div);
     const getContainer = function() {

@@ -44,10 +44,10 @@ class Checkbox extends Component {
     const { className, children, ...others } = props;
     const { checked } = this.state;
     return (
-      <label className="dldh-checkbox">
-        <span className={checked ? "dldh-checkbox-content dldh-checkbox-checked" : "dldh-checkbox-content"}>
-          <span className="dldh-checkbox-inner"></span>
-          <input className="dldh-checkbox-input" type="checkbox" {...others} checked={checked} onChange={this.handleChange}/>
+      <label className="dwrui-checkbox">
+        <span className={checked ? "dwrui-checkbox-content dwrui-checkbox-checked dwrui-effect-wave" : "dwrui-checkbox-content"}>
+          <span className="dwrui-checkbox-inner"></span>
+          <input className="dwrui-checkbox-input" type="checkbox" {...others} checked={checked} onChange={this.handleChange}/>
         </span>
         <span>{children}</span>
       </label>

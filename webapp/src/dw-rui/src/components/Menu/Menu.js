@@ -36,7 +36,7 @@ class Menu extends Component {
   };
   static defaultProps = {
     level: 1,
-    sprefix: 'dldh',
+    sprefix: 'dwrui',
     selectable: true,
     onClick: function() {},
     onSelect: function() {},

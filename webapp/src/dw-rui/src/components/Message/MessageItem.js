@@ -12,7 +12,7 @@ class MessageItem extends Component {
         onClose: PropTypes.func
     };
     static defaultProps = {
-        sprefix: 'dldh',
+        sprefix: 'dwrui',
         isAimated: true,
         enter: 'moveUpIn',
         leave: 'moveUpOut',

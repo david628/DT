@@ -174,7 +174,7 @@ class Select extends Component {
     const { props, state } = this;
     const menuItems = [];
     const childrenKeys = [];
-    const sprefix = `dldh`;
+    const sprefix = `dwrui`;
     let value = state.value;
     let values;
     let hidden = false;

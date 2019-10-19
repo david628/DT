@@ -17,7 +17,7 @@ class Popup extends Component {
     onTouchStart: PropTypes.func
   };
   static defaultProps = {
-    sprefix: 'dldh',
+    sprefix: 'dwrui',
     isAimated: true,
     enter: 'slideInUp',
     leave: 'slideOutUp',

@@ -18,7 +18,7 @@ class Pagination extends Component {
         onSizeChange: PropTypes.func
     };
     static defaultProps = {
-        sprefix: 'dldh',
+        sprefix: 'dwrui',
         disabled: false,
         defaultCurrent: 1,
         defaultSize: 20,

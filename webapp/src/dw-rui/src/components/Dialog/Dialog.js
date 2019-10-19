@@ -18,7 +18,7 @@ class Dialog extends Component {
         onCancel: PropTypes.func
     };
     static defaultProps = {
-        sprefix: 'dldh',
+        sprefix: 'dwrui',
         placement: 'c-c',
         title: '',
         submitTitle: '确定',
@@ -158,7 +158,7 @@ class Dialog extends Component {
     }
 }
 function Msg(props) {
-    let sprefix = 'dldh', timeout, div = document.createElement('div'), parent = document.body;
+    let sprefix = 'dwrui', timeout, div = document.createElement('div'), parent = document.body;
     div.className = `${sprefix}-dialog`;
     document.body.appendChild(div);
     const getContainer = function() {

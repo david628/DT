@@ -1,4 +1,4 @@
-.dldh-message {
+.dwrui-message {
     width: 100%;
     position: fixed;
     top: 16px;
@@ -9,14 +9,14 @@
     padding: 0;
     pointer-events: none;
 }
-.dldh-message .dldh-popup-inner {
+.dwrui-message .dwrui-popup-inner {
     position: static;
 }
-.dldh-message .dldh-message-item {
+.dwrui-message .dwrui-message-item {
     padding: 5px 16px;
     text-align: center;
 }
-.dldh-message .dldh-message-item-inner {
+.dwrui-message .dwrui-message-item-inner {
     display: inline-block;
     padding: 10px 16px;
     border-radius: 4px;
@@ -25,21 +25,21 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     pointer-events: all;
 }
-.dldh-message .dldh-message-content {
+.dwrui-message .dwrui-message-content {
 
 }
-.dldh-message .dldh-message-icon {
+.dwrui-message .dwrui-message-icon {
     color: #faad14;
     float: left;
     margin-right: 10px;
 }
-.dldh-message .dldh-message-success {
+.dwrui-message .dwrui-message-success {
     color: #52c41a;
 }
-.dldh-message .dldh-message-warning {
+.dwrui-message .dwrui-message-warning {
     color: #faad14;
 }
-.dldh-message .dldh-message-center {
+.dwrui-message .dwrui-message-center {
     overflow: hidden;
     color: rgba(0,0,0,0.65);
     text-align: left;

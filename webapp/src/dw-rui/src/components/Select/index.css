@@ -1,7 +1,7 @@
-.dldh-select-popup-inner {
+.dwrui-select-popup-inner {
   position: absolute;
 }
-.dldh-select {
+.dwrui-select {
   width: 100%;
   box-sizing: border-box;
   margin: 0;
@@ -13,7 +13,7 @@
   display: inline-block;
   outline: 0;
 }
-.dldh-select .dldh-select-selection {
+.dwrui-select .dwrui-select-selection {
   display: block;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -29,41 +29,41 @@
   -ms-user-select: none;
   user-select: none;
 }
-.dldh-select-selection:hover {
+.dwrui-select-selection:hover {
   border-color: #40a9ff;
   outline: 0;
   -webkit-box-shadow: 0 0 0 2px rgba(24,144,255,0.2);
   box-shadow: 0 0 0 2px rgba(24,144,255,0.2);
 }
-.dldh-select-focused .dldh-select-selection, .dldh-select-selection:focus, .dldh-select-selection:active {
+.dwrui-select-focused .dwrui-select-selection, .dwrui-select-selection:focus, .dwrui-select-selection:active {
   border-color: #40a9ff;
   outline: 0;
   -webkit-box-shadow: 0 0 0 2px rgba(24,144,255,0.2);
   box-shadow: 0 0 0 2px rgba(24,144,255,0.2);
 }
-.dldh-select .dldh-select-selection-single {
+.dwrui-select .dwrui-select-selection-single {
   position: relative;
   height: 32px;
   cursor: pointer;
 }
-.dldh-select .dldh-select-selection .dldh-select-selection-rendered {
+.dwrui-select .dwrui-select-selection .dwrui-select-selection-rendered {
   position: relative;
   display: block;
   margin-right: 11px;
   margin-left: 11px;
   line-height: 32px;
 }
-.dldh-select .dldh-select-ul {
+.dwrui-select .dwrui-select-ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.dldh-select .dldh-select-search-inline {
+.dwrui-select .dwrui-select-search-inline {
   float: left;
   width: 100%;
   height: 100%;
 }
-.dldh-select .dldh-select-search-field-placeholder, .dldh-select .dldh-select-selection-placeholder {
+.dwrui-select .dwrui-select-search-field-placeholder, .dwrui-select .dwrui-select-selection-placeholder {
   position: absolute;
   top: 50%;
   right: 9px;
@@ -79,15 +79,15 @@
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
 }
-.dldh-select .dldh-select-search-field-wrap {
+.dwrui-select .dwrui-select-search-field-wrap {
   display: inline-block;
   position: relative;
 }
-.dldh-select .dldh-select-search-inline .dldh-select-search-field-wrap {
+.dwrui-select .dwrui-select-search-inline .dwrui-select-search-field-wrap {
   width: 100%;
   height: 100%;
 }
-.dldh-select .dldh-select-search-inline .dldh-select-search-field {
+.dwrui-select .dwrui-select-search-inline .dwrui-select-search-field {
   border: 0;
   font-size: 100%;
   height: 100%;
@@ -95,35 +95,35 @@
   outline: 0;
   border-radius: 6px;
 }
-.dldh-select .dldh-select-search-inline .dldh-select-search-field-mirror {
+.dwrui-select .dwrui-select-search-inline .dwrui-select-search-field-mirror {
   position: absolute;
   top: 0;
   left: 9999px;
   white-space: pre;
   pointer-events: none;
 }
-.dldh-select .dldh-select-selection-multiple {
+.dwrui-select .dwrui-select-selection-multiple {
   min-height: 32px;
   cursor: text;
 }
-.dldh-select .dldh-select-selection-multiple .dldh-select-search-inline .dldh-select-search-field {
+.dwrui-select .dwrui-select-selection-multiple .dwrui-select-search-inline .dwrui-select-search-field {
 }
-.dldh-select .dldh-select-selection-multiple .dldh-select-selection-rendered>ul>li, .dldh-select .dldh-select-selection-multiple>ul>li {
+.dwrui-select .dwrui-select-selection-multiple .dwrui-select-selection-rendered>ul>li, .dwrui-select .dwrui-select-selection-multiple>ul>li {
   margin-top: 4px;
   height: 20px;
   line-height: 20px;
 }
-.dldh-select .dldh-select-selection-multiple .dldh-select-search-inline {
+.dwrui-select .dwrui-select-selection-multiple .dwrui-select-search-inline {
   width: auto;
 }
-.dldh-select .dldh-select-selection-selected-value {
+.dwrui-select .dwrui-select-selection-selected-value {
   float: left;
   max-width: 100%;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.dldh-select-arrow {
+.dwrui-select-arrow {
   display: inline-block;
   font-style: normal;
   text-align: center;
@@ -142,18 +142,18 @@
   -ms-transform-origin: 50% 50%;
   transform-origin: 50% 50%;
 }
-.dldh-select-arrow .dldh-select-arrow-icon svg {
+.dwrui-select-arrow .dwrui-select-arrow-icon svg {
   -webkit-transition: -webkit-transform .3s;
   transition: -webkit-transform .3s;
   transition: transform .3s;
   transition: transform .3s, -webkit-transform .3s;
 }
-.dldh-select-open .dldh-select-arrow-icon svg {
+.dwrui-select-open .dwrui-select-arrow-icon svg {
   -webkit-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   transform: rotate(180deg)
 }
-.dldh-select-dropdown {
+.dwrui-select-dropdown {
   width: 100%;
   margin: 0;
   padding: 0;
@@ -171,7 +171,7 @@
   background-color: #fff;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
-.dldh-select-dropdown-menu {
+.dwrui-select-dropdown-menu {
   max-height: 250px;
   margin: 0;
   padding: 0;
@@ -179,7 +179,7 @@
   list-style: none;
   outline: none;
 }
-.dldh-select-dropdown-menu-item {
+.dwrui-select-dropdown-menu-item {
   position: relative;
   display: block;
   padding: 5px 12px;
@@ -193,31 +193,31 @@
   -webkit-transition: background .3s ease;
   transition: background .3s ease;
 }
-.dldh-select-dropdown-menu-item:hover:not(.dldh-select-dropdown-menu-item-disabled) {
+.dwrui-select-dropdown-menu-item:hover:not(.dwrui-select-dropdown-menu-item-disabled) {
   background-color: #f3f3f3;
 }
-.dldh-select-dropdown-menu-item:first-child {
+.dwrui-select-dropdown-menu-item:first-child {
   border-radius: 4px 4px 0 0;
 }
-.dldh-select-dropdown-menu-item:last-child {
+.dwrui-select-dropdown-menu-item:last-child {
   border-radius: 0 0 4px 4px;
 }
-.dldh-select-dropdown-menu-item-selected {
+.dwrui-select-dropdown-menu-item-selected {
   color: rgba(0,0,0,0.65);
   background-color: #efefefef;
 }
-.dldh-select-dropdown-menu-item-disabled {
+.dwrui-select-dropdown-menu-item-disabled {
   color: rgba(0,0,0,0.25);
   cursor: not-allowed;
 }
-.dldh-select-dropdown-menu-item-disabled:hover {
+.dwrui-select-dropdown-menu-item-disabled:hover {
   color: rgba(0,0,0,0.25);
   cursor: not-allowed
 }
-.dldh-select-dropdown-menu-item-active:not(.dldh-select-dropdown-menu-item-disabled) {
+.dwrui-select-dropdown-menu-item-active:not(.dwrui-select-dropdown-menu-item-disabled) {
   background-color: #e6f7ff;
 }
-.dldh-select-dropdown-menu-item-divider {
+.dwrui-select-dropdown-menu-item-divider {
   height: 1px;
   margin: 1px 0;
   overflow: hidden;

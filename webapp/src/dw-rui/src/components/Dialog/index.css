@@ -1,9 +1,9 @@
-.dldh-dialog {
+.dwrui-dialog {
     position: absolute;
     left: 0;
     top: 0;
 }
-.dldh-dialog .dldh-popup-contain {
+.dwrui-dialog .dwrui-popup-contain {
     position: absolute;
     top: 0;
     left: 0;
@@ -15,12 +15,12 @@
     /*justify-content: center;*/
     /*align-items: center;*/
 }
-.dldh-dialog .dldh-dialog-inner {
+.dwrui-dialog .dwrui-dialog-inner {
     border-radius: 4px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     background-color: #fff;
 }
-.dldh-dialog .dldh-dialog-header {
+.dwrui-dialog .dwrui-dialog-header {
     position: relative;
     padding: 16px 24px;
     color: rgba(0,0,0,0.65);
@@ -28,7 +28,7 @@
     border-bottom: 1px solid #e8e8e8;
     border-radius: 4px 4px 0 0;
 }
-.dldh-dialog .dldh-dialog-title {
+.dwrui-dialog .dwrui-dialog-title {
     margin: 0;
     color: rgba(0,0,0,0.85);
     font-weight: 500;
@@ -37,20 +37,20 @@
     line-height: 22px;
     word-wrap: break-word;
 }
-.dldh-dialog .dldh-dialog-center {
+.dwrui-dialog .dwrui-dialog-center {
     padding: 24px;
     font-size: 14px;
     line-height: 1.5;
     word-wrap: break-word;
 }
-.dldh-dialog .dldh-dialog-footer {
+.dwrui-dialog .dwrui-dialog-footer {
     padding: 10px 16px;
     text-align: right;
     background: transparent;
     border-top: 1px solid #e8e8e8;
     border-radius: 0 0 4px 4px;
 }
-.dldh-dialog .dldh-dialog-close {
+.dwrui-dialog .dwrui-dialog-close {
     height: 100%;
     width: 60px;
     display: flex;
@@ -70,11 +70,11 @@
     -webkit-transition: color .3s;
     transition: color .3s;
 }
-.dldh-dialog-footer button+button {
+.dwrui-dialog-footer button+button {
     margin-bottom: 0;
     margin-left: 8px;
 }
-.dldh-dialog-close:focus, .dldh-dialog-close:hover {
+.dwrui-dialog-close:focus, .dwrui-dialog-close:hover {
     color: rgba(0,0,0,0.75);
     text-decoration: none;
 }

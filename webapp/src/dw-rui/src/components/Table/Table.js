@@ -5,7 +5,7 @@ class Table extends Component {
         sprefix: PropTypes.string,
     };
     static defaultProps = {
-        sprefix: 'dldh',
+        sprefix: 'dwrui',
     };
     constructor(props) {
         super(props);
@@ -23,7 +23,7 @@ class Table extends Component {
         const { cm, sprefix } = this.props;
         return cm.map((item, index) => {
             return (
-                <td key={ sprefix + "-grid-hd" + index } className={ sprefix + "-grid-hd dldh-grid-cell" } style={{ width: item.width,textAlign: item.align }}>
+                <td key={ sprefix + "-grid-hd" + index } className={ sprefix + "-grid-hd dwrui-grid-cell" } style={{ width: item.width,textAlign: item.align }}>
                     <div className={ sprefix + "-grid-hd-inner" }>
                         <a className={ sprefix + "-grid-hd-btn" } href=""></a>
                         <a className={ sprefix + "-grid-hd-custombtn" } href=""></a>

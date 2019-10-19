@@ -31,11 +31,11 @@ class Input extends Component {
     const { size, onChange, ...others } = props;
     if(props.type == 'textarea') {
       return (
-        <textarea {...others} className="dldh-input" autoComplete="off"></textarea>
+        <textarea {...others} className="dwrui-input" autoComplete="off"></textarea>
       );
     } else {
       return (
-        <input className="dldh-input"
+        <input className="dwrui-input"
         { ...others }
         autoComplete="off"
         onChange={ this.handleChange }

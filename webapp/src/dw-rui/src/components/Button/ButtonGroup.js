@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-const prefix = 'dldh-btn-group';
+const prefix = 'dwrui-btn-group';
 export default function ButtonGroup(props) {
   const { size, className, ...others } = props;
   const sizeCls = ({

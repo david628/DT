@@ -1,4 +1,4 @@
-.dldh-input {
+.dwrui-input {
   position: relative;
   display: inline-block;
   padding: 4px 11px;
@@ -19,36 +19,36 @@
   -webkit-transition: all .3s cubic-bezier(.645, .045, .355, 1);
   transition: all .3s cubic-bezier(.645, .045, .355, 1);
 }
-.dldh-input:hover {
+.dwrui-input:hover {
   border-color: #40a9ff;
   outline: 0;
   -webkit-box-shadow: 0 0 0 2px rgba(24,144,255,0.2);
   box-shadow: 0 0 0 2px rgba(24,144,255,0.2);
 }
-.dldh-input:focus, .dldh-input:active {
+.dwrui-input:focus, .dwrui-input:active {
   border-color: #40a9ff;
   outline: 0;
   -webkit-box-shadow: 0 0 0 2px rgba(24,144,255,0.2);
   box-shadow: 0 0 0 2px rgba(24,144,255,0.2);
 }
 
-.dldh-input::-webkit-input-placeholder {
+.dwrui-input::-webkit-input-placeholder {
   color: #6c757d;
   opacity: 1
 }
-.dldh-input::-moz-placeholder {
+.dwrui-input::-moz-placeholder {
   color: #6c757d;
   opacity: 1
 }
-.dldh-input:-ms-input-placeholder {
+.dwrui-input:-ms-input-placeholder {
   color: #6c757d;
   opacity: 1
 }
-.dldh-input::-ms-input-placeholder {
+.dwrui-input::-ms-input-placeholder {
   color: #6c757d;
   opacity: 1
 }
-.dldh-input::placeholder {
+.dwrui-input::placeholder {
   color: #6c757d;
   opacity: 1
 }

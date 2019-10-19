@@ -14,7 +14,7 @@ class Button extends Component {
   static defaultProps = {
     onClick: function() {},
     loading: false,
-    className: 'dldh-btn'
+    className: 'dwrui-btn dwrui-effect-wave'
   };
   constructor(props) {
     super(props);

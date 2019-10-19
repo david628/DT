@@ -205,4 +205,17 @@ a, area, button, [role='button'], input:not([type='range']), label, select, summ
         opacity: 0
     }
 }
-
+.dwrui-effect-wave:hover {
+    border-color: #40a9ff;
+    outline: 0;
+}
+.dwrui-effect-wave:active {
+    -webkit-animation: fadeEffect 2s cubic-bezier(.08, .82, .17, 1),waveEffect .4s cubic-bezier(.08, .82, .17, 1);
+    animation: fadeEffect 2s cubic-bezier(.08, .82, .17, 1),waveEffect .4s cubic-bezier(.08, .82, .17, 1);
+}
+@keyframes waveEffect {
+    100% {
+        -webkit-box-shadow: 0 0 0 3px rgba(24,144,255,0.2);
+        box-shadow: 0 0 0 3px rgba(24,144,255,0.2);
+    }
+}

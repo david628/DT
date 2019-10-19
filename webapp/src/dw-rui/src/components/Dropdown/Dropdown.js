@@ -17,7 +17,7 @@ class Dropdown extends Component {
     afterPopupVisibleChange: PropTypes.func
   };
   static defaultProps = {
-    sprefix: 'dldh',
+    sprefix: 'dwrui',
     mouseEnterDelay: 0,
     mouseLeaveDelay: 0.1,
     trigger: [],

@@ -1,7 +1,7 @@
-.dldh-pagination {
+.dwrui-pagination {
   margin: 16px 0;
 }
-.dldh-pagination .dldh-pagination-list {
+.dwrui-pagination .dwrui-pagination-list {
   margin: 0;
   padding: 0;
   color: rgba(0,0,0,0.65);
@@ -9,7 +9,7 @@
   list-style: none;
   box-sizing: border-box;
 }
-.dldh-pagination-list .dldh-pagination-item {
+.dwrui-pagination-list .dwrui-pagination-item {
   display: inline-block;
   min-width: 32px;
   margin-right: 8px;
@@ -29,33 +29,33 @@
   transition: all .3s;
   background-color: #fff;
 }
-.dldh-pagination-item .dldh-pagination-link {
+.dwrui-pagination-item .dwrui-pagination-link {
   height: 30px;
   line-height: 30px;
   display: block;
   padding: 0 6px;
 }
-.dldh-pagination-item:focus, .dldh-pagination-item:hover, .dldh-pagination-list .dldh-pagination-item-active {
+.dwrui-pagination-item:focus, .dwrui-pagination-item:hover, .dwrui-pagination-list .dwrui-pagination-item-active {
   border-color: #1890ff;
 }
-.dldh-pagination-item:focus .dldh-pagination-link, .dldh-pagination-item:hover .dldh-pagination-link, .dldh-pagination-item-active .dldh-pagination-link {
+.dwrui-pagination-item:focus .dwrui-pagination-link, .dwrui-pagination-item:hover .dwrui-pagination-link, .dwrui-pagination-item-active .dwrui-pagination-link {
   color: #1890ff;
 }
-.dldh-pagination-list .dldh-pagination-size {
+.dwrui-pagination-list .dwrui-pagination-size {
   width: 66px;
   height: 32px;
   display: inline-block;
   margin-right: 8px;
   vertical-align: middle;
 }
-.dldh-pagination-list .dldh-pagination-options {
+.dwrui-pagination-list .dwrui-pagination-options {
   display: inline-block;
   vertical-align: middle;
 }
-.dldh-pagination-search {
+.dwrui-pagination-search {
   display: inline-block;
 }
-.dldh-pagination-search .dldh-pagination-search-input {
+.dwrui-pagination-search .dwrui-pagination-search-input {
   position: relative;
   display: inline-block;
   width: 24px;
@@ -71,26 +71,26 @@
   transition: all 0.3s;
   outline: none;
 }
-.dldh-pagination-divider {
+.dwrui-pagination-divider {
   padding: 0 5px;
   vertical-align: middle;
 }
-.dldh-pagination-total {
+.dwrui-pagination-total {
   vertical-align: middle;
 }
-.dldh-pagination-unit {
+.dwrui-pagination-unit {
   vertical-align: middle;
 }
-.dldh-pagination-list .dldh-pagination-disabled,
-.dldh-pagination-list .dldh-pagination-disabled:hover,
-.dldh-pagination-list .dldh-pagination-disabled:focus {
+.dwrui-pagination-list .dwrui-pagination-disabled,
+.dwrui-pagination-list .dwrui-pagination-disabled:hover,
+.dwrui-pagination-list .dwrui-pagination-disabled:focus {
   color: rgba(0,0,0,0.25);
   border-color: #d9d9d9;
   cursor: not-allowed;
 }
-.dldh-pagination-list .dldh-pagination-disabled .dldh-pagination-link,
-.dldh-pagination-list .dldh-pagination-disabled:hover .dldh-pagination-link,
-.dldh-pagination-list .dldh-pagination-disabled:focus .dldh-pagination-link {
+.dwrui-pagination-list .dwrui-pagination-disabled .dwrui-pagination-link,
+.dwrui-pagination-list .dwrui-pagination-disabled:hover .dwrui-pagination-link,
+.dwrui-pagination-list .dwrui-pagination-disabled:focus .dwrui-pagination-link {
   color: rgba(0,0,0,0.25);
   border-color: #d9d9d9;
   cursor: not-allowed;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-const prefix = 'dldh-checkbox-group';
+const prefix = 'dwrui-checkbox-group';
 export default function CheckboxGroup(props) {
   const { size, className, ...others } = props;
   const sizeCls = ({
