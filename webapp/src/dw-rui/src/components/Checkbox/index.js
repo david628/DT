@@ -1,6 +1,5 @@
 import './index.css';
 import Checkbox from './Checkbox';
 import CheckboxGroup from './CheckboxGroup';
-
-Checkbox.Group = CheckboxGroup;
+export { CheckboxGroup };
 export default Checkbox;

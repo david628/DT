@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Button from '@/components/ui/Button';
+import { Button, ButtonGroup } from '../../dw-rui';
 class User extends Component {
   state = {
     href: undefined
@@ -20,13 +20,13 @@ class User extends Component {
     return (
       <div>
         <div style={{padding: '10px'}}>
-          <Button.Group>
+          <ButtonGroup>
             <Button disabled>Group</Button>
             <Button>Group</Button>
             <Button>Group</Button>
             <Button>Group</Button>
             <Button>Group</Button>
-          </Button.Group>
+          </ButtonGroup>
         </div>
         <div style={{padding: '10px'}}>
           <Button

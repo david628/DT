@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import Menu, { SubMenu, Item as MenuItem, Divider } from '@/components/ui/Menu';
+import { Menu, SubMenu, MenuItem, Divider } from '../../dw-rui';
 import pathToRegexp from 'path-to-regexp';
 import { Link } from 'react-router-dom';
 import './SiderMenu.less';
-
 class SiderMenu extends Component {
   constructor(props) {
     super(props);

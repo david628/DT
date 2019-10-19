@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Form from '../../components/ui/Form';
-import Input from '../../components/ui/Input';
-import Button from '../../components/ui/Button';
-import Message from '../../components/ui/Message';
+import { Form, Button, Input, Message } from '../../dw-rui';
 //import { loginAction } from '@/action/login.action';
-import history from '@/utils/history';
+import history from '../../utils/history';
 import './index.less';
 
 // const loginAction = {

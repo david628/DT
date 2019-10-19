@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
-import Dialog from '../../components/ui/Dialog';
-import Form from '../../components/ui/Form';
-import Button from '../../components/ui/Button';
-import Input from '../../components/ui/Input';
-import Select, { Option, OptGroup } from '../../components/ui/Select';
-import Table from '../../components/ui/Table';
-import Pagination from '../../components/ui/Pagination';
-import Message from '../../components/ui/Message';
+import { Dialog, Form, Button, Input, Select, Option, OptGroup, Table, Pagination, Message } from '../../dw-rui';
+
 import './index.less';
 
 export default class Dashboard extends Component {

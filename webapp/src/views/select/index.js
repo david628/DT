@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Select, { Option, OptGroup } from '@/components/ui/Select';
+import { Select, Option, OptGroup } from '../../dw-rui';
 class User extends Component {
   constructor(props) {
     super(props);

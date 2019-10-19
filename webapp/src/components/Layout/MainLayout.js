@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Switch, Route, NavLink, Redirect } from 'react-router-dom';
 //import { PrivateRoute } from '@/route/PrivateRoute';
-import NoMatch from '@/views/404';
+import NoMatch from '../../views/404';
 import DocumentTitle from 'react-document-title';
 import { ContainerQuery } from 'react-container-query';
 import SiderMenu from './SiderMenu';

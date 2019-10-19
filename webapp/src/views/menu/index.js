@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Menu, { SubMenu, ItemGroup, Item as MenuItem, Divider } from '@/components/ui/Menu';
+import { Menu, SubMenu, ItemGroup, MenuItem, Divider } from '../../dw-rui';
 class User extends Component {
   constructor(props) {
     super(props);

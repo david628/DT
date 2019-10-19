@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Dropdown from '@/components/ui/Dropdown';
-import Menu, { SubMenu, Item as MenuItem, Divider } from '@/components/ui/Menu';
+import { Dropdown, Menu, SubMenu, MenuItem, Divider } from '../../dw-rui';
 const menu = (
   <Menu>
     <SubMenu key="1" title={<span><span>导航1</span></span>}>

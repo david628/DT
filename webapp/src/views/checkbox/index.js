@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Checkbox from '@/components/ui/Checkbox';
+import { Checkbox } from '../../dw-rui';
 class User extends Component {
   state = {
     checked: true

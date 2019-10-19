@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Input from '@/components/ui/Input';
+import { Input } from '../../dw-rui';
 class User extends Component {
   constructor(props) {
     super(props);
