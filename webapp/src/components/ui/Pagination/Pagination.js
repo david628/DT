@@ -303,9 +303,10 @@ class Pagination extends Component {
                                 onBlur={ this.handleBlur }
                                 type="text"
                             />
-                            <span className={ `${ sprefix }-pagination-divider` }>/</span>
-                            <span className={ `${ sprefix }-pagination-total` }>100</span>
-                            <span className={ `${ sprefix }-pagination-unit` }>页</span>
+                            <span className={ `${ sprefix }-pagination-divider` }></span>
+                            <span className={ `${ sprefix }-pagination-unit` }>共</span>
+                            <span className={ `${ sprefix }-pagination-total` }>{ this.props.total }</span>
+                            <span className={ `${ sprefix }-pagination-unit` }>条</span>
                         </div>
                     </li>
                 </ul>

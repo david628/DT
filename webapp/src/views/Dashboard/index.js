@@ -18,7 +18,7 @@ export default class Dashboard extends Component {
       visible: false,
       data: [],
       //current: 1,
-      size: 10,
+      size: 5,
       total: 0,
       cm: [{
         header: '名称',
@@ -104,7 +104,7 @@ export default class Dashboard extends Component {
       this.showMessage(`名称不能为空！`);
       return;
     }
-    if(type == '') {
+    if(!type) {
       this.showMessage(`类型不能为空！`);
       return;
     }
@@ -116,7 +116,7 @@ export default class Dashboard extends Component {
       body: JSON.stringify({
         id,
         name,
-        type
+        type: type[0]
       })
     }).then(response => {
       if (!response.ok) {
@@ -198,7 +198,7 @@ export default class Dashboard extends Component {
     });
   };
   showMessage = (msg) => {
-    let m = `世界互联网大会“互联网之光”博览会开幕`;
+    let m = `测试消息Message`;
     if(msg !== undefined) {
       m = msg;
     }
