@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Dialog from '../../components/ui/Dialog';
+import Form from '../../components/ui/Form';
 import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
 import Select, { Option, OptGroup } from '../../components/ui/Select';
@@ -227,23 +228,23 @@ export default class Dashboard extends Component {
               onSubmit={ this.onSubmit }
           >
             <div style={{ width: '560px', padding: '0 30px' }}>
-              <form onSubmit={ this.onSubmit }>
-                <div style={{ marginBottom: '10px' }}>
-                  <label style={{ width: '50px', float: 'left', padding: '10px', display: 'inline-block' }}>名称</label>
-                  <div style={{ padding: '5px 10px', overflow: 'hidden' }}>
+              <Form>
+                <div style={{ overflow: 'hidden' }}>
+                  <label style={{ float: 'left', lineHeight: '54px'}}>名称：</label>
+                  <div style={{ overflow: 'hidden', padding: '10px' }}>
                     <Input type="text" name="name" value={ this.state.name } onChange={ this.handleChange }></Input>
                   </div>
                 </div>
-                <div style={{ marginBottom: '10px' }}>
-                  <label style={{ width: '50px', float: 'left', padding: '10px', display: 'inline-block' }}>类型</label>
-                  <div style={{ padding: '5px 10px', overflow: 'hidden' }}>
+                <div style={{ overflow: 'hidden' }}>
+                  <label style={{ float: 'left', lineHeight: '54px' }}>类型：</label>
+                  <div style={{ overflow: 'hidden', padding: '10px' }}>
                     <Select value={ this.state.type } onChange={ this.selectChange }>
                       <Option value={ 0 }>报表</Option>
                       <Option value={ 1 }>大屏</Option>
                     </Select>
                   </div>
                 </div>
-              </form>
+              </Form>
             </div>
           </Dialog>
         </div>
