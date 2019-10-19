@@ -1,13 +1,11 @@
 进入目录
 server/
-
-npm install
+启动后端服务：
 npm start
 
 
-
+进入目录
 webapp/
-
+启动前端服务：
 npm install
 npm start
-
