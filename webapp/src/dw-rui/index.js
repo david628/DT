@@ -10,6 +10,7 @@ import Message from './src/components/Message';
 import Pagination from './src/components/Pagination';
 import Select, { Option, OptGroup } from './src/components/Select';
 import Table from './src/components/Table';
+import Tree, { Node } from './src/components/Tree';
 export {
     Button,
     ButtonGroup,
@@ -30,5 +31,7 @@ export {
     Select,
     Option,
     OptGroup,
-    Table
+    Table,
+    Tree,
+    Node
 };

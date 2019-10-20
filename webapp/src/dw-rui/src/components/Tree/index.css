@@ -1,0 +1,110 @@
+.dwrui-tree {
+    color: rgba(0,0,0,0.65);
+    font-size: 14px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.dwrui-tree .dwrui-subtree {
+    margin: 0;
+    padding: 0 0 0 18px;
+    list-style: none;
+}
+.dwrui-tree .dwrui-tree-node {
+    position: relative;
+    margin: 0;
+    padding: 4px 0;
+    white-space: nowrap;
+    list-style: none;
+    outline: 0;
+}
+.dwrui-tree .dwrui-tree-node:not(:last-child)::before {
+    position: absolute;
+    left: 12px;
+    width: 1px;
+    height: 100%;
+    height: calc(100% - 22px);
+    margin: 22px 0 0;
+    border-left: 1px solid #d9d9d9;
+    content: ' ';
+}
+.dwrui-tree .dwrui-tree-node .dwrui-tree-asset {
+    cursor: pointer;
+    user-select: none;
+}
+.dwrui-tree-node .dwrui-tree-switch {
+    position: relative;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin: 0;
+    line-height: 24px;
+    text-align: center;
+    vertical-align: top;
+    border: 0 none;
+    outline: none;
+    cursor: pointer;
+}
+.dwrui-tree-switch .dwrui-tree-switch-icon {
+    display: inline-block;
+    font-size: 12px;
+    text-align: center;
+    vertical-align: -2px;
+}
+.dwrui-tree-directory .dwrui-tree-directory-icon,
+.dwrui-tree-file .dwrui-tree-file-icon {
+    display: inline-block;
+    font-size: 12px;
+    text-align: center;
+    vertical-align: -4px;
+}
+.dwrui-tree-node .dwrui-tree-node-text {
+    display: inline-block;
+    height: 24px;
+    margin: 0;
+    padding: 0 5px;
+    color: rgba(0,0,0,0.65);
+    line-height: 24px;
+    text-decoration: none;
+    vertical-align: top;
+    border-radius: 2px;
+    cursor: pointer;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+}
+.dwrui-tree-node .dwrui-tree-switch-close svg {
+    -webkit-transition: -webkit-transform .3s;
+    transition: -webkit-transform .3s;
+    transition: transform .3s;
+    transition: transform .3s, -webkit-transform .3s;
+    -webkit-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+.dwrui-tree-node .dwrui-tree-switch-open svg {
+    -webkit-transition: -webkit-transform .3s;
+    transition: -webkit-transform .3s;
+    transition: transform .3s;
+    transition: transform .3s, -webkit-transform .3s;
+}
+.dwrui-tree .dwrui-tree-switch-icon {
+    -webkit-transform: scale(.83333333) rotate(0deg);
+    -ms-transform: scale(.83333333) rotate(0deg);
+    transform: scale(.83333333) rotate(0deg);
+}
+.dwrui-tree .dwrui-tree-switch-icon {
+    -webkit-transform: scale(.83333333) rotate(0deg);
+    -ms-transform: scale(.83333333) rotate(0deg);
+    transform: scale(.83333333) rotate(0deg);
+}
+.dwrui-tree-node .dwrui-tree-node-text:hover {
+    background-color: #efefef;
+}
+.dwrui-tree .dwrui-tree-node-open {
+    display: block;
+}
+.dwrui-tree .dwrui-tree-node-close {
+    display: none;
+}

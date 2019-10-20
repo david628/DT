@@ -30,42 +30,47 @@ const menuData = [
     name: '组件页',
     text: '组件页',
     icon: 'home',
-    path: 'component',
+    path: 'Component',
     children: [
       {
-        name: 'menu',
+        name: 'Menu',
         text: 'Menu',
-        path: 'menu'
+        path: 'Menu'
       },
       {
-        name: 'button',
+        name: 'Button',
         text: 'Button',
-        path: 'button'
+        path: 'Button'
       },
       {
-        name: 'input',
+        name: 'Input',
         text: 'Input',
-        path: 'input'
+        path: 'Input'
       },
       {
-        name: 'checkbox',
+        name: 'Checkbox',
         text: 'Checkbox',
-        path: 'checkbox'
+        path: 'Checkbox'
       },
       {
-        name: 'form',
+        name: 'Form',
         text: 'Form',
-        path: 'form'
+        path: 'Form'
       },
       {
-        name: 'select',
+        name: 'Select',
         text: 'Select',
-        path: 'select'
+        path: 'Select'
       },
       {
-        name: 'dropdown',
+        name: 'Tree',
+        text: 'Tree',
+        path: 'Tree'
+      },
+      {
+        name: 'Dropdown',
         text: 'Dropdown',
-        path: 'dropdown'
+        path: 'Dropdown'
       }
     ]
   }

@@ -176,7 +176,7 @@ class Menu extends Component {
     };
     return (
       <PopupMenu {...props}>
-        {this.props.children}
+        { this.props.children }
       </PopupMenu>
     );
   }
