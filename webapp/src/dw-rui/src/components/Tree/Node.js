@@ -4,16 +4,20 @@ import PropTypes from 'prop-types';
 class Node extends Component {
     static propTypes = {
         sprefix: PropTypes.string,
-
+        eventKey: PropTypes.string,
+        onExpand: PropTypes.func,
+        expandedKeys: PropTypes.arrayOf(PropTypes.string),
+        selectedKeys: PropTypes.arrayOf(PropTypes.string)
     };
     static defaultProps = {
-        sprefix: 'dwrui'
+        sprefix: 'dwrui',
+        onExpand: () => {}
     };
     constructor(props) {
         super(props);
-        this.state = {
-            open: false
-        };
+    }
+    componentWillReceiveProps(nextProps) {
+
     }
     componentDidMount() {
 
@@ -21,18 +25,22 @@ class Node extends Component {
     componentDidUpdate() {
 
     }
-    switchNode = (e) => {
+    onExpand = (e) => {
         e.preventDefault();
-        this.setState({
-           open: !this.state.open
-        });
+        const { expandedKeys, selectedKeys, eventKey } = this.props;
+        this.props.onExpand(e, this, expandedKeys.indexOf(eventKey) !== -1);
+    }
+    savePopup = (node) => {
+        this._component = node;
     }
     getAssetsElement() {
         const props = this.props;
-        const { open } = this.state;
+        const { expandedKeys, selectedKeys, eventKey } = props;
+        let expanded = expandedKeys.indexOf(eventKey) !== -1;
+        let selected = selectedKeys.indexOf(eventKey) !== -1;
         let switchElement, fileTypeElementIcon;
         let switchCls = [`${ props.sprefix }-tree-switch`];
-        if(open) {
+        if(expanded) {
             switchCls.push(`${ props.sprefix }-tree-switch-open`);
         } else {
             switchCls.push(`${ props.sprefix }-tree-switch-close`);
@@ -48,7 +56,7 @@ class Node extends Component {
                     </i>
                 </span>
             );
-            if(open) {
+            if(expanded) {
                 fileTypeElementIcon = (
                     <span className={ `${ props.sprefix }-tree-directory` }>
                         <i className={ `${ props.sprefix }-tree-directory-icon` }>
@@ -84,7 +92,7 @@ class Node extends Component {
             );
         }
         return (
-            <span className={ `${ props.sprefix }-tree-asset` } onClick={ this.switchNode }>
+            <span className={ `${ props.sprefix }-tree-asset` } onClick={ this.onExpand }>
                 { switchElement }
                 { fileTypeElementIcon }
             </span>
@@ -92,24 +100,34 @@ class Node extends Component {
     }
     getChildrenElement() {
         const props = this.props;
-        const { open } = this.state;
+        const { expandedKeys, selectedKeys, eventKey } = props;
+        let expanded = expandedKeys.indexOf(eventKey) !== -1;
+        let selected = selectedKeys.indexOf(eventKey) !== -1;
         const subtreeCls = [`${ props.sprefix }-subtree`];
         let childrenElement;
         if(props.children) {
-            if(open) {
+            if(expanded) {
+                childrenElement = (
+                    <ul
+                        className={ subtreeCls.join(' ') }>
+                        {
+                            React.Children.map(props.children, (item, index) => {
+                                let newProps = {
+                                    eventKey: item.key,
+                                    onExpand: props.onExpand,
+                                    expandedKeys: props.expandedKeys,
+                                    selectedKeys: props.expandedKeys
+                                };
+                                return React.cloneElement(item, newProps);
+                            })
+                        }
+                    </ul>
+                );
                 subtreeCls.push(`${ props.sprefix }-tree-node-open`);
             } else {
                 subtreeCls.push(`${ props.sprefix }-tree-node-close`);
             }
-            childrenElement = (
-                <ul className={ subtreeCls.join(' ') }>
-                    {
-                        React.Children.map(props.children, (item, index) => {
-                            return React.cloneElement(item);
-                        })
-                    }
-                </ul>
-            );
+
         }
         return childrenElement;
     }

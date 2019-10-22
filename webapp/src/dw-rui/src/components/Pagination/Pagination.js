@@ -24,7 +24,7 @@ class Pagination extends Component {
         defaultSize: 20,
         max: 5,
         totalPage: 0,
-        total: 100,
+        defaultTotal: 100,
         onChange: () => {},
         onSizeChange: () => {}
     };
@@ -41,7 +41,7 @@ class Pagination extends Component {
             size = props.size;
         }
 
-        let total = props.total;
+        let total = props.defaultTotal;
         if ('total' in props) {
             total = props.total;
         }
