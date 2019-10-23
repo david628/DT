@@ -1,20 +1,40 @@
 import React, { Component } from 'react';
 import { Tree, Node, Input } from '../../dw-rui';
 class Page extends Component {
-  constructor(props) {
-      super(props);
-      this.state = {};
-  }
-  componentDidMount() {
+    constructor(props) {
+        super(props);
+        this.state = {
+            expandedKeys: ['0-0-0'],
+            selectedKeys: ['0-0-0']
+        };
+    }
+    componentDidMount() {
     
-  }
-  render() {
-      return (
-          <Tree
-              defaultExpandedKeys={ ['0-0-0'] }
-              onSelect={ this.onSelect }
-              onCheck={ this.onCheck }
-          >
+     }
+    onExpand = (expandedKeys, obj) => {
+        console.log('onExpand', expandedKeys);
+        // this.setState({
+        //     expandedKeys
+        // });
+    };
+    onSelect = (selectedKeys, obj) => {
+        console.log('onSelect', selectedKeys);
+        // this.setState({
+        //     selectedKeys
+        // });
+    };
+    render() {
+        return (
+            <Tree
+                defaultExpandedKeys={ this.state.expandedKeys }
+                defaultSelectedKeys={ this.state.selectedKeys }
+                //expandedKeys={ this.state.expandedKeys }
+                //selectedKeys={ this.state.selectedKeys }
+                //defaultExpandAll
+                onSelect={ this.onSelect }
+                onCheck={ this.onCheck }
+                onExpand={ this.onExpand }
+             >
               <Node label="parent 0-0" key="0-0">
                   <Node label="parent 0-0-0" key="0-0-0">
                       <Node label="leaf 0-0-0-0" key="0-0-0-0" />
@@ -39,7 +59,7 @@ class Page extends Component {
                   <Node label="leaf 0-0-2-1" key="0-0-2-1" />
               </Node>
           </Tree>
-      );
-  }
+        );
+    }
 }
 export default Page;

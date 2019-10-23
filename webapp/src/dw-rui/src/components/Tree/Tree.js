@@ -16,37 +16,47 @@ class Tree extends Component {
         selectedKeys: PropTypes.arrayOf(PropTypes.string),
     };
     static defaultProps = {
-        sprefix: 'dwrui'
+        sprefix: 'dwrui',
+        defaultExpandAll: false
     };
     constructor(props) {
         super(props);
-        // let checkedKeys = props.defaultCheckedKeys || [];
-        // if ('checkedKeys' in props) {
-        //     checkedKeys = props.checkedKeys || [];
-        // }
-        // let expandedKeys = props.defaultExpandedKeys || [];
-        // if ('expandedKeys' in props) {
-        //     expandedKeys = props.expandedKeys || [];
-        // }
-        // let selectedKeys = props.defaultSelectedKeys || [];
-        // if ('selectedKeys' in props) {
-        //     selectedKeys = props.selectedKeys || [];
-        // }
-        //expandedKeys = this.getExpandedKeys(props);
+        let checkedKeys = props.defaultCheckedKeys || [];
+        if ('checkedKeys' in props) {
+            checkedKeys = props.checkedKeys || [];
+        }
+        let expandedKeys = props.defaultExpandedKeys || [];
+        if ('expandedKeys' in props) {
+            expandedKeys = props.expandedKeys || [];
+        }
+        expandedKeys = this.getExpandedKeys(props);
+        let selectedKeys = props.defaultSelectedKeys || [];
+        if ('selectedKeys' in props) {
+            selectedKeys = props.selectedKeys || [];
+        }
         this.state = {
-            checkedKeys: [],
-            expandedKeys: [],
-            selectedKeys: []
+            //nodeMap: [],
+            checkedKeys,
+            expandedKeys,
+            selectedKeys
         };
     }
     componentDidMount() {
 
     }
     componentWillReceiveProps(nextProps) {
-        const expandedKeys = this.getExpandedKeys(nextProps);
-        this.setState({
-            expandedKeys
-        });
+        if(this.props.selectedKeys !== nextProps.selectedKeys) {
+            let selectedKeys = nextProps.selectedKeys || [];
+            this.setState({
+                selectedKeys
+            });
+        }
+        if(this.props.expandedKeys !== nextProps.expandedKeys) {
+            let expandedKeys = nextProps.expandedKeys || [];
+            this.setState({
+                expandedKeys
+            });
+        }
     }
     componentDidUpdate() {
 
@@ -58,8 +68,13 @@ class Tree extends Component {
         if ('expandedKeys' in props) {
             expandedKeys = props.expandedKeys || [];
         }
-        console.log(123);
-        return this.getAllExpandKeysBykeys(expandedKeys, nodeMap);
+        let keys;
+        if(props.defaultExpandAll) {
+            keys = Object.keys(nodeMap);
+        } else {
+            keys = this.getAllExpandKeysBykeys(expandedKeys, nodeMap);
+        }
+        return keys;
     }
     delExpandedKeys(value) {
         const arr = this.state.expandedKeys.slice();
@@ -107,15 +122,45 @@ class Tree extends Component {
     }
     onExpand = (e, node, expanded) => {
         const { eventKey } = node.props;
-        let arr;
-        if(!expanded) {
+        let arr, isExpanded = !expanded;
+        if(isExpanded) {
             arr = this.addExpandedKeys(eventKey);
        } else {
             arr = this.delExpandedKeys(eventKey);
         }
-        this.setState({
-            expandedKeys: arr
-        });
+        if(!('expandedKeys' in this.props)) {
+            this.setState({
+                expandedKeys: arr
+            });
+        }
+        if(this.props.onExpand) {
+            this.props.onExpand(arr, {
+                node,
+                expanded: isExpanded,
+                nativeEvent: e.nativeEvent,
+            });
+        }
+    }
+    onSelect = (e, node, selected) => {
+        const { eventKey } = node.props;
+        let arr, isSelected = !selected;
+        if(isSelected) {
+            arr = [eventKey];
+        } else {
+            arr = [];
+        }
+        if(!('selectedKeys' in this.props)) {
+            this.setState({
+                selectedKeys: arr
+            });
+        }
+        if(this.props.onSelect) {
+            this.props.onSelect(arr, {
+                node,
+                selected: isSelected,
+                nativeEvent: e.nativeEvent,
+            });
+        }
     }
     render() {
         const props = this.props;
@@ -126,6 +171,7 @@ class Tree extends Component {
                     React.Children.map(props.children, (item, index) => {
                         let newProps = {
                             onExpand: this.onExpand,
+                            onSelect: this.onSelect,
                             eventKey: item.key,
                             expandedKeys,
                             selectedKeys

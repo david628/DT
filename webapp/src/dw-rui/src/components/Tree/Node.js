@@ -30,6 +30,11 @@ class Node extends Component {
         const { expandedKeys, selectedKeys, eventKey } = this.props;
         this.props.onExpand(e, this, expandedKeys.indexOf(eventKey) !== -1);
     }
+    onSelect = (e) => {
+        e.preventDefault();
+        const { selectedKeys, eventKey } = this.props;
+        this.props.onSelect(e, this, selectedKeys.indexOf(eventKey) !== -1);
+    }
     savePopup = (node) => {
         this._component = node;
     }
@@ -37,7 +42,7 @@ class Node extends Component {
         const props = this.props;
         const { expandedKeys, selectedKeys, eventKey } = props;
         let expanded = expandedKeys.indexOf(eventKey) !== -1;
-        let selected = selectedKeys.indexOf(eventKey) !== -1;
+        //let selected = selectedKeys.indexOf(eventKey) !== -1;
         let switchElement, fileTypeElementIcon;
         let switchCls = [`${ props.sprefix }-tree-switch`];
         if(expanded) {
@@ -102,7 +107,7 @@ class Node extends Component {
         const props = this.props;
         const { expandedKeys, selectedKeys, eventKey } = props;
         let expanded = expandedKeys.indexOf(eventKey) !== -1;
-        let selected = selectedKeys.indexOf(eventKey) !== -1;
+        //let selected = selectedKeys.indexOf(eventKey) !== -1;
         const subtreeCls = [`${ props.sprefix }-subtree`];
         let childrenElement;
         if(props.children) {
@@ -115,8 +120,9 @@ class Node extends Component {
                                 let newProps = {
                                     eventKey: item.key,
                                     onExpand: props.onExpand,
+                                    onSelect: props.onSelect,
                                     expandedKeys: props.expandedKeys,
-                                    selectedKeys: props.expandedKeys
+                                    selectedKeys: props.selectedKeys
                                 };
                                 return React.cloneElement(item, newProps);
                             })
@@ -132,14 +138,26 @@ class Node extends Component {
         return childrenElement;
     }
     getLableElement() {
+        const { selectedKeys, eventKey } = this.props;
+        let selected = selectedKeys.indexOf(eventKey) !== -1;
+        let lableCls = [`${ this.props.sprefix }-tree-node-text`];
+        if(selected) {
+            lableCls.push(`${ this.props.sprefix }-tree-node-selected`);
+        }
         return (
-            <span className={ `${ this.props.sprefix }-tree-node-text` } title={ this.props.label }>{ this.props.label }</span>
+            <span className={ lableCls.join(' ') } title={ this.props.label } onClick={ this.onSelect }>{ this.props.label }</span>
         );
     }
     render() {
         const props = this.props;
+        const { selectedKeys, eventKey } = props;
+        let nodeCls = [`${ props.sprefix }-tree-node`];
+        let selected = selectedKeys.indexOf(eventKey) !== -1;
+        if(selected) {
+            nodeCls.push(`${ props.sprefix }-tree-selected`);
+        }
         return (
-            <li className={ `${ props.sprefix }-tree-node` }>
+            <li className={ nodeCls.join(' ') }>
                 { this.getAssetsElement() }
                 { this.getLableElement() }
                 { this.getChildrenElement() }

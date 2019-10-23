@@ -99,7 +99,10 @@
     -ms-transform: scale(.83333333) rotate(0deg);
     transform: scale(.83333333) rotate(0deg);
 }
-.dwrui-tree-node .dwrui-tree-node-text:hover {
+/*.dwrui-tree-node .dwrui-tree-node-text:hover {*/
+/*    background-color: #efefef;*/
+/*}*/
+.dwrui-tree-node .dwrui-tree-node-selected {
     background-color: #efefef;
 }
 .dwrui-tree .dwrui-tree-node-open {
