@@ -25,24 +25,50 @@ class Node extends Component {
     componentDidUpdate() {
 
     }
+    isDisabled = () => {
+        const { disabled, tree } = this.props;
+        if (disabled === false) {
+            return false;
+        }
+        return !!(tree.disabled || disabled);
+    };
+    isCheckable = () => {
+        const { checkable, tree } = this.props;
+        if (!tree.checkable || checkable === false) return false;
+        return tree.checkable;
+    };
+    isSelectable() {
+        const { selectable, tree } = this.props;
+        if (typeof selectable === 'boolean') {
+            return selectable;
+        }
+        return tree.selectable;
+    }
     onExpand = (e) => {
         e.preventDefault();
-        const { expandedKeys, selectedKeys, eventKey } = this.props;
-        this.props.onExpand(e, this, expandedKeys.indexOf(eventKey) !== -1);
+        const { expanded } = this.props;
+        this.props.onExpand(e, this, !expanded);
     }
     onSelect = (e) => {
         e.preventDefault();
-        const { selectedKeys, eventKey } = this.props;
-        this.props.onSelect(e, this, selectedKeys.indexOf(eventKey) !== -1);
+        const { selected } = this.props;
+        this.props.onSelect(e, this, !selected);
+    }
+    onCheck = (e) => {
+        e.preventDefault();
+        if (this.isDisabled()) return;
+        const { tree, checked } = this.props;
+        if (!this.isCheckable() || tree.disableCheckbox) {
+            return;
+        }
+        this.props.onCheck(e, this, !checked);
     }
     savePopup = (node) => {
         this._component = node;
     }
     getAssetsElement() {
         const props = this.props;
-        const { expandedKeys, selectedKeys, eventKey } = props;
-        let expanded = expandedKeys.indexOf(eventKey) !== -1;
-        //let selected = selectedKeys.indexOf(eventKey) !== -1;
+        const { selected, expanded } = props;
         let switchElement, fileTypeElementIcon;
         let switchCls = [`${ props.sprefix }-tree-switch`];
         if(expanded) {
@@ -105,9 +131,7 @@ class Node extends Component {
     }
     getChildrenElement() {
         const props = this.props;
-        const { expandedKeys, selectedKeys, eventKey } = props;
-        let expanded = expandedKeys.indexOf(eventKey) !== -1;
-        //let selected = selectedKeys.indexOf(eventKey) !== -1;
+        const { selected, expanded, tree } = props;
         const subtreeCls = [`${ props.sprefix }-subtree`];
         let childrenElement;
         if(props.children) {
@@ -118,11 +142,15 @@ class Node extends Component {
                         {
                             React.Children.map(props.children, (item, index) => {
                                 let newProps = {
+                                    tree: tree,
                                     eventKey: item.key,
                                     onExpand: props.onExpand,
                                     onSelect: props.onSelect,
-                                    expandedKeys: props.expandedKeys,
-                                    selectedKeys: props.selectedKeys
+                                    onCheck: props.onCheck,
+                                    checked: tree.checkedKeys.indexOf(item.key) !== -1,
+                                    halfChecked: tree.halfCheckedKeys.indexOf(item.key) !== -1,
+                                    expanded: tree.expandedKeys.indexOf(item.key) !== -1,
+                                    selected: tree.selectedKeys.indexOf(item.key) !== -1
                                 };
                                 return React.cloneElement(item, newProps);
                             })
@@ -138,8 +166,7 @@ class Node extends Component {
         return childrenElement;
     }
     getLableElement() {
-        const { selectedKeys, eventKey } = this.props;
-        let selected = selectedKeys.indexOf(eventKey) !== -1;
+        const { selected, expanded } = this.props;
         let lableCls = [`${ this.props.sprefix }-tree-node-text`];
         if(selected) {
             lableCls.push(`${ this.props.sprefix }-tree-node-selected`);
@@ -148,17 +175,43 @@ class Node extends Component {
             <span className={ lableCls.join(' ') } title={ this.props.label } onClick={ this.onSelect }>{ this.props.label }</span>
         );
     }
+    renderCheckbox = () => {
+        const { sprefix, tree, checked, halfChecked } = this.props;
+        const disabled = this.isDisabled();
+        const checkable = this.isCheckable();
+        if (!checkable) {
+            return null;
+        }
+        let chkCls = [`${ sprefix }-tree-checkbox`];
+        if(checked) {
+            chkCls.push(`${ sprefix }-tree-checkbox-checked`);
+        }
+        if(!checked && halfChecked) {
+            chkCls.push(`${ sprefix }-tree-checkbox-halfchecked`);
+        }
+        if(disabled || tree.disableCheckbox) {
+            chkCls.push(`${ sprefix }-tree-checkbox-disabled`);
+        }
+        return (
+            <span
+                className={ chkCls.join(' ') }
+                onClick={ this.onCheck }
+            >
+                <span className={ `${ sprefix }-tree-checkbox-inner` }></span>
+            </span>
+        );
+    };
     render() {
         const props = this.props;
-        const { selectedKeys, eventKey } = props;
+        const { selected, expanded } = props;
         let nodeCls = [`${ props.sprefix }-tree-node`];
-        let selected = selectedKeys.indexOf(eventKey) !== -1;
         if(selected) {
             nodeCls.push(`${ props.sprefix }-tree-selected`);
         }
         return (
             <li className={ nodeCls.join(' ') }>
                 { this.getAssetsElement() }
+                { this.renderCheckbox() }
                 { this.getLableElement() }
                 { this.getChildrenElement() }
             </li>
