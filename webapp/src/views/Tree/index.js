@@ -14,19 +14,19 @@ class Page extends Component {
      }
     onExpand = (expandedKeys, obj) => {
         console.log('onExpand', expandedKeys, obj.expanded);
-        // this.setState({
-        //     expandedKeys
-        // });
+        this.setState({
+            expandedKeys
+        });
     };
     onSelect = (selectedKeys, obj) => {
         console.log('onSelect', selectedKeys, obj.selected);
-        // this.setState({
-        //     selectedKeys
-        // });
+        this.setState({
+            selectedKeys
+        });
     };
     onCheck = (checkObject, obj) => {
         console.log('onCheck', checkObject, obj);
-        //this.setState(checkObject);
+        this.setState(checkObject);
     }
     render() {
         return (
