@@ -33,9 +33,9 @@ class Page extends Component {
             <Tree
                 checkable
                 //checkStrictly
-                //defaultExpandedKeys={ this.state.expandedKeys }
-                //defaultSelectedKeys={ this.state.selectedKeys }
-                //defaultCheckedKeys={this.state.checkedKeys}
+                expandedKeys={ this.state.expandedKeys }
+                selectedKeys={ this.state.selectedKeys }
+                checkedKeys={this.state.checkedKeys}
                 //expandedKeys={ this.state.expandedKeys }
                 //selectedKeys={ this.state.selectedKeys }
                 //defaultExpandAll
