@@ -199,3 +199,47 @@
     opacity: 1;
     content: ' ';
 }
+.dwrui-tree-node-loading {
+    position: relative;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin: 0;
+    line-height: 24px;
+    text-align: center;
+    vertical-align: top;
+    border: 0 none;
+    outline: none;
+    cursor: pointer;
+}
+.dwrui-tree-node-loading .dwrui-tree-node-loading-icon {
+    position: absolute;
+    left: 0;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    color: #1890ff;
+    font-size: 14px;
+    font-style: normal;
+    text-align: center;
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+}
+.dwrui-tree-node-loading-icon svg {
+    display: inline-block;
+    -webkit-animation: loadingCircle 1s infinite linear;
+    animation: loadingCircle 1s infinite linear;
+}
+@-webkit-keyframes loadingCircle {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+@keyframes loadingCircle {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}

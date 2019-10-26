@@ -14,6 +14,7 @@ class Tree extends Component {
         ]),
         expandedKeys: PropTypes.arrayOf(PropTypes.string),
         selectedKeys: PropTypes.arrayOf(PropTypes.string),
+        loadedKeys: PropTypes.arrayOf(PropTypes.string),
         disableCheckbox: PropTypes.bool,
         checkStrictly: PropTypes.bool,
         focusable: PropTypes.bool,
@@ -50,18 +51,25 @@ class Tree extends Component {
             selectedKeys = props.selectedKeys || [];
         }
         const { checkedKeys, halfCheckedKeys } = this.getCheckedKeys(props, nodeMap);
+        let loadedKeys = [];
+        if ('loadedKeys' in props) {
+            loadedKeys = props.loadedKeys || [];
+        }
         this.state = {
             nodeMap,
             checkedKeys,
             halfCheckedKeys,
             expandedKeys,
-            selectedKeys
+            selectedKeys,
+            loadedKeys,
+            loadingKeys: []
         };
     }
     componentDidMount() {
 
     }
     componentWillReceiveProps(nextProps) {
+        //const nodeMap = this.refreshNodeMap(nextProps);
         if(this.props.selectedKeys !== nextProps.selectedKeys) {
             let selectedKeys = nextProps.selectedKeys || [];
             this.setState({
@@ -79,6 +87,12 @@ class Tree extends Component {
             this.setState({
                 checkedKeys,
                 halfCheckedKeys
+            });
+        }
+        if(this.props.loadingKeys !== nextProps.loadingKeys) {
+            let loadingKeys = nextProps.loadingKeys || [];
+            this.setState({
+                loadingKeys
             });
         }
     }
@@ -108,6 +122,21 @@ class Tree extends Component {
             checkedKeys,
             halfCheckedKeys
         }
+    }
+    refreshNodeMap(props) {
+        let nodeMap = {}, children = [];
+        if(props.children) {
+            if(props.children.length) {
+                children = props.children;
+            } else {
+                children = [props.children];
+            }
+        }
+        this.getNodeMap(children, nodeMap);
+        this.setState({
+            nodeMap
+        });
+        return nodeMap;
     }
     getExpandedKeys(props, nodeMap) {
         let children = [];
@@ -317,6 +346,49 @@ class Tree extends Component {
                 nativeEvent: e.nativeEvent,
             });
         }
+        if (expanded && this.props.onLoadData) {
+            const promise = this.onLoadNode(node);
+            return promise ? promise.then(() => {
+                this.setState({
+                    expandedKeys: arr
+                });
+            }) : null;
+        }
+        return null;
+    }
+    onLoadNode = (node) => {
+        console.log('this.onLoadData...');
+        new Promise((resolve) => {
+            this.setState(({ loadedKeys = [], loadingKeys = [] }) => {
+                const { onLoadData, onLoad } = this.props;
+                const { eventKey } = node.props;
+                if (!onLoadData || loadedKeys.indexOf(eventKey) !== -1 || loadingKeys.indexOf(eventKey) !== -1) {
+                    return {};
+                }
+                const promise = onLoadData(node);
+                promise.then(() => {
+                    const newLoadedKeys = this.arrAdd(this.state.loadedKeys, eventKey);
+                    const newLoadingKeys = this.arrDel(this.state.loadingKeys, eventKey);
+                    if (onLoad) {
+                        const eventObj = {
+                            event: 'load',
+                            node: node,
+                        };
+                        onLoad(newLoadedKeys, eventObj);
+                    }
+                    this.setState({
+                        loadedKeys: newLoadedKeys,
+                    });
+                    this.setState({
+                        loadingKeys: newLoadingKeys,
+                    });
+                    resolve();
+                });
+                return {
+                    loadingKeys: this.arrAdd(loadingKeys, eventKey),
+                };
+            });
+        })
     }
     onSelect = (e, node, selected) => {
         const { eventKey } = node.props;
@@ -410,7 +482,7 @@ class Tree extends Component {
     }
     render() {
         const props = this.props;
-        const { expandedKeys, selectedKeys, checkedKeys, halfCheckedKeys } = this.state;
+        const { expandedKeys, selectedKeys, checkedKeys, halfCheckedKeys, loadingKeys } = this.state;
         return (
             <ul className={ `${ props.sprefix }-tree` }>
                 {
@@ -423,19 +495,23 @@ class Tree extends Component {
                                 disabled: props.disabled,
                                 draggable: props.draggable,
                                 disableCheckbox: props.disableCheckbox,
+                                onLoadData: props.onLoadData,
                                 expandedKeys,
                                 selectedKeys,
                                 checkedKeys,
                                 halfCheckedKeys,
+                                loadingKeys,
+                                onLoadNode: this.onLoadNode,
+                                onExpand: this.onExpand,
+                                onSelect: this.onSelect,
+                                onCheck: this.onCheck,
                             },
-                            onExpand: this.onExpand,
-                            onSelect: this.onSelect,
-                            onCheck: this.onCheck,
                             eventKey: item.key,
                             checked: checkedKeys.indexOf(item.key) !== -1,
                             halfChecked: halfCheckedKeys.indexOf(item.key) !== -1,
                             expanded: expandedKeys.indexOf(item.key) !== -1,
-                            selected: selectedKeys.indexOf(item.key) !== -1
+                            selected: selectedKeys.indexOf(item.key) !== -1,
+                            loading: loadingKeys.indexOf(item.key) !== -1
                         };
                         return React.cloneElement(item, newProps);
                     })
