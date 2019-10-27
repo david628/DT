@@ -11,6 +11,7 @@ import Pagination from './src/components/Pagination';
 import Select, { Option, OptGroup } from './src/components/Select';
 import Table from './src/components/Table';
 import Tree, { Node } from './src/components/Tree';
+import DatePick from './src/components/DatePick';
 export {
     Button,
     ButtonGroup,
@@ -33,5 +34,6 @@ export {
     OptGroup,
     Table,
     Tree,
-    Node
+    Node,
+    DatePick
 };

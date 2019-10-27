@@ -9,6 +9,7 @@ class Dropdown extends Component {
     mouseEnterDelay: PropTypes.number,
     mouseLeaveDelay: PropTypes.number,
     //trigger: PropTypes.string,
+    width: PropTypes.string,
     placement: PropTypes.string,
     trigger: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
     showTrigger: PropTypes.any,
@@ -181,7 +182,7 @@ class Dropdown extends Component {
     if(this.state.visible) {
       const target = findDOMNode(this);
       const listNode = findDOMNode(node);
-      listNode.style.width = target.offsetWidth + 'px';
+      listNode.style.width = this.props.width || target.offsetWidth + 'px';
       Dldh.Css.alignTo(listNode, target, this.props.placement);
     }
     if(this.prevVisible !== this.state.visible) {
