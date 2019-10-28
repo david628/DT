@@ -16,7 +16,8 @@ class DatePick extends Component {
       const value = new Date(props.value || props.defaultValue);
       this.state = {
           visible: false,
-          inputValue: '',
+          curDate: value,
+          //inputValue: '',
           value
       }
   }
@@ -26,8 +27,10 @@ class DatePick extends Component {
   componentWillReceiveProps(nextProps) {
       if('value' in nextProps) {
           const { value } = nextProps;
+          let v = new Date(value);
           this.setState({
-              value: new Date(value)
+              value: v
+              //curDate: v
           });
       }
   }
@@ -118,19 +121,19 @@ class DatePick extends Component {
   }
   setDate = (type) => {
       return (e) => {
-          const { value } = this.state;
+          const { curDate } = this.state;
           let v;
           if(type === 'prevYear') {
-              v = new Date(value.getFullYear() - 1, value.getMonth(), value.getDate());
+              v = new Date(curDate.getFullYear() - 1, curDate.getMonth(), curDate.getDate());
           } else if(type === 'prevMonth') {
-              v = new Date(value.getFullYear(), value.getMonth() - 1, value.getDate());
+              v = new Date(curDate.getFullYear(), curDate.getMonth() - 1, curDate.getDate());
           } else if(type === 'nextMonth') {
-              v = new Date(value.getFullYear(), value.getMonth() + 1, value.getDate());
+              v = new Date(curDate.getFullYear(), curDate.getMonth() + 1, curDate.getDate());
           } else if(type === 'nextYear') {
-              v = new Date(value.getFullYear() + 1, value.getMonth(), value.getDate());
+              v = new Date(curDate.getFullYear() + 1, curDate.getMonth(), curDate.getDate());
           }
           this.setState({
-              value: v
+              curDate: v
           });
       }
   }
@@ -145,7 +148,7 @@ class DatePick extends Component {
       row = [],
       k = 0,
       inputValue = this.dateFormat(value, props.format),
-      arr = this.getPervMonthLastDays(value);
+      arr = this.getPervMonthLastDays(state.curDate);
       //if(state.visible) {
           //cls.push(`${ sprefix }-datePick-open`);
           //cls.push(`${ sprefix }-datePick-focused`);
@@ -169,9 +172,9 @@ class DatePick extends Component {
                       <a className={ `${ sprefix }-datePick-header-btn ${ sprefix }-datePick-prev-year` } onClick={ this.setDate('prevYear') }></a>
                       <a className={ `${ sprefix }-datePick-header-btn ${ sprefix }-datePick-prev-month` } onClick={ this.setDate('prevMonth') }></a>
                       <span className={ `${ sprefix }-datePick-selected` }>
-                          <a className={ `${ sprefix }-datePick-selected-year` }>{ value.getFullYear() }</a>
+                          <a className={ `${ sprefix }-datePick-selected-year` }>{ state.curDate.getFullYear() }</a>
                           <span>-</span>
-                          <a className={ `${ sprefix }-datePick-selected-month` }>{ value.getMonth() }</a>
+                          <a className={ `${ sprefix }-datePick-selected-month` }>{ state.curDate.getMonth() }</a>
                       </span>
                       <a className={ `${ sprefix }-datePick-header-btn ${ sprefix }-datePick-next-month` } onClick={ this.setDate('nextMonth') }></a>
                       <a className={ `${ sprefix }-datePick-header-btn ${ sprefix }-datePick-next-year` } onClick={ this.setDate('nextYear') }></a>

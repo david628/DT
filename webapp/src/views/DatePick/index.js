@@ -13,7 +13,7 @@ class Page extends Component {
     onChange = v => {
         this.setState({
             value: v
-        });
+       });
     }
     render() {
         return (
