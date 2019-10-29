@@ -32,7 +32,9 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 .dwrui-datePick-menu {
+  width: 260px;
   text-align: center;
+  position: relative;
 }
 .dwrui-datePick-menu .dwrui-datePick-menu-header {
   height: 40px;
@@ -42,6 +44,15 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+.dwrui-datePick-menu .dwrui-datePick-menu-panel {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  display: none;
 }
 .dwrui-datePick-menu .dwrui-datePick-menu-center {
   padding: 8px 12px;
@@ -94,9 +105,6 @@
   -webkit-transform-origin: 50% 50%;
   -ms-transform-origin: 50% 50%;
   transform-origin: 50% 50%;
-}
-.dwrui-datePick-menu-header {
-  position: relative;
 }
 .dwrui-datePick-header-btn {
   position: absolute;
