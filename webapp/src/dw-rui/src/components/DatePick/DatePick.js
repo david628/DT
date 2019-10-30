@@ -13,7 +13,7 @@ class DatePick extends Component {
     static defaultProps = {
         sprefix: 'dwrui',
         format: 'YYYY/MM/DD',
-        type: ''
+        type: 'default'
     };
     constructor(props) {
         super(props);

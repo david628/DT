@@ -18,7 +18,7 @@ class DateList extends Component {
         const value = new Date(props.value || props.defaultValue);
         let type = props.type || props.defaultType;
         if(!type) {
-            type = 'all';
+            type = 'default';
         }
         this.state = {
             visible: false,
@@ -114,7 +114,7 @@ class DateList extends Component {
         }
         if(!('type' in props)) {
             this.setState({
-                type: 'all'
+                type: 'default'
             });
         }
         if(props.onChange) {
@@ -164,7 +164,7 @@ class DateList extends Component {
     setType = (type) => {
         return (e) => {
             this.setState({
-                type: type === this.state.type ? 'all' : type
+                type: type === this.state.type ? 'default' : type
             });
         }
     }
@@ -261,13 +261,13 @@ class DateList extends Component {
                 <div className={ `${ sprefix }-datePick-menu-header` }>
                     <div className={ `${ sprefix }-datePick-menu-header-inner` }>
                         <a className={ `${ sprefix }-datePick-header-btn ${ sprefix }-datePick-prev-year` } onClick={ this.setDate('prevYear') }></a>
-                        <a className={ type !== 'all' ? `${ sprefix }-datePick-header-btn ${ sprefix }-datePick-prev-month ${ sprefix }-datePick-menu-hidden` : `${ sprefix }-datePick-header-btn ${ sprefix }-datePick-prev-month` } onClick={ this.setDate('prevMonth') }></a>
+                        <a className={ type !== 'default' ? `${ sprefix }-datePick-header-btn ${ sprefix }-datePick-prev-month ${ sprefix }-datePick-menu-hidden` : `${ sprefix }-datePick-header-btn ${ sprefix }-datePick-prev-month` } onClick={ this.setDate('prevMonth') }></a>
                         <span className={ `${ sprefix }-datePick-selected` }>
                             <a title="选择年份" className={ `${ sprefix }-datePick-selected-year` } onClick={ this.setType('year') }>{ curDate.getFullYear() }</a>
                             <span>-</span>
                             <a title="选择月份" className={ `${ sprefix }-datePick-selected-month` } onClick={ this.setType('month') }>{ curDate.getMonth() + 1 }</a>
                         </span>
-                        <a className={ type !== 'all' ? `${ sprefix }-datePick-header-btn ${ sprefix }-datePick-next-month ${ sprefix }-datePick-menu-hidden` : `${ sprefix }-datePick-header-btn ${ sprefix }-datePick-next-month` } onClick={ this.setDate('nextMonth') }></a>
+                        <a className={ type !== 'default' ? `${ sprefix }-datePick-header-btn ${ sprefix }-datePick-next-month ${ sprefix }-datePick-menu-hidden` : `${ sprefix }-datePick-header-btn ${ sprefix }-datePick-next-month` } onClick={ this.setDate('nextMonth') }></a>
                         <a className={ `${ sprefix }-datePick-header-btn ${ sprefix }-datePick-next-year` } onClick={ this.setDate('nextYear') }></a>
                     </div>
                     <div className={ yearPanelCls.join(' ') }>
