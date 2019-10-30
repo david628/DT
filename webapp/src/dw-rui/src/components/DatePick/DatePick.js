@@ -82,7 +82,7 @@ class DatePick extends Component {
                         <DateList
                             sprefix={ props.sprefix }
                             format={ props.format }
-                            type={ props.type }
+                            defaultType={ props.type }
                             value={ value }
                             onChange={ this.onChange }
                             footer={ <div>Today</div> }

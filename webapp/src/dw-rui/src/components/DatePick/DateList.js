@@ -5,21 +5,26 @@ class DateList extends Component {
         defaultValue: PropTypes.any,
         value: PropTypes.any,
         format: PropTypes.string,
+        defaultType: PropTypes.string,
         type: PropTypes.string,
         onChange: PropTypes.func
     };
     static defaultProps = {
         sprefix: 'dwrui',
-        format: 'YYYY/MM/DD',
-        type: 'all'
+        format: 'YYYY/MM/DD'
     };
     constructor(props) {
         super(props);
         const value = new Date(props.value || props.defaultValue);
+        let type = props.type || props.defaultType;
+        if(!type) {
+            type = 'all';
+        }
         this.state = {
             visible: false,
             curDate: value,
-            value
+            value,
+            type
         }
     }
     componentDidMount() {
@@ -107,40 +112,132 @@ class DateList extends Component {
                 value: v
             });
         }
+        if(!('type' in props)) {
+            this.setState({
+                type: 'all'
+            });
+        }
         if(props.onChange) {
             props.onChange(v);
         }
     }
-    setDate = (type) => {
+    setDate = (t) => {
         return (e) => {
-            const { curDate } = this.state;
-            let v;
-            if(type === 'prevYear') {
-                v = new Date(curDate.getFullYear() - 1, curDate.getMonth(), curDate.getDate());
-            } else if(type === 'prevMonth') {
+            const { type, curDate } = this.state;
+            let v, increment = type === 'year' ? 10 : 1;
+            if(t === 'prevYear') {
+                v = new Date(curDate.getFullYear() - increment, curDate.getMonth(), curDate.getDate());
+            } else if(t === 'prevMonth') {
                 v = new Date(curDate.getFullYear(), curDate.getMonth() - 1, curDate.getDate());
-            } else if(type === 'nextMonth') {
+            } else if(t === 'nextMonth') {
                 v = new Date(curDate.getFullYear(), curDate.getMonth() + 1, curDate.getDate());
-            } else if(type === 'nextYear') {
-                v = new Date(curDate.getFullYear() + 1, curDate.getMonth(), curDate.getDate());
+            } else if(t === 'nextYear') {
+                v = new Date(curDate.getFullYear() + increment, curDate.getMonth(), curDate.getDate());
             }
             this.setState({
                 curDate: v
             });
         }
     }
+    setYear(year) {
+        return (e) => {
+            const { curDate, value } = this.state;
+            const month = value.getMonth(), day = value.getDate(), newDay = this.getDaysOfMonth(year, month);
+            const date = new Date(year, month, day < newDay ? day : newDay);
+            this.setState({
+                curDate: date
+            });
+            this.onChange(date);
+        }
+    }
+    setMonth(month) {
+        return (e) => {
+            const { curDate, value } = this.state;
+            const year = value.getFullYear(), day = value.getDate(), newDay = this.getDaysOfMonth(year, month);
+            const date = new Date(curDate.getFullYear(), month, day < newDay ? day : newDay);
+            this.setState({
+                curDate: date
+            });
+            this.onChange(date);
+        }
+    }
     setType = (type) => {
         return (e) => {
             this.setState({
-                type
+                type: type === this.state.type ? 'all' : type
             });
         }
+    }
+    getYearPanel() {
+        const { sprefix } = this.props;
+        const { value, curDate } = this.state;
+        const curYear = value.getFullYear();
+        const year = curDate.getFullYear();
+        let startYear = parseInt(year / 10, 10) * 10 - 1;
+        if(startYear < 0) {
+            startYear = 0;
+        }
+        let rs = [];
+        for(let i = 0; i < 12; i += 3) {
+            rs.push(
+                <tr key={ 'month-' + i }>
+                    <td title={ startYear + i } className={ startYear + i === curYear ? `${ sprefix }-datePick-menu-panel-cell ${ sprefix }-datePick-menu-panel-cell-selected` : `${ sprefix }-datePick-menu-panel-cell` }>
+                        <a className={ `${ sprefix }-datePick-menu-panel-cell-link` } onClick={ this.setYear(startYear + i) }>{ startYear + i }</a>
+                    </td>
+                    <td title={ startYear + i + 1 } className={ startYear + i + 1 === curYear ? `${ sprefix }-datePick-menu-panel-cell ${ sprefix }-datePick-menu-panel-cell-selected` : `${ sprefix }-datePick-menu-panel-cell` }>
+                        <a className={ `${ sprefix }-datePick-menu-panel-cell-link` } onClick={ this.setYear(startYear + i + 1) }>{ startYear + i + 1 }</a>
+                    </td>
+                    <td title={ startYear + i + 2 } className={ startYear + i + 2 === curYear ? `${ sprefix }-datePick-menu-panel-cell ${ sprefix }-datePick-menu-panel-cell-selected` : `${ sprefix }-datePick-menu-panel-cell` }>
+                        <a className={ `${ sprefix }-datePick-menu-panel-cell-link` } onClick={ this.setYear(startYear + i + 2) }>{ startYear + i + 2 }</a>
+                    </td>
+                </tr>
+            )
+        }
+        return (
+            <table className={ `${ sprefix }-datePick-menu-panel-table` } border="0" cellPadding="0" cellSpacing="0">
+                <tbody className={ `${ sprefix }-datePick-menu-panel-tbody` }>
+                { rs }
+                </tbody>
+            </table>
+        );
+    }
+    getMonthPanel() {
+        const { sprefix } = this.props;
+        const { value, curDate } = this.state;
+        const months = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
+        const rs = [];
+        let month = -1;
+        if(value.getFullYear() === curDate.getFullYear() && value.getMonth() === curDate.getMonth()) {
+            month = value.getMonth();
+        }
+        for(let i = 0; i < months.length; i += 3) {
+            rs.push(
+                <tr key={ 'month-' + i }>
+                    <td title={ months[i] } className={ i === month ? `${ sprefix }-datePick-menu-panel-cell ${ sprefix }-datePick-menu-panel-cell-selected` : `${ sprefix }-datePick-menu-panel-cell` }>
+                        <a className={ `${ sprefix }-datePick-menu-panel-cell-link` } onClick={ this.setMonth(i) }>{ months[i] }</a>
+                    </td>
+                    <td title={ months[i + 1] } className={ i + 1 === month ? `${ sprefix }-datePick-menu-panel-cell ${ sprefix }-datePick-menu-panel-cell-selected` : `${ sprefix }-datePick-menu-panel-cell` }>
+                        <a className={ `${ sprefix }-datePick-menu-panel-cell-link` } onClick={ this.setMonth(i + 1) }>{ months[i + 1] }</a>
+                    </td>
+                    <td title={ months[i + 2] } className={ i + 2 === month ? `${ sprefix }-datePick-menu-panel-cell ${ sprefix }-datePick-menu-panel-cell-selected` : `${ sprefix }-datePick-menu-panel-cell` }>
+                        <a className={ `${ sprefix }-datePick-menu-panel-cell-link` } onClick={ this.setMonth(i + 2) }>{ months[i + 2] }</a>
+                    </td>
+                </tr>
+            )
+        }
+        return (
+            <table className={ `${ sprefix }-datePick-menu-panel-table` } border="0" cellPadding="0" cellSpacing="0">
+                <tbody className={ `${ sprefix }-datePick-menu-panel-tbody` }>
+                    { rs }
+                </tbody>
+            </table>
+        );
     }
     render() {
         const { sprefix } = this.props;
         const { type, curDate, value } = this.state;
         const arr = this.getPervMonthLastDays(curDate);
-        let row = [], k = 0;
+        let row = [], k = 0, yearPanelCls = [`${ sprefix }-datePick-menu-panel`], monthPanelCls = [`${ sprefix }-datePick-menu-panel`];
         for(let i = 1; i < 7; i++) {
             let cell = [];
             for(let j = 0; j < 7; j++) {
@@ -153,21 +250,32 @@ class DateList extends Component {
             }
             row.push(<tr key={ i }>{ cell }</tr>);
         }
+        if(type !== 'year') {
+            yearPanelCls.push(`${ sprefix }-datePick-menu-hidden`);
+        }
+        if(type !== 'month') {
+            monthPanelCls.push(`${ sprefix }-datePick-menu-hidden`);
+        }
         return (
             <div className={ `${ sprefix }-datePick-menu` }>
                 <div className={ `${ sprefix }-datePick-menu-header` }>
                     <div className={ `${ sprefix }-datePick-menu-header-inner` }>
                         <a className={ `${ sprefix }-datePick-header-btn ${ sprefix }-datePick-prev-year` } onClick={ this.setDate('prevYear') }></a>
-                        <a className={ `${ sprefix }-datePick-header-btn ${ sprefix }-datePick-prev-month` } onClick={ this.setDate('prevMonth') }></a>
+                        <a className={ type !== 'all' ? `${ sprefix }-datePick-header-btn ${ sprefix }-datePick-prev-month ${ sprefix }-datePick-menu-hidden` : `${ sprefix }-datePick-header-btn ${ sprefix }-datePick-prev-month` } onClick={ this.setDate('prevMonth') }></a>
                         <span className={ `${ sprefix }-datePick-selected` }>
-                          <a className={ `${ sprefix }-datePick-selected-year` } onClick={ this.setType('year') }>{ curDate.getFullYear() }</a>
-                          <span>-</span>
-                          <a className={ `${ sprefix }-datePick-selected-month` } onClick={ this.setType('month') }>{ curDate.getMonth() + 1 }</a>
-                      </span>
-                        <a className={ `${ sprefix }-datePick-header-btn ${ sprefix }-datePick-next-month` } onClick={ this.setDate('nextMonth') }></a>
+                            <a title="选择年份" className={ `${ sprefix }-datePick-selected-year` } onClick={ this.setType('year') }>{ curDate.getFullYear() }</a>
+                            <span>-</span>
+                            <a title="选择月份" className={ `${ sprefix }-datePick-selected-month` } onClick={ this.setType('month') }>{ curDate.getMonth() + 1 }</a>
+                        </span>
+                        <a className={ type !== 'all' ? `${ sprefix }-datePick-header-btn ${ sprefix }-datePick-next-month ${ sprefix }-datePick-menu-hidden` : `${ sprefix }-datePick-header-btn ${ sprefix }-datePick-next-month` } onClick={ this.setDate('nextMonth') }></a>
                         <a className={ `${ sprefix }-datePick-header-btn ${ sprefix }-datePick-next-year` } onClick={ this.setDate('nextYear') }></a>
                     </div>
-                    <div className={ `${ sprefix }-datePick-menu-panel` }>Year</div>
+                    <div className={ yearPanelCls.join(' ') }>
+                        { this.getYearPanel() }
+                    </div>
+                    <div className={ monthPanelCls.join(' ') }>
+                        { this.getMonthPanel() }
+                    </div>
                 </div>
                 <div className={ `${ sprefix }-datePick-menu-center` }>
                     <table border="0" cellPadding="0" cellSpacing="0">
