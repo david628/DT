@@ -43,18 +43,19 @@ class DatePick extends Component {
             visible
         });
     };
-    onChange = (v) => {
+    onChange = (v, visible) => {
         const props = this.props;
+        const is = !!visible;
         if(!('value' in props)) {
             this.setState({
                 value: v
             });
-            this.onPopupVisibleChange(false);
+            this.onPopupVisibleChange(is);
         }
         if(props.onChange) {
             let ret = props.onChange(v);
             if(!ret) {
-                this.onPopupVisibleChange(false);
+                this.onPopupVisibleChange(is);
             }
         }
     }

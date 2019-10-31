@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import ReactDom from 'react-dom';
 import PropTypes from 'prop-types';
 class DateList extends Component {
     static propTypes = {
         defaultValue: PropTypes.any,
         value: PropTypes.any,
+        showTime: PropTypes.bool,
         format: PropTypes.string,
         defaultType: PropTypes.string,
         type: PropTypes.string,
@@ -11,6 +13,7 @@ class DateList extends Component {
     };
     static defaultProps = {
         sprefix: 'dwrui',
+        showTime: true,
         format: 'YYYY/MM/DD'
     };
     constructor(props) {
@@ -28,20 +31,19 @@ class DateList extends Component {
         }
     }
     componentDidMount() {
-
     }
     componentWillReceiveProps(nextProps) {
         if('value' in nextProps) {
             const { value } = nextProps;
             let v = new Date(value);
-            this.setState({
-                value: v
-                //curDate: v
-            });
+            this.setValue(v);
         }
     }
     componentDidUpdate() {
-
+        const { value } = this.state;
+        this.scroll(value.getHours(), this._h);
+        this.scroll(value.getMinutes(), this._m);
+        this.scroll(value.getSeconds(), this._s);
     }
     setValue(value) {
         this.setState({
@@ -73,6 +75,7 @@ class DateList extends Component {
         return rs;
     }
     getPervMonthLastDays(date) {
+        const { value } = this.state;
         let year = date.getFullYear();
         let month = date.getMonth();
         let currentWeek = new Date(year, parseInt(month, 10), 1).getDay();
@@ -81,58 +84,54 @@ class DateList extends Component {
         for(let i = 0; i < pervNum; i++) {
             rs.unshift({
                 type: 'pervMonth',
-                value: new Date(year, month, 0 - i)
+                value: new Date(year, month, 0 - i, value.getHours(), value.getMinutes(), value.getSeconds())
             });
         }
         let num = this.getDaysOfMonth(year, month);
         for(let i = 0; i < num; i++) {
             rs.push({
                 type: 'curMonth',
-                value: new Date(year, month, i + 1)
+                value: new Date(year, month, i + 1, value.getHours(), value.getMinutes(), value.getSeconds())
             });
         }
         let nextNum = 42 - pervNum - num;
         for(let i = 0; i < nextNum; i++) {
             rs.push({
                 type: 'nextMonth',
-                value: new Date(year, month, num + i + 1)
+                value: new Date(year, month, num + i + 1, value.getHours(), value.getMinutes(), value.getSeconds())
             });
         }
         return rs;
+    }
+    submit = (e) => {
+        this.onChange(this.state.value);
     }
     onClick = (item) => {
         return e => {
             this.onChange(item.value);
         }
     }
-    onChange = (v) => {
+    onChange = (v, visible) => {
         const props = this.props;
         if(!('value' in props)) {
-            this.setState({
-                value: v
-            });
-        }
-        if(!('type' in props)) {
-            this.setState({
-                type: 'default'
-            });
+            this.setValue(v);
         }
         if(props.onChange) {
-            props.onChange(v);
+            props.onChange(v, visible);
         }
     }
     setDate = (t) => {
         return (e) => {
-            const { type, curDate } = this.state;
+            const { type, curDate, value } = this.state;
             let v, increment = type === 'year' ? 10 : 1;
             if(t === 'prevYear') {
-                v = new Date(curDate.getFullYear() - increment, curDate.getMonth(), curDate.getDate());
+                v = new Date(curDate.getFullYear() - increment, curDate.getMonth(), curDate.getDate(), value.getHours(), value.getMinutes(), value.getSeconds());
             } else if(t === 'prevMonth') {
-                v = new Date(curDate.getFullYear(), curDate.getMonth() - 1, curDate.getDate());
+                v = new Date(curDate.getFullYear(), curDate.getMonth() - 1, curDate.getDate(), value.getHours(), value.getMinutes(), value.getSeconds());
             } else if(t === 'nextMonth') {
-                v = new Date(curDate.getFullYear(), curDate.getMonth() + 1, curDate.getDate());
+                v = new Date(curDate.getFullYear(), curDate.getMonth() + 1, curDate.getDate(), value.getHours(), value.getMinutes(), value.getSeconds());
             } else if(t === 'nextYear') {
-                v = new Date(curDate.getFullYear() + increment, curDate.getMonth(), curDate.getDate());
+                v = new Date(curDate.getFullYear() + increment, curDate.getMonth(), curDate.getDate(), value.getHours(), value.getMinutes(), value.getSeconds());
             }
             this.setState({
                 curDate: v
@@ -143,7 +142,7 @@ class DateList extends Component {
         return (e) => {
             const { curDate, value } = this.state;
             const month = value.getMonth(), day = value.getDate(), newDay = this.getDaysOfMonth(year, month);
-            const date = new Date(year, month, day < newDay ? day : newDay);
+            const date = new Date(year, month, day < newDay ? day : newDay, value.getHours(), value.getMinutes(), value.getSeconds());
             this.setState({
                 curDate: date
             });
@@ -154,7 +153,7 @@ class DateList extends Component {
         return (e) => {
             const { curDate, value } = this.state;
             const year = value.getFullYear(), day = value.getDate(), newDay = this.getDaysOfMonth(year, month);
-            const date = new Date(curDate.getFullYear(), month, day < newDay ? day : newDay);
+            const date = new Date(curDate.getFullYear(), month, day < newDay ? day : newDay, value.getHours(), value.getMinutes(), value.getSeconds());
             this.setState({
                 curDate: date
             });
@@ -167,6 +166,20 @@ class DateList extends Component {
                 type: type === this.state.type ? 'default' : type
             });
         }
+    }
+    saveH = (node) => {
+        this._h = node;
+    }
+    saveM = (node) => {
+        this._m = node;
+    }
+    saveS = (node) => {
+        this._s = node;
+    }
+    scroll(v, node) {
+        const list = ReactDom.findDOMNode(node);
+        const top = list.children[v];
+        list.parentNode.scrollTop = top.offsetTop;
     }
     getYearPanel() {
         const { sprefix } = this.props;
@@ -233,11 +246,76 @@ class DateList extends Component {
             </table>
         );
     }
-    render() {
+    setHours(h) {
+        return e => {
+            const { value } = this.state;
+            const v = new Date(value.getFullYear(), value.getMonth(), value.getDate(), h, value.getMinutes(), value.getSeconds());
+            this.onChange(v, true);
+        };
+    }
+    setMinutes(m) {
+        return e => {
+            const { value } = this.state;
+            const v = new Date(value.getFullYear(), value.getMonth(), value.getDate(), value.getHours(), m, value.getSeconds());
+            this.onChange(v, true);
+        };
+    }
+    setSeconds(s) {
+        return e => {
+            const { value } = this.state;
+            const v = new Date(value.getFullYear(), value.getMonth(), value.getDate(), value.getHours(), value.getMinutes(), s);
+            this.onChange(v, true);
+        };
+    }
+    getTimePanel() {
         const { sprefix } = this.props;
+        const { value } = this.state;
+        const hv = value.getHours(),
+            mv = value.getMinutes(),
+            sv = value.getSeconds(),
+            h = [],
+            m = [],
+            s = [];
+        let v;
+        for(let i = 0; i < 60; i++) {
+            v = i < 10 ? `0${ i }` : i;
+            if(i < 24) {
+                h.push(
+                    <li onClick={ this.setHours(i) } className={ hv == i ? `${ sprefix }-datePick-time-col-item ${ sprefix }-datePick-time-col-item-selected` : `${ sprefix }-datePick-time-col-item` } key={ 'h' + i }>{ v }</li>
+                );
+            }
+            m.push(
+                <li onClick={ this.setMinutes(i) } className={ mv == i ? `${ sprefix }-datePick-time-col-item ${ sprefix }-datePick-time-col-item-selected` : `${ sprefix }-datePick-time-col-item` } key={ 'm' + i }>{ v }</li>
+            );
+            s.push(
+                <li onClick={ this.setSeconds(i) } className={ sv == i ? `${ sprefix }-datePick-time-col-item ${ sprefix }-datePick-time-col-item-selected` : `${ sprefix }-datePick-time-col-item` } key={ 's' + i }>{ v }</li>
+            );
+        }
+        return (
+            <div className={`${ sprefix }-datePick-time`}>
+                <div className={`${ sprefix }-datePick-time-inner`}>
+                    <div className={`${ sprefix }-datePick-time-col`}>
+                        <ul ref={ this.saveH }>{ h }</ul>
+                    </div>
+                    <div className={`${ sprefix }-datePick-time-col`}>
+                        <ul ref={ this.saveM }>{ m }</ul>
+                    </div>
+                    <div className={`${ sprefix }-datePick-time-col`}>
+                        <ul ref={ this.saveS }>{ s }</ul>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+    render() {
+        const { sprefix, showTime } = this.props;
         const { type, curDate, value } = this.state;
         const arr = this.getPervMonthLastDays(curDate);
-        let row = [], k = 0, yearPanelCls = [`${ sprefix }-datePick-menu-panel`], monthPanelCls = [`${ sprefix }-datePick-menu-panel`];
+        let row = [],
+            k = 0,
+            yearPanelCls = [`${ sprefix }-datePick-menu-panel`],
+            monthPanelCls = [`${ sprefix }-datePick-menu-panel`],
+            timePanelCls = [`${ sprefix }-datePick-time-panel`];
         for(let i = 1; i < 7; i++) {
             let cell = [];
             for(let j = 0; j < 7; j++) {
@@ -255,6 +333,9 @@ class DateList extends Component {
         }
         if(type !== 'month') {
             monthPanelCls.push(`${ sprefix }-datePick-menu-hidden`);
+        }
+        if(type !== 'time') {
+            timePanelCls.push(`${ sprefix }-datePick-menu-hidden`);
         }
         return (
             <div className={ `${ sprefix }-datePick-menu` }>
@@ -276,6 +357,13 @@ class DateList extends Component {
                     <div className={ monthPanelCls.join(' ') }>
                         { this.getMonthPanel() }
                     </div>
+                    {
+                        showTime ? (
+                            <div className={ timePanelCls.join(' ') }>
+                                { this.getTimePanel() }
+                            </div>
+                        ) : null
+                    }
                 </div>
                 <div className={ `${ sprefix }-datePick-menu-center` }>
                     <table border="0" cellPadding="0" cellSpacing="0">
@@ -310,7 +398,10 @@ class DateList extends Component {
                     </table>
                 </div>
                 <div className={ `${ sprefix }-datePick-menu-footer` }>
-                    { this.props.footer }
+                    <div className={ `${ sprefix }-datePick-menu-footer-inner` }>
+                        { showTime ? <a className={ `${ sprefix }-datePick-time` } onClick={ this.setType('time') }>选择时间</a> : null }
+                        <a className={ `${ sprefix }-datePick-submit` } onClick={ this.submit }>确定</a>
+                    </div>
                 </div>
             </div>
         );
