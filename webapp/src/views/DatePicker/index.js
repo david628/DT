@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { DatePick } from '../../dw-rui';
+import { DatePicker, RangePicker } from '../../dw-rui';
 class Page extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: '2019/10/27'
+            value: '2019/10/27 20:15:09'
         };
     }
     componentDidMount() {
-
+        //<RangePicker value={ this.state.value } onChange={ this.onChange }></RangePicker>
     }
     onChange = v => {
         this.setState({
@@ -18,7 +18,12 @@ class Page extends Component {
     render() {
         return (
             <div style={{ width: '262px' }}>
-                <DatePick value={ this.state.value } onChange={ this.onChange } format={ 'YYYY/MM/DD' }/>
+                <div style={{ padding: '10px' }}>
+                    <DatePicker/>
+                </div>
+                <div style={{ padding: '10px' }}>
+                    <RangePicker/>
+                </div>
             </div>
         );
     }

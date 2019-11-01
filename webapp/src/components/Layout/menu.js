@@ -68,9 +68,9 @@ const menuData = [
         path: 'Tree'
       },
       {
-        name: 'DatePick',
-        text: 'DatePick',
-        path: 'DatePick'
+        name: 'DatePicker',
+        text: 'DatePicker',
+        path: 'DatePicker'
       },
       {
         name: 'Dropdown',

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Dropdown from "../Dropdown";
 import DateList from './DateList';
-class DatePick extends Component {
+class RangePicker extends Component {
     static propTypes = {
         defaultValue: PropTypes.any,
         value: PropTypes.any,
@@ -17,7 +17,7 @@ class DatePick extends Component {
     };
     constructor(props) {
         super(props);
-        const value = new Date(props.value || props.defaultValue);
+        const value = props.value || props.defaultValue;
         this.state = {
             visible: false,
             value
@@ -67,27 +67,39 @@ class DatePick extends Component {
     }
     render() {
         const { props, state } = this;
-        const { sprefix } = props;
+        const { sprefix, format, type } = props;
         let value = state.value,
-        cls = [`${ sprefix }-datePick`],
-        inputValue = DatePick.dateFormat(value, props.format);
+            cls = [`${ sprefix }-datePick`],
+            inputValue = RangePicker.dateFormat(value, format);
         //if(state.visible) {
-            //cls.push(`${ sprefix }-datePick-open`);
-            //cls.push(`${ sprefix }-datePick-focused`);
+        //cls.push(`${ sprefix }-datePick-open`);
+        //cls.push(`${ sprefix }-datePick-focused`);
         //}
         return (
             <Dropdown
                 sprefix={ `${ sprefix }-datePick` }
                 menu={
                     <div className={ `${ sprefix }-datePick-wrap` }>
-                        <DateList
-                            sprefix={ props.sprefix }
-                            format={ props.format }
-                            defaultType={ props.type }
-                            value={ value }
-                            onChange={ this.onChange }
-                            footer={ <div>Today</div> }
-                        ></DateList>
+                        <div className={ `${ sprefix }-datePick-range-left` }>
+                            <DateList
+                                sprefix={ sprefix }
+                                format={ format }
+                                defaultType={ type }
+                                value={ value }
+                                onChange={ this.onChange }
+                                //footer={ <div>Today</div> }
+                            />
+                        </div>
+                        <div className={ `${ sprefix }-datePick-range-right` }>
+                            <DateList
+                                sprefix={ sprefix }
+                                format={ format }
+                                defaultType={ type }
+                                value={ value }
+                                onChange={ this.onChange }
+                                //footer={ <div>Today</div> }
+                            />
+                        </div>
                     </div>
                 }
                 width={ 'auto' }
@@ -109,4 +121,4 @@ class DatePick extends Component {
         );
     }
 }
-export default DatePick;
+export default RangePicker;

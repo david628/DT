@@ -320,3 +320,15 @@
 .dwrui-datePick-time-col ul li.dwrui-datePick-time-col-item-selected {
   background: #e6f7ff;
 }
+
+.dwrui-datePick-wrap {
+
+}
+.dwrui-datePick-wrap .dwrui-datePick-range-left {
+  width: 50%;
+  float: left;
+}
+.dwrui-datePick-wrap .dwrui-datePick-range-right {
+  width: 50%;
+  float: right;
+}
