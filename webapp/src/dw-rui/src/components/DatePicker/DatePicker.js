@@ -2,22 +2,25 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Dropdown from "../Dropdown";
 import DateList from './DateList';
+import DateUtil from "./DateUtil";
 class DatePicker extends Component {
     static propTypes = {
         defaultValue: PropTypes.any,
         value: PropTypes.any,
         type: PropTypes.string,
         format: PropTypes.string,
+        placeholder: PropTypes.string,
         onChange: PropTypes.func
     };
     static defaultProps = {
         sprefix: 'dwrui',
         format: 'YYYY/MM/DD',
+        placeholder: '请选择日期',
         type: 'default'
     };
     constructor(props) {
         super(props);
-        const value = props.value || props.defaultValue;
+        let value = props.value || props.defaultValue;
         this.state = {
             visible: false,
             value
@@ -29,9 +32,8 @@ class DatePicker extends Component {
     componentWillReceiveProps(nextProps) {
         if('value' in nextProps) {
             const { value } = nextProps;
-            let v = new Date(value);
             this.setState({
-                value: v
+                value
             });
         }
     }
@@ -43,7 +45,7 @@ class DatePicker extends Component {
             visible
         });
     };
-    onChange = (v, visible) => {
+    onChange = (v, dateType, visible) => {
         const props = this.props;
         const is = !!visible;
         if(!('value' in props)) {
@@ -60,14 +62,14 @@ class DatePicker extends Component {
         }
     }
     static dateFormat(v, format) {
-        return DateList.dateFormat(v, format);
+        return DateUtil.dateFormat(v, format);
     }
     handleChange = (e) => {
 
     }
     render() {
         const { props, state } = this;
-        const { sprefix, format, type } = props;
+        const { sprefix, format, type, placeholder } = props;
         let value = state.value,
         cls = [`${ sprefix }-datePick`],
         inputValue = DatePicker.dateFormat(value, format);
@@ -96,7 +98,7 @@ class DatePicker extends Component {
                 trigger={ "click" }
             >
                 <div className={ cls.join(' ') }>
-                    <input className={ `${ sprefix }-input ${ sprefix }-datePick-input` } value={ inputValue } onChange={ this.handleChange }/>
+                    <input className={ `${ sprefix }-input ${ sprefix }-datePick-input` } value={ inputValue } placeholder={ placeholder } onChange={ this.handleChange }/>
                     <span className={ `${ sprefix }-datePick-arrow` } unselectable="on">
                         <i className={ `${ sprefix }-datePick-arrow-icon` }>
                             <svg viewBox="64 64 896 896" focusable="false" className="" data-icon="calendar" width="1em" height="1em" fill="currentColor" aria-hidden="true">

@@ -2,25 +2,31 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Dropdown from "../Dropdown";
 import DateList from './DateList';
+import DateUtil from "./DateUtil";
 class RangePicker extends Component {
     static propTypes = {
         defaultValue: PropTypes.any,
         value: PropTypes.any,
         type: PropTypes.string,
         format: PropTypes.string,
+        placeholder: PropTypes.string,
         onChange: PropTypes.func
     };
     static defaultProps = {
         sprefix: 'dwrui',
+        placeholder: '请选择日期',
         format: 'YYYY/MM/DD',
         type: 'default'
     };
     constructor(props) {
         super(props);
-        const value = props.value || props.defaultValue;
+        let value = props.value || props.defaultValue;
+        value = value || [];
+        let dateState = this.getDateState(value);
         this.state = {
             visible: false,
-            value
+            select: [],
+            ...dateState
         }
     }
     componentDidMount() {
@@ -29,48 +35,135 @@ class RangePicker extends Component {
     componentWillReceiveProps(nextProps) {
         if('value' in nextProps) {
             const { value } = nextProps;
-            let v = new Date(value);
+            let dateState = this.getDateState(value);
             this.setState({
-                value: v
+                ...dateState
             });
         }
     }
     componentDidUpdate() {
 
     }
+    getDateState(value) {
+        //startMax, endMin
+        let start = value[0] || null, end = value[1] || null, rs;
+        if((start === null || start === undefined) && (end === null || end === undefined)) {
+            let current = new Date();
+            rs = {
+                start: null,
+                end: null,
+                startCurDate: current,
+                endCurDate: new Date(current.getFullYear(), current.getMonth() + 1, current.getDate(), 0, 0, 0),
+                startRange: [null, null],
+                endRange: [null, null]
+            };
+        } else if((start === null || start === undefined) && end) {
+            rs = {
+                start: end,
+                end: null,
+                startCurDate: end,
+                endCurDate: new Date(end.getFullYear(), end.getMonth() + 1, end.getDate(), end.getHours(), end.getMinutes(), end.getSeconds()),
+                startRange: [end, null],
+                endRange: [end, null]
+            };
+        } else if(start && (end === null || end === undefined)) {
+            rs = {
+                start: start,
+                end: null,
+                startCurDate: start,
+                endCurDate: new Date(start.getFullYear(), start.getMonth() + 1, start.getDate(), start.getHours(), start.getMinutes(), start.getSeconds()),
+                startRange: [start, null],
+                endRange: [start, null]
+            };
+        } else {
+            rs = {
+                start: start,
+                end: end,
+                startCurDate: start,
+                endCurDate: end,
+                startRange: [start, end],
+                endRange: [start, end]
+            };
+        }
+        return rs;
+    }
     onPopupVisibleChange = (visible) => {
         this.setState({
             visible
         });
     };
-    onChange = (v, visible) => {
+    onChange = (v, eventType, visible) => {
         const props = this.props;
+        const { select } = this.state;
         const is = !!visible;
-        if(!('value' in props)) {
+        let sd = [];
+        if(eventType === 'day') {
+            if(select.length >= 2) {
+                sd = [v];
+
+            } else {
+                sd = this.arrAdd(select, v);
+            }
+            //console.log('sd', sd);
             this.setState({
-                value: v
+                select: sd
             });
-            this.onPopupVisibleChange(is);
+        }
+        //console.log(`sd`, sd);
+        if(!('value' in props)) {
+            //console.log('value', v);
+            this.setState({
+                startRange: sd,
+                endRange: sd
+            });
+            //this.onPopupVisibleChange(is);
         }
         if(props.onChange) {
             let ret = props.onChange(v);
             if(!ret) {
-                this.onPopupVisibleChange(is);
+                //this.onPopupVisibleChange(is);
             }
         }
+    }
+    onLeftChange = (v, eventType, visible) => {
+        this.onChange(v, eventType, visible);
+    }
+    onRightChange = (v, eventType, visible) => {
+        this.onChange(v, eventType, visible);
+    }
+    arrAdd(list, value) {
+        const clone = list.slice();
+        if (clone.indexOf(value) === -1) {
+            clone.push(value);
+        }
+        return clone.sort(function(a, b) {
+            return a.getTime() - b.getTime()
+        });
     }
     static dateFormat(v, format) {
         return DateList.dateFormat(v, format);
     }
+    onStartPanelChange = (curDate) => {
+        this.setState({
+            startCurDate: curDate
+        });
+    }
+    onEndPanelChange = (curDate) => {
+        this.setState({
+            endCurDate: curDate
+        });
+    }
     handleChange = (e) => {
 
     }
+    onMouseEnter = (e, current) => {
+        //console.log(current);
+    }
     render() {
         const { props, state } = this;
-        const { sprefix, format, type } = props;
-        let value = state.value,
-            cls = [`${ sprefix }-datePick`],
-            inputValue = RangePicker.dateFormat(value, format);
+        const { sprefix, format, placeholder } = props;
+        const { startRange, endRange, startCurDate, endCurDate } = state;
+        let cls = [`${ sprefix }-datePick`], inputValue = '';
         //if(state.visible) {
         //cls.push(`${ sprefix }-datePick-open`);
         //cls.push(`${ sprefix }-datePick-focused`);
@@ -80,25 +173,33 @@ class RangePicker extends Component {
                 sprefix={ `${ sprefix }-datePick` }
                 menu={
                     <div className={ `${ sprefix }-datePick-wrap` }>
-                        <div className={ `${ sprefix }-datePick-range-left` }>
-                            <DateList
-                                sprefix={ sprefix }
-                                format={ format }
-                                defaultType={ type }
-                                value={ value }
-                                onChange={ this.onChange }
-                                //footer={ <div>Today</div> }
-                            />
-                        </div>
-                        <div className={ `${ sprefix }-datePick-range-right` }>
-                            <DateList
-                                sprefix={ sprefix }
-                                format={ format }
-                                defaultType={ type }
-                                value={ value }
-                                onChange={ this.onChange }
-                                //footer={ <div>Today</div> }
-                            />
+                        <div className={ `${ sprefix }-datePick-range` }>
+                            <div className={ `${ sprefix }-datePick-range-left` }>
+                                <DateList
+                                    sprefix={ sprefix }
+                                    format={ format }
+                                    range={ startRange }
+                                    curDate={ startCurDate }
+                                    onChange={ this.onLeftChange }
+                                    onMouseEnter={ this.onMouseEnter }
+                                    onPanelChange={ this.onStartPanelChange }
+                                    //max={ endCurDate }
+                                    footer={ <div></div> }
+                                ></DateList>
+                            </div>
+                            <div className={ `${ sprefix }-datePick-range-right` }>
+                                <DateList
+                                    sprefix={ sprefix }
+                                    format={ format }
+                                    range={ endRange }
+                                    curDate={ endCurDate }
+                                    onChange={ this.onRightChange }
+                                    onMouseEnter={ this.onMouseEnter }
+                                    onPanelChange={ this.onEndPanelChange }
+                                    //min={ startCurDate }
+                                    //footer={ <div></div> }
+                                ></DateList>
+                            </div>
                         </div>
                     </div>
                 }
@@ -108,7 +209,7 @@ class RangePicker extends Component {
                 trigger={ "click" }
             >
                 <div className={ cls.join(' ') }>
-                    <input className={ `${ sprefix }-input ${ sprefix }-datePick-input` } value={ inputValue } onChange={ this.handleChange }/>
+                    <input className={ `${ sprefix }-input ${ sprefix }-datePick-input` } value={ inputValue } placeholder={ placeholder } onChange={ this.handleChange }/>
                     <span className={ `${ sprefix }-datePick-arrow` } unselectable="on">
                         <i className={ `${ sprefix }-datePick-arrow-icon` }>
                             <svg viewBox="64 64 896 896" focusable="false" className="" data-icon="calendar" width="1em" height="1em" fill="currentColor" aria-hidden="true">

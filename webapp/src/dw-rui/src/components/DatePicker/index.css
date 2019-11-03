@@ -32,7 +32,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 .dwrui-datePick-menu {
-  width: 260px;
+  width: 280px;
   text-align: center;
   position: relative;
 }
@@ -76,6 +76,7 @@
   width: 24px;
   height: 24px;
   line-height: 24px;
+  border: 1px solid transparent;
 }
 .dwrui-datePick-menu .pervMonth .dwrui-datePick-menu-text, .dwrui-datePick-menu .nextMonth .dwrui-datePick-menu-text {
   color: rgba(0,0,0,0.25);
@@ -85,6 +86,12 @@
 }
 .dwrui-datePick-menu .selected .dwrui-datePick-menu-text {
   background: #bae7ff;
+}
+.dwrui-datePick-menu .today .dwrui-datePick-menu-text {
+  border-color: #1890ff;
+}
+.dwrui-datePick-menu .range {
+  background: #e6f7ff;
 }
 .dwrui-datePick .dwrui-datePick-arrow {
   display: inline-block;
@@ -195,6 +202,15 @@
 .dwrui-datePick-menu .dwrui-datePick-menu-header a:hover {
   color: #40a9ff;
 }
+.dwrui-datePick-menu .dwrui-datePick-menu-disabled {
+  cursor: not-allowed;
+}
+.dwrui-datePick-menu .dwrui-datePick-menu-disabled::before,
+.dwrui-datePick-menu .dwrui-datePick-menu-disabled::after,
+.dwrui-datePick-menu .dwrui-datePick-menu-disabled:hover::before,
+.dwrui-datePick-menu .dwrui-datePick-menu-disabled:hover::after{
+  border-color: rgba(0,0,0,0.1);
+}
 .dwrui-datePick-menu .dwrui-datePick-menu-hidden {
   display: none;
 }
@@ -284,7 +300,7 @@
   width: 33.33%;
   position: relative;
   float: left;
-  height: 254px;
+  height: 266px;
   overflow: hidden;
   font-size: 14px;
   border-right: 1px solid #e8e8e8;
@@ -308,7 +324,7 @@
 }
 .dwrui-datePick-time-col ul::after {
   display: block;
-  height: 230px;
+  height: 242px;
   content: '';
 }
 .dwrui-datePick-menu .dwrui-datePick-time-col:hover {
@@ -320,7 +336,6 @@
 .dwrui-datePick-time-col ul li.dwrui-datePick-time-col-item-selected {
   background: #e6f7ff;
 }
-
 .dwrui-datePick-wrap {
 
 }

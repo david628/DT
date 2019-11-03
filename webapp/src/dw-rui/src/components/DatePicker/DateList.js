@@ -1,54 +1,99 @@
 import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 import PropTypes from 'prop-types';
+import DateUtil from './DateUtil';
 class DateList extends Component {
     static propTypes = {
+        defaultRange: PropTypes.any,
+        range: PropTypes.any,
+        defaultMin: PropTypes.any,
+        min: PropTypes.any,
+        defaultMax: PropTypes.any,
+        max: PropTypes.any,
+        defaultCurDate: PropTypes.any,
+        curDate: PropTypes.any,
         defaultValue: PropTypes.any,
         value: PropTypes.any,
         showTime: PropTypes.bool,
         format: PropTypes.string,
         defaultType: PropTypes.string,
         type: PropTypes.string,
-        onChange: PropTypes.func
+        onChange: PropTypes.func,
+        onPanelChange: PropTypes.func,
+        onMouseEnter: PropTypes.func
     };
     static defaultProps = {
         sprefix: 'dwrui',
         showTime: true,
-        format: 'YYYY/MM/DD'
+        format: 'YYYY/MM/DD',
+        onMouseEnter: function() {}
     };
     constructor(props) {
         super(props);
+        let range = props.range || props.defaultRange;
         let value = props.value || props.defaultValue;
-        value = new Date(value);
-        let curDate;
-        if(!this.checkDate(value)) {
-            value = '';
-            curDate = new Date();
-            curDate.setHours(0);
-            curDate.setMinutes(0);
-            curDate.setSeconds(0);
+        let curDate = props.curDate || props.defaultCurDate;
+        let min = props.min || props.defaultMin;
+        let max = props.max || props.defaultMax;
+        if(!value) {
+            value = null;
+            if(!curDate) {
+                curDate = new Date();
+                curDate.setHours(0);
+                curDate.setMinutes(0);
+                curDate.setSeconds(0);
+            }
         } else {
-            curDate = value;
+            if(!curDate) {
+                curDate = this.checkDate(value) ? value : new Date();
+            }
         }
-        //console.log(value, curDate);
         let type = props.type || props.defaultType;
         if(!type) {
             type = 'default';
         }
+        //console.log('value', value, 'curDate', curDate);
         this.state = {
             visible: false,
+            min,
+            max,
+            range,
             curDate,
             value,
             type
         }
+
     }
     componentDidMount() {
     }
     componentWillReceiveProps(nextProps) {
         if('value' in nextProps) {
             const { value } = nextProps;
-            let v = new Date(value);
-            this.setValue(v);
+            this.setValue(value);
+        }
+        if('range' in nextProps) {
+            const { range } = nextProps;
+            this.setState({
+                range
+            });
+        }
+        if('curDate' in nextProps) {
+            const { curDate } = nextProps;
+            this.setState({
+                curDate
+            });
+        }
+        if('min' in nextProps) {
+            const { min } = nextProps;
+            this.setState({
+                min
+            });
+        }
+        if('max' in nextProps) {
+            const { max } = nextProps;
+            this.setState({
+                max
+            });
         }
     }
     componentDidUpdate() {
@@ -59,122 +104,77 @@ class DateList extends Component {
         this.scroll(_value.getSeconds(), this._s);
     }
     checkDate(value) {
+        if(!value) {
+            return false;
+        }
         return value != 'Invalid Date';
     }
     setValue(value) {
         this.setState({
-            value: this.checkDate(value) ? value : ''
+            value: !value ? null : value
         });
     }
-    getDaysOfMonth(year, month) {
-        return [31, (year % 4 == 0 && year % 100 != 0 || year % 400 == 0 ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month];
-    }
-    static dateFormat(date, format) {
-        if(!date) {
-            return '';
-        }
-        let o = {
-            "M+": date.getMonth() + 1, // month
-            "D+": date.getDate(), // day
-            "h+": date.getHours(), // hour
-            "m+": date.getMinutes(), // minute
-            "s+": date.getSeconds(), // second
-            "q+": Math.floor((date.getMonth() + 3) / 3), // quarter
-            "S": date.getMilliseconds()
-            // millisecond
-        }, rs = format;
-        if (/(Y+)/.test(rs)) {
-            rs = rs.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
-        }
-        for (var k in o) {
-            if (new RegExp("(" + k + ")").test(rs)) {
-                rs = rs.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
-            }
-        }
-        return rs;
-    }
-    getPervMonthLastDays(date, value) {
-        let year = date.getFullYear();
-        let month = date.getMonth();
-        let currentWeek = new Date(year, parseInt(month, 10), 1).getDay();
-        let pervNum = currentWeek != 0 ? currentWeek : currentWeek + 7;
-        let rs = [];
-        for(let i = 0; i < pervNum; i++) {
-            rs.unshift({
-                type: 'pervMonth',
-                value: new Date(year, month, 0 - i, value.getHours(), value.getMinutes(), value.getSeconds())
-            });
-        }
-        let num = this.getDaysOfMonth(year, month);
-        for(let i = 0; i < num; i++) {
-            rs.push({
-                type: 'curMonth',
-                value: new Date(year, month, i + 1, value.getHours(), value.getMinutes(), value.getSeconds())
-            });
-        }
-        let nextNum = 42 - pervNum - num;
-        for(let i = 0; i < nextNum; i++) {
-            rs.push({
-                type: 'nextMonth',
-                value: new Date(year, month, num + i + 1, value.getHours(), value.getMinutes(), value.getSeconds())
-            });
-        }
-        return rs;
-    }
     submit = (e) => {
-        this.onChange(this.state.value);
+        const props = this.props;
+        if(props.submit) {
+            props.submit();
+        }
+        //if(props.onChange) {
+            //props.onChange(this.state.value);
+        //}
     }
     onClick = (item) => {
         return e => {
-            this.onChange(item.value);
+            this.onChange(item.value, 'day');
         }
     }
-    onChange = (v, visible) => {
+    onChange = (v, dateType, visible) => {
         const props = this.props;
         if(!('value' in props)) {
             this.setValue(v);
         }
         if(props.onChange) {
-            props.onChange(v, visible);
+            props.onChange(v, dateType, visible);
+        }
+    }
+    setCurDate(curDate) {
+        if(!('curDate' in this.props)) {
+            this.setState({
+                curDate
+            });
+        }
+        if(this.props.onPanelChange) {
+            this.props.onPanelChange(curDate);
         }
     }
     setDate = (t, value) => {
         return (e) => {
             const { type, curDate } = this.state;
-            let v, increment = type === 'year' ? 10 : 1;
-            if(t === 'prevYear') {
-                v = new Date(curDate.getFullYear() - increment, curDate.getMonth(), curDate.getDate(), value.getHours(), value.getMinutes(), value.getSeconds());
-            } else if(t === 'prevMonth') {
-                v = new Date(curDate.getFullYear(), curDate.getMonth() - 1, curDate.getDate(), value.getHours(), value.getMinutes(), value.getSeconds());
-            } else if(t === 'nextMonth') {
-                v = new Date(curDate.getFullYear(), curDate.getMonth() + 1, curDate.getDate(), value.getHours(), value.getMinutes(), value.getSeconds());
-            } else if(t === 'nextYear') {
-                v = new Date(curDate.getFullYear() + increment, curDate.getMonth(), curDate.getDate(), value.getHours(), value.getMinutes(), value.getSeconds());
-            }
-            this.setState({
-                curDate: v
-            });
+            let v = DateUtil.getDateByPrevOrNext(curDate, t, type === 'year' ? 10 : 1, value);
+            this.setCurDate(v);
         }
     }
     setYear(year, value) {
         return (e) => {
-            const month = value.getMonth(), day = value.getDate(), newDay = this.getDaysOfMonth(year, month);
+            const month = value.getMonth(), day = value.getDate(), newDay = DateUtil.getDaysOfMonth(year, month);
             const date = new Date(year, month, day < newDay ? day : newDay, value.getHours(), value.getMinutes(), value.getSeconds());
+            this.setCurDate(date);
             this.setState({
-                curDate: date
+                type: 'default'
             });
-            this.onChange(date);
+            this.onChange(date, 'year', true);
         }
     }
     setMonth(month, value) {
         return (e) => {
             const { curDate } = this.state;
-            const year = value.getFullYear(), day = value.getDate(), newDay = this.getDaysOfMonth(year, month);
+            const year = value.getFullYear(), day = value.getDate(), newDay = DateUtil.getDaysOfMonth(year, month);
             const date = new Date(curDate.getFullYear(), month, day < newDay ? day : newDay, value.getHours(), value.getMinutes(), value.getSeconds());
+            this.setCurDate(date);
             this.setState({
-                curDate: date
+                type: 'default'
             });
-            this.onChange(date);
+            this.onChange(date, 'month', true);
         }
     }
     setType = (type) => {
@@ -266,19 +266,19 @@ class DateList extends Component {
     setHours(h, value) {
         return e => {
             const v = new Date(value.getFullYear(), value.getMonth(), value.getDate(), h, value.getMinutes(), value.getSeconds());
-            this.onChange(v, true);
+            this.onChange(v, 'hours', true);
         };
     }
     setMinutes(m, value) {
         return e => {
             const v = new Date(value.getFullYear(), value.getMonth(), value.getDate(), value.getHours(), m, value.getSeconds());
-            this.onChange(v, true);
+            this.onChange(v, 'minutes', true);
         };
     }
     setSeconds(s, value) {
         return e => {
             const v = new Date(value.getFullYear(), value.getMonth(), value.getDate(), value.getHours(), value.getMinutes(), s);
-            this.onChange(v, true);
+            this.onChange(v, 'seconds', true);
         };
     }
     getTimePanel(value) {
@@ -320,24 +320,60 @@ class DateList extends Component {
             </div>
         );
     }
+    onMouseEnter = (current) => {
+        return (e) => {
+            this.props.onMouseEnter(e, current);
+        }
+    }
     render() {
-        const { sprefix, showTime } = this.props;
-        const { type, curDate, value } = this.state;
-        const _value = value || curDate;
-        const arr = this.getPervMonthLastDays(curDate, _value);
+        const { sprefix, showTime, footer } = this.props;
+        const { type, curDate, range, value, min, max } = this.state;
+        const _value = this.checkDate(value) ? value : curDate;
+        const arr = DateUtil.getPervMonthLastDays(curDate, _value);
+        //console.log('render', range);
         let row = [],
             k = 0,
+            startValue,
+            endValue,
+            prevYearCls = [`${ sprefix }-datePick-header-btn`, `${ sprefix }-datePick-prev-year`],
+            prevMonthCls = [`${ sprefix }-datePick-header-btn`, `${ sprefix }-datePick-prev-month`],
+            nextMonthCls = [`${ sprefix }-datePick-header-btn`, `${ sprefix }-datePick-next-month`],
+            nextYearCls = [`${ sprefix }-datePick-header-btn`, `${ sprefix }-datePick-next-year`],
             yearPanelCls = [`${ sprefix }-datePick-menu-panel`],
             monthPanelCls = [`${ sprefix }-datePick-menu-panel`],
             timePanelCls = [`${ sprefix }-datePick-time-panel`];
+        if(range) {
+            startValue = range[0];
+            endValue = range[1];
+        }
         for(let i = 1; i < 7; i++) {
             let cell = [];
             for(let j = 0; j < 7; j++) {
                 let type = [`${ arr[k].type }`];
-                if(value && (value.getTime() == arr[k].value.getTime())) {
-                    type.push(`selected`);
+                if(DateUtil.eq(new Date(), arr[k].value, 'day')) {
+                    type.push(`today`);
                 }
-                cell.push(<td key={ `${ i }-${ j }` } className={ type.join(' ') } onClick={ this.onClick(arr[k]) }><div className={ `${ sprefix }-datePick-menu-text` }>{ arr[k].value.getDate() }</div></td>);
+                if(range) {
+                    range.forEach(item => {
+                        if(arr[k].type === 'curMonth' && this.checkDate(item) && DateUtil.eq(item, arr[k].value, 'day')) {
+                            type.push(`selected`);
+                        }
+                    });
+                    if(arr[k].type === 'curMonth' && (startValue !== null && startValue !== undefined) && (endValue !== null && endValue !== undefined)) {
+                        if((startValue === null || startValue === undefined) && this.checkDate(endValue) && DateUtil.isBefore(arr[k].value, endValue)) {
+                            type.push(`range`);
+                        } else if((endValue === null || endValue === undefined) && this.checkDate(startValue) && DateUtil.isAfter(arr[k].value, startValue)) {
+                            type.push(`range`);
+                        } else if(DateUtil.isAfter(arr[k].value, startValue) && DateUtil.isBefore(arr[k].value, endValue)) {
+                            type.push(`range`);
+                        }
+                    }
+                } else {
+                    if(this.checkDate(value) && DateUtil.eq(value, arr[k].value, 'day')) {
+                        type.push(`selected`);
+                    }
+                }
+                cell.push(<td key={ `${ i }-${ j }` } className={ type.join(' ') } onClick={ this.onClick(arr[k]) } onMouseEnter={ arr[k].disbaled ? null : this.onMouseEnter(arr[k]) }><div className={ `${ sprefix }-datePick-menu-text` }>{ arr[k].value.getDate() }</div></td>);
                 k++;
             }
             row.push(<tr key={ i }>{ cell }</tr>);
@@ -351,19 +387,37 @@ class DateList extends Component {
         if(type !== 'time') {
             timePanelCls.push(`${ sprefix }-datePick-menu-hidden`);
         }
+        // if(min && this.checkDate(min)) {
+        //     console.log('min', curDate.toLocaleDateString(), min.toLocaleDateString());
+        //     if(!DateUtil.isBefore(min, curDate, 'month')) {
+        //         prevMonthCls.push(`${ sprefix }-datePick-menu-disabled`);
+        //         prevYearCls.push(`${ sprefix }-datePick-menu-disabled`);
+        //     }
+        // }
+        // if(max && this.checkDate(max)) {
+        //     //console.log('max', curDate.toLocaleDateString(), max.toLocaleDateString(), DateUtil.isAfter(max, new Date(curDate.getFullYear(), curDate.getMonth() + 1), 'month'));
+        //     if(!DateUtil.isAfter(max, new Date(curDate.getFullYear(), curDate.getMonth() + 1), 'month')) {
+        //         nextMonthCls.push(`${ sprefix }-datePick-menu-disabled`);
+        //         nextYearCls.push(`${ sprefix }-datePick-menu-disabled`);
+        //     }
+        // }
+        if(type !== 'default') {
+            prevMonthCls.push(`${ sprefix }-datePick-menu-hidden`);
+            nextMonthCls.push(`${ sprefix }-datePick-menu-hidden`);
+        }
         return (
             <div className={ `${ sprefix }-datePick-menu` }>
                 <div className={ `${ sprefix }-datePick-menu-header` }>
                     <div className={ `${ sprefix }-datePick-menu-header-inner` }>
-                        <a className={ `${ sprefix }-datePick-header-btn ${ sprefix }-datePick-prev-year` } onClick={ this.setDate('prevYear', _value) }></a>
-                        <a className={ type !== 'default' ? `${ sprefix }-datePick-header-btn ${ sprefix }-datePick-prev-month ${ sprefix }-datePick-menu-hidden` : `${ sprefix }-datePick-header-btn ${ sprefix }-datePick-prev-month` } onClick={ this.setDate('prevMonth', _value) }></a>
+                        <a className={ prevYearCls.join(' ') } onClick={ this.setDate('prevYear', _value) }></a>
+                        <a className={ prevMonthCls.join(' ') } onClick={ this.setDate('prevMonth', _value) }></a>
                         <span className={ `${ sprefix }-datePick-selected` }>
                             <a title="选择年份" className={ `${ sprefix }-datePick-selected-year` } onClick={ this.setType('year') }>{ curDate.getFullYear() }</a>
                             <span>-</span>
                             <a title="选择月份" className={ `${ sprefix }-datePick-selected-month` } onClick={ this.setType('month') }>{ curDate.getMonth() + 1 }</a>
                         </span>
-                        <a className={ type !== 'default' ? `${ sprefix }-datePick-header-btn ${ sprefix }-datePick-next-month ${ sprefix }-datePick-menu-hidden` : `${ sprefix }-datePick-header-btn ${ sprefix }-datePick-next-month` } onClick={ this.setDate('nextMonth', _value) }></a>
-                        <a className={ `${ sprefix }-datePick-header-btn ${ sprefix }-datePick-next-year` } onClick={ this.setDate('nextYear', _value) }></a>
+                        <a className={ nextMonthCls.join(' ') } onClick={ this.setDate('nextMonth', _value) }></a>
+                        <a className={ nextYearCls.join(' ') } onClick={ this.setDate('nextYear', _value) }></a>
                     </div>
                     <div className={ yearPanelCls.join(' ') }>
                         { this.getYearPanel(_value) }
@@ -412,10 +466,14 @@ class DateList extends Component {
                     </table>
                 </div>
                 <div className={ `${ sprefix }-datePick-menu-footer` }>
-                    <div className={ `${ sprefix }-datePick-menu-footer-inner` }>
-                        { showTime ? <a className={ `${ sprefix }-datePick-time` } onClick={ this.setType('time') }>选择时间</a> : null }
-                        <a className={ `${ sprefix }-datePick-submit` } onClick={ this.submit }>确定</a>
-                    </div>
+                {
+                    footer ? footer : (
+                        <div className={ `${ sprefix }-datePick-menu-footer-inner` }>
+                            { showTime ? <a className={ `${ sprefix }-datePick-time` } onClick={ this.setType('time') }>选择时间</a> : null }
+                            <a className={ `${ sprefix }-datePick-submit` } onClick={ this.submit }>确定</a>
+                        </div>
+                    )
+                }
                 </div>
             </div>
         );
