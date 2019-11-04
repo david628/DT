@@ -45,7 +45,6 @@ class RangePicker extends Component {
 
     }
     getDateState(value) {
-        //startMax, endMin
         let start = value[0] || null, end = value[1] || null, rs;
         if((start === null || start === undefined) && (end === null || end === undefined)) {
             let current = new Date();
@@ -84,7 +83,16 @@ class RangePicker extends Component {
                 startRange: [start, end],
                 endRange: [start, end]
             };
+            if(DateUtil.eq(start, end, 'month')) {
+                rs.endCurDate = new Date(start.getFullYear(), start.getMonth() + 1, start.getDate(), start.getHours(), start.getMinutes(), start.getSeconds());
+            } else if(DateUtil.isAfter(start, end, 'month')) {
+                rs.start = end;
+                rs.end = start;
+                rs.startCurDate = end;
+                rs.endCurDate = start;
+            }
         }
+        rs.inputValue = DateUtil.dateFormat(rs.start, this.props.format) + ' ~ ' + DateUtil.dateFormat(rs.end, this.props.format);
         return rs;
     }
     onPopupVisibleChange = (visible) => {
@@ -92,6 +100,11 @@ class RangePicker extends Component {
             visible
         });
     };
+    setInputValue(sd) {
+        this.setState({
+            inputValue: DateUtil.dateFormat(sd[0], this.props.format) + ' ~ ' + DateUtil.dateFormat(sd[1], this.props.format)
+        });
+    }
     onChange = (v, eventType, visible) => {
         const props = this.props;
         const { select } = this.state;
@@ -100,11 +113,12 @@ class RangePicker extends Component {
         if(eventType === 'day') {
             if(select.length >= 2) {
                 sd = [v];
-
             } else {
                 sd = this.arrAdd(select, v);
+                if(sd.length >= 2) {
+                    this.setInputValue(sd);
+                }
             }
-            //console.log('sd', sd);
             this.setState({
                 select: sd
             });
@@ -144,13 +158,33 @@ class RangePicker extends Component {
         return DateList.dateFormat(v, format);
     }
     onStartPanelChange = (curDate) => {
+        const { endCurDate } = this.state;
+        let s = curDate, e = endCurDate;
+        if(DateUtil.eq(curDate, endCurDate, 'month')) {
+            s = curDate;
+            e = new Date(curDate.getFullYear(), curDate.getMonth() + 1, curDate.getDate(), curDate.getHours(), curDate.getMinutes(), curDate.getSeconds());
+        } else if(DateUtil.isAfter(s, e, 'month')) {
+            s = endCurDate;
+            e = curDate;
+        }
         this.setState({
-            startCurDate: curDate
+            startCurDate: s,
+            endCurDate: e
         });
     }
     onEndPanelChange = (curDate) => {
+        const { startCurDate } = this.state;
+        let s = startCurDate, e = curDate;
+        if(DateUtil.eq(curDate, startCurDate, 'month')) {
+            s = curDate;
+            e = new Date(curDate.getFullYear(), curDate.getMonth() + 1, curDate.getDate(), curDate.getHours(), curDate.getMinutes(), curDate.getSeconds());
+        } else if(DateUtil.isAfter(s, e, 'month')) {
+            s = curDate;
+            e = startCurDate;
+        }
         this.setState({
-            endCurDate: curDate
+            startCurDate: s,
+            endCurDate: e
         });
     }
     handleChange = (e) => {
@@ -162,8 +196,8 @@ class RangePicker extends Component {
     render() {
         const { props, state } = this;
         const { sprefix, format, placeholder } = props;
-        const { startRange, endRange, startCurDate, endCurDate } = state;
-        let cls = [`${ sprefix }-datePick`], inputValue = '';
+        const { startRange, endRange, startCurDate, endCurDate, inputValue } = state;
+        let cls = [`${ sprefix }-datePick`];
         //if(state.visible) {
         //cls.push(`${ sprefix }-datePick-open`);
         //cls.push(`${ sprefix }-datePick-focused`);
@@ -183,8 +217,8 @@ class RangePicker extends Component {
                                     onChange={ this.onLeftChange }
                                     onMouseEnter={ this.onMouseEnter }
                                     onPanelChange={ this.onStartPanelChange }
-                                    //max={ endCurDate }
-                                    footer={ <div></div> }
+                                    max={ endCurDate }
+                                    //footer={ <div>&nbsp;</div> }
                                 ></DateList>
                             </div>
                             <div className={ `${ sprefix }-datePick-range-right` }>
@@ -196,8 +230,8 @@ class RangePicker extends Component {
                                     onChange={ this.onRightChange }
                                     onMouseEnter={ this.onMouseEnter }
                                     onPanelChange={ this.onEndPanelChange }
-                                    //min={ startCurDate }
-                                    //footer={ <div></div> }
+                                    min={ startCurDate }
+                                    //footer={ <div>&nbsp;</div> }
                                 ></DateList>
                             </div>
                         </div>

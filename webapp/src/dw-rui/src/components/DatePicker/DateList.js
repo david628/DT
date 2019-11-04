@@ -330,11 +330,14 @@ class DateList extends Component {
         const { type, curDate, range, value, min, max } = this.state;
         const _value = this.checkDate(value) ? value : curDate;
         const arr = DateUtil.getPervMonthLastDays(curDate, _value);
-        //console.log('render', range);
         let row = [],
             k = 0,
             startValue,
             endValue,
+            prevYearHandle = true,
+            prevMonthHandle = true,
+            nextMonthHandle = true,
+            nextYearHandle = true,
             prevYearCls = [`${ sprefix }-datePick-header-btn`, `${ sprefix }-datePick-prev-year`],
             prevMonthCls = [`${ sprefix }-datePick-header-btn`, `${ sprefix }-datePick-prev-month`],
             nextMonthCls = [`${ sprefix }-datePick-header-btn`, `${ sprefix }-datePick-next-month`],
@@ -360,11 +363,11 @@ class DateList extends Component {
                         }
                     });
                     if(arr[k].type === 'curMonth' && (startValue !== null && startValue !== undefined) && (endValue !== null && endValue !== undefined)) {
-                        if((startValue === null || startValue === undefined) && this.checkDate(endValue) && DateUtil.isBefore(arr[k].value, endValue)) {
+                        if((startValue === null || startValue === undefined) && this.checkDate(endValue) && DateUtil.isBefore(arr[k].value, endValue, 'day')) {
                             type.push(`range`);
-                        } else if((endValue === null || endValue === undefined) && this.checkDate(startValue) && DateUtil.isAfter(arr[k].value, startValue)) {
+                        } else if((endValue === null || endValue === undefined) && this.checkDate(startValue) && DateUtil.isAfter(arr[k].value, startValue, 'day')) {
                             type.push(`range`);
-                        } else if(DateUtil.isAfter(arr[k].value, startValue) && DateUtil.isBefore(arr[k].value, endValue)) {
+                        } else if(DateUtil.isAfter(arr[k].value, startValue) && DateUtil.isBefore(arr[k].value, endValue, 'day')) {
                             type.push(`range`);
                         }
                     }
@@ -387,20 +390,22 @@ class DateList extends Component {
         if(type !== 'time') {
             timePanelCls.push(`${ sprefix }-datePick-menu-hidden`);
         }
-        // if(min && this.checkDate(min)) {
-        //     console.log('min', curDate.toLocaleDateString(), min.toLocaleDateString());
-        //     if(!DateUtil.isBefore(min, curDate, 'month')) {
-        //         prevMonthCls.push(`${ sprefix }-datePick-menu-disabled`);
-        //         prevYearCls.push(`${ sprefix }-datePick-menu-disabled`);
-        //     }
-        // }
-        // if(max && this.checkDate(max)) {
-        //     //console.log('max', curDate.toLocaleDateString(), max.toLocaleDateString(), DateUtil.isAfter(max, new Date(curDate.getFullYear(), curDate.getMonth() + 1), 'month'));
-        //     if(!DateUtil.isAfter(max, new Date(curDate.getFullYear(), curDate.getMonth() + 1), 'month')) {
-        //         nextMonthCls.push(`${ sprefix }-datePick-menu-disabled`);
-        //         nextYearCls.push(`${ sprefix }-datePick-menu-disabled`);
-        //     }
-        // }
+        if(min && this.checkDate(min)) {
+            if(!DateUtil.isBefore(min, new Date(curDate.getFullYear(), curDate.getMonth() - 1), 'month')) {
+                prevMonthCls.push(`${ sprefix }-datePick-menu-disabled`);
+                prevYearCls.push(`${ sprefix }-datePick-menu-disabled`);
+                prevYearHandle = false;
+                prevMonthHandle = false;
+            }
+        }
+        if(max && this.checkDate(max)) {
+            if(!DateUtil.isBefore(new Date(curDate.getFullYear(), curDate.getMonth() + 1), max, 'month')) {
+                nextMonthCls.push(`${ sprefix }-datePick-menu-disabled`);
+                nextYearCls.push(`${ sprefix }-datePick-menu-disabled`);
+                nextMonthHandle = false;
+                nextYearHandle = false;
+            }
+        }
         if(type !== 'default') {
             prevMonthCls.push(`${ sprefix }-datePick-menu-hidden`);
             nextMonthCls.push(`${ sprefix }-datePick-menu-hidden`);
@@ -409,15 +414,15 @@ class DateList extends Component {
             <div className={ `${ sprefix }-datePick-menu` }>
                 <div className={ `${ sprefix }-datePick-menu-header` }>
                     <div className={ `${ sprefix }-datePick-menu-header-inner` }>
-                        <a className={ prevYearCls.join(' ') } onClick={ this.setDate('prevYear', _value) }></a>
-                        <a className={ prevMonthCls.join(' ') } onClick={ this.setDate('prevMonth', _value) }></a>
+                        <a className={ prevYearCls.join(' ') } onClick={ prevYearHandle ? this.setDate('prevYear', _value) : null }></a>
+                        <a className={ prevMonthCls.join(' ') } onClick={ prevMonthHandle ? this.setDate('prevMonth', _value) : null }></a>
                         <span className={ `${ sprefix }-datePick-selected` }>
-                            <a title="选择年份" className={ `${ sprefix }-datePick-selected-year` } onClick={ this.setType('year') }>{ curDate.getFullYear() }</a>
+                            <a title="选择年份" className={ `${ sprefix }-datePick-selected-year` } onClick={  this.setType('year') }>{ curDate.getFullYear() }</a>
                             <span>-</span>
-                            <a title="选择月份" className={ `${ sprefix }-datePick-selected-month` } onClick={ this.setType('month') }>{ curDate.getMonth() + 1 }</a>
+                            <a title="选择月份" className={ `${ sprefix }-datePick-selected-month` } onClick={  this.setType('month') }>{ curDate.getMonth() + 1 }</a>
                         </span>
-                        <a className={ nextMonthCls.join(' ') } onClick={ this.setDate('nextMonth', _value) }></a>
-                        <a className={ nextYearCls.join(' ') } onClick={ this.setDate('nextYear', _value) }></a>
+                        <a className={ nextMonthCls.join(' ') } onClick={ nextMonthHandle ? this.setDate('nextMonth', _value) : null }></a>
+                        <a className={ nextYearCls.join(' ') } onClick={ nextYearHandle ? this.setDate('nextYear', _value) : null }></a>
                     </div>
                     <div className={ yearPanelCls.join(' ') }>
                         { this.getYearPanel(_value) }
@@ -470,7 +475,7 @@ class DateList extends Component {
                     footer ? footer : (
                         <div className={ `${ sprefix }-datePick-menu-footer-inner` }>
                             { showTime ? <a className={ `${ sprefix }-datePick-time` } onClick={ this.setType('time') }>选择时间</a> : null }
-                            <a className={ `${ sprefix }-datePick-submit` } onClick={ this.submit }>确定</a>
+                            {/*<a className={ `${ sprefix }-datePick-submit` } onClick={ this.submit }>确定</a>*/}
                         </div>
                     )
                 }
