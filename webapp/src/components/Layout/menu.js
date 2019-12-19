@@ -73,6 +73,11 @@ const menuData = [
         path: 'DatePicker'
       },
       {
+        name: 'ColorPicker',
+        text: 'ColorPicker',
+        path: 'ColorPicker'
+      },
+      {
         name: 'Dropdown',
         text: 'Dropdown',
         path: 'Dropdown'

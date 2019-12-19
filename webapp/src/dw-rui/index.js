@@ -12,6 +12,7 @@ import Select, { Option, OptGroup } from './src/components/Select';
 import Table from './src/components/Table';
 import Tree, { Node } from './src/components/Tree';
 import DatePicker, { RangePicker } from './src/components/DatePicker';
+import ColorPicker from './src/components/ColorPicker';
 export {
     Button,
     ButtonGroup,
@@ -36,5 +37,6 @@ export {
     Tree,
     Node,
     DatePicker,
-    RangePicker
+    RangePicker,
+    ColorPicker
 };

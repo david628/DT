@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style type="text/css">
+body {
+  margin: 0;
+}
+
+  .bg-wrap {
+    width: 1000px;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .bg {
+    background: url(./1.jpg) no-repeat;
+  }
+  .bg1 {
+    background: url(./2.jpg) no-repeat;
+  }
+
+  .dwrui-color-picker {
+    width: 264px;
+    border-radius: 4px;
+    background: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px, rgba(0, 0, 0, 0.15) 0px 8px 16px;
+  }
+  .dwrui-color-picker .dwrui-color-picker-header {
+  }
+  .dwrui-color-picker .dwrui-color-picker-center {
+    border-top: 1px solid #ddd;
+  }
+  .dwrui-color-picker .dwrui-color-picker-footer {
+    /*padding-bottom: 10px;*/
+  }
+  .dwrui-color-picker .dwrui-color-picker-center-inner {
+    padding: 10px;
+  }
+  .dwrui-color-picker .dwrui-color-picker-panel {
+    position: relative;
+    border-radius: 2px;
+  }
+  .dwrui-color-picker .dwrui-color-picker-pointer {
+    width: 4px;
+    height: 4px;
+    border-radius: 2px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    border: 1px solid #fff;
+    transform: translate(-2px, -2px);
+  }
+  .dwrui-color-picker .dwrui-color-picker-hue {
+    background-color: red;
+  }
+  .dwrui-color-picker .dwrui-color-picker-saturation {
+    background-image: linear-gradient(90deg, #fff, hsla(0, 0%, 100%, 0));
+  }
+  .dwrui-color-picker .dwrui-color-picker-brightness {
+    width: 100%;
+    height: 168px;
+    background-image: linear-gradient(0deg, #000, transparent);
+  }
+  .dwrui-color-picker .dwrui-color-picker-header-tab {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    *zoom: 1;
+  }
+  .dwrui-color-picker .dwrui-color-picker-header-tab::after {
+    content: ".";
+    display: block;
+    height: 0px;
+    font-size: 0px;
+    clear: both;
+    visibility: hidden;
+  }
+  .dwrui-color-picker .dwrui-color-picker-header-tab li {
+    width: 50px;
+    float: left;
+  }
+  .dwrui-color-picker .dwrui-color-picker-rgba-wrap .dwrui-color-picker-col, .dwrui-color-picker .dwrui-color-picker-hsla-wrap .dwrui-color-picker-col {
+    width: 25%;
+    box-sizing: border-box;
+    float: left;
+    padding: 5px 0;
+  }
+  .dwrui-color-picker .dwrui-color-picker-fixed {
+    display: flex;
+  }
+  .dwrui-color-picker .dwrui-color-picker-fixed .dwrui-color-picker-left {
+    flex: 1;
+    padding-right: 10px;
+  }
+  .dwrui-color-picker .dwrui-color-picker-fixed .dwrui-color-picker-right {
+
+  }
+  .dwrui-color-picker .dwrui-color-picker-preview {
+    width: 30px;
+    height: 30px;
+    margin-top: 5px;
+    border: 1px solid #171a1f;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
+  }
+  .dwrui-color-picker .dwrui-color-picker-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 1px;
+    border: 1px solid #000;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgb(204, 204, 204) 0px 0px 2px;
+    width: 8px;
+    height: 12px;
+  }
+  .dwrui-color-picker .dwrui-color-picker-range::-moz-range-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 1px;
+    border: 1px solid #000;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgb(204, 204, 204) 0px 0px 2px;
+    width: 8px;
+    height: 12px;
+  }
+  .dwrui-color-picker .dwrui-color-picker-range::-ms-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 1px;
+    border: 1px solid #000;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgb(204, 204, 204) 0px 0px 2px;
+    width: 8px;
+    height: 12px;
+  }
+  .dwrui-color-picker .dwrui-color-picker-range::-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 1px;
+    border: 1px solid #000;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgb(204, 204, 204) 0px 0px 2px;
+    width: 8px;
+    height: 12px;
+  }
+  .dwrui-color-picker .dwrui-color-picker-area-slider-bg, .dwrui-color-picker .dwrui-color-picker-alpha-slider-bg {
+    height: 10px;
+    padding-bottom: 10px;
+  }
+  .dwrui-color-picker .dwrui-color-picker-area-slider {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    margin: 0;
+    outline: none;
+    border: 1px solid #000;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: linear-gradient(90deg, red, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, red);
+  }
+  .dwrui-color-picker .dwrui-color-picker-alpha-slider {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border-radius: 0;
+    outline: none;
+    border: 1px solid #000;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
+  }
+  .dwrui-color-picker .dwrui-color-picker-global, .dwrui-color-picker .dwrui-color-picker-recent {
+    position: relative;
+    padding: 5px 0 5px 10px;
+    border-top: 1px solid #ddd;
+  }
+  .dwrui-color-picker .dwrui-color-picker-chk {
+    width: 100%;
+    height: 28px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    box-sizing: border-box;
+    margin: 0;
+    cursor: pointer;
+    opacity: 0;
+  }
+  .dwrui-color-picker .dwrui-color-picker-arrow {
+    border: 5px solid transparent;
+    border-top-color: #ccc;
+    width: 0;
+    height: 0;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    top: 3px;
+    margin-right: 5px;
+  }
+  .dwrui-color-picker .dwrui-color-picker-chk ~ .dwrui-color-picker-list {
+    overflow: hidden;
+    padding: 10px 0 0 0;
+    display: block;
+  }
+  .dwrui-color-picker .dwrui-color-picker-chk:checked ~ .dwrui-color-picker-arrow-wrap .dwrui-color-picker-arrow {
+    border: 5px solid transparent;
+    border-left-color: #ccc;
+  }
+  .dwrui-color-picker .dwrui-color-picker-chk:checked ~ .dwrui-color-picker-list {
+    display: block;
+  }
+  .dwrui-color-picker .dwrui-color-picker-list .dwrui-color-picker-item, .dwrui-color-picker .dwrui-color-picker-list .dwrui-color-picker-item-add {
+    cursor: pointer;
+    /*display: inline-block;*/
+    float: left;
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    border-radius: 2px;
+    margin: 0 10px 10px 0;
+    background-color: #008dff;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;
+  }
+.dwrui-color-picker .dwrui-color-picker-list .dwrui-color-picker-item-add {
+  line-height: 15px;
+  background: transparent;
+  font-size: 20px;
+  font-weight: bold;
+  box-shadow: none;
+}
+</style>
+</head>
+<body style="background: #eee;">
+  <div class="bg-wrap">
+    <img src="1.jpg"/>
+    <img src="2.jpg"/>
+  </div>
+  <div id="id-test" style="position: absolute;top: 50px;right: 20px;">
+    
+  </div>
+  <script type="text/javascript" src="js/color.js"></script>
+</body>
+</html>
