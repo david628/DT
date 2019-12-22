@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+
+    </style>
+</head>
+<body style="background: #eee;">
+<script type="text/javascript">
+    var STATE = {
+        "components": [
+            {
+                cid: "ff8080826eccd627016f04caa9720852",
+                com: "time_axis",
+                com_id: "时间轴",
+                config: {
+                    eventdata: {
+                        change: {
+                            enable: true,
+                            fields: {
+                                e_name: "name",
+                                e_text: "text",
+                                e_value: "value",
+                            }
+                        }
+                    }
+                },
+                data: [
+                    {
+                        name: "1983年", value: 1983, text: "事件1"
+                    }, {
+                        name: "1989年", value: 1989, text: "事件2"
+                    }, {
+                        name: "2009年", value: 2009, text: "事件3"
+                    }, {
+                        name: "2017年", value: 2017, text: "事件4"
+                    }
+                ],
+                loadData() {
+                    console.log(this.com, this.com_id);
+                }
+            }, {
+                cid: "ff8080826eccd627016f04ca69e60851",
+                com: "bar",
+                com_id: "柱状图",
+                loadData() {
+                    console.log(this.com, this.com_id);
+                }
+            }, {
+                cid: "ff8080826eccd756016f04c9f99f0966",
+                com: "pie",
+                com_id: "饼状图",
+                loadData() {
+                    console.log(this.com, this.com_id);
+                }
+            }, {
+                cid: "ff8080826eccd756016ecf954e490087",
+                com: "line",
+                com_id: "线状图",
+                loadData() {
+                    console.log(this.com, this.com_id);
+                }
+            }
+        ],
+        "publishersView": {
+            "e_name": {
+                "com": [
+                    {
+                        "old": "name",
+                        "comid": "ff8080826eccd627016f04caa9720852"
+                    }
+                ]
+            },
+            "e_text": {
+                "com": [
+                    {
+                        "old": "text",
+                        "comid": "ff8080826eccd627016f04caa9720852"
+                    }
+                ]
+            },
+            "e_value": {
+                "com": [
+                    {
+                        "old": "value",
+                        "comid": "ff8080826eccd627016f04caa9720852"
+                    }
+                ]
+            }
+        },
+        "subscribersView": {
+            "e_name": [
+                "ff8080826eccd756016f04c9f99f0966",
+                "ff8080826eccd627016f04ca69e60851"
+            ],
+            "e_value": [
+                //"ff8080826eccd756016ecf954e490087",
+                "ff8080826eccd756016f04c9f99f0966",
+                "ff8080826eccd627016f04ca69e60851"
+            ],
+            "e_text1111": [
+                "ff8080826eccd756016ecf954e490087",
+                "ff8080826eccd756016f04c9f99f0966",
+                "ff8080826eccd627016f04ca69e60851"
+            ]
+        }
+    };
+
+    var BatUpdateStrategy = {
+        microTimerFunc: null,
+        callbacks: [],
+        isBatchingUpdates: false,
+        nextTick: function(callback) {
+            if(BatUpdateStrategy.callbacks.indexOf(callback) === -1) {
+                BatUpdateStrategy.callbacks.push(callback);
+            }
+            if (!BatUpdateStrategy.isBatchingUpdates) {
+                BatUpdateStrategy.isBatchingUpdates = true;
+                Promise.resolve().then(BatUpdateStrategy.flushCallbacks);
+            }
+        },
+        flushCallbacks: function() {
+            BatUpdateStrategy.isBatchingUpdates = false;
+            const cbs = BatUpdateStrategy.callbacks.slice(0);
+            BatUpdateStrategy.callbacks.length = 0;
+            //console.log(cbs);
+            for (let i = 0; i < cbs.length; i++) {
+                //STATE.components[cbs[i]].loadData();
+                getChartByCid(cbs[i]).loadData();
+            }
+        }
+    };
+
+    var proxy = new Proxy(STATE.publishersView, {
+        set(target, key, value, receiver) {
+            target[key].value = value;
+            action(target, key, value, receiver);
+            //return Reflect.set(target, key, value, receiver);
+            return true;
+        }
+    });
+
+    function action(target, key, value, receiver) {
+        if(STATE.subscribersView[key]) {
+            for(let i = 0; i < STATE.subscribersView[key].length; i++) {
+                BatUpdateStrategy.nextTick(STATE.subscribersView[key][i]);
+            }
+        }
+    }
+    function dispatch(component, data) {
+        for(let e in component.config.eventdata) {
+            let event = component.config.eventdata[e];
+            if(event.enable) {
+                for(let key in event.fields) {
+                    proxy[key] = data[event.fields[key]];
+                }
+
+            }
+        }
+
+    }
+    function getChartByCid(cids) {
+        for(let i = 0; i < STATE.components.length; i++) {
+            if(STATE.components[i].cid === cids) {
+                return STATE.components[i];
+            }
+        }
+        return null;
+    }
+
+    var num = 0;
+    function change() {
+        //STATE.components[0].config.eventdata.change.enable
+        //STATE.components[0].data
+        //let data = STATE.components[0].data[num];
+        dispatch(STATE.components[0], STATE.components[0].data[num]);
+        num++;
+        if(num >= STATE.components[0].data.length) {
+            num = 0;
+        }
+        setTimeout(change, 3000);
+    }
+
+    change();
+
+
+    // let obj = {
+    //     'e_from': 1,
+    //     'e_target': 2,
+    //     'e_level': 3
+    // };
+    // // for(let key in obj) {
+    // //     setTimeout(() => {
+    // //         proxy[key] = obj[key];
+    // //     })
+    // //
+    // // }
+    // proxy['e_from'] = 1;
+    // setTimeout(() => {
+    //     proxy['e_target'] = 2;
+    // }, 0);
+    // proxy['e_level'] = 3;
+</script>
+</body>
+</html>

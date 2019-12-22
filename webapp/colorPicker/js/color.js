@@ -25,79 +25,79 @@ class Color {
         ];
         Object.assign(this, props);
         this.template = `
-            <div class="${this.sprefix}-color-picker">
-                <div class="${this.sprefix}-color-picker-header" style="height: 36px;">
-                    <div class="${this.sprefix}-color-picker-list" style="width: 100%;height: 100%;padding: 8px 10px;box-sizing: border-box;">
-                        <div class="${this.sprefix}-color-picker-item"></div>
-                        <div class="${this.sprefix}-color-picker-item" style="background-image: linear-gradient(180deg,#ffffff,#008dff);"></div>
-                        <div class="${this.sprefix}-color-picker-item" style="background-image: radial-gradient(#ffffff,#008dff);"></div>
+            <div class="${this.sprefix}-colorPicker">
+                <div class="${this.sprefix}-colorPicker-header" style="height: 36px;">
+                    <div class="${this.sprefix}-colorPicker-list" style="width: 100%;height: 100%;padding: 8px 10px;box-sizing: border-box;">
+                        <div class="${this.sprefix}-colorPicker-item"></div>
+                        <div class="${this.sprefix}-colorPicker-item" style="background-image: linear-gradient(180deg,#ffffff,#008dff);"></div>
+                        <div class="${this.sprefix}-colorPicker-item" style="background-image: radial-gradient(#ffffff,#008dff);"></div>
                     </div>
                 </div>
-                <div class="${this.sprefix}-color-picker-center">
-                    <div class="${this.sprefix}-color-picker-gradient">
-                        <div class="${this.sprefix}-color-picker-gradient-bar-bg">
-                            <div class="${this.sprefix}-color-picker-gradient-bar"></div>
+                <div class="${this.sprefix}-colorPicker-center">
+                    <div class="${this.sprefix}-colorPicker-gradient">
+                        <div class="${this.sprefix}-colorPicker-gradient-bar-bg">
+                            <div class="${this.sprefix}-colorPicker-gradient-bar"></div>
                         </div>
-                        <div class="${this.sprefix}-color-picker-gradient-slider-bar"></div>
-                        <div class="${this.sprefix}-color-picker-gradient-angle-wrap">
-                            <input class="${this.sprefix}-color-picker-range ${this.sprefix}-color-picker-gradient-angle" type="range" min="0" max="360" value="0"/>
-                            <div class="${this.sprefix}-color-picker-gradient-angle-list" style="display: none;">
-                                <span class="${this.sprefix}-color-picker-gradient-angle-item">0</span>
-                                <span class="${this.sprefix}-color-picker-gradient-angle-item">
-                                    <input class="dwrui-color-picker-input dwrui-color-picker-gradient-angle-input" type="text"/>
+                        <div class="${this.sprefix}-colorPicker-gradient-slider-bar"></div>
+                        <div class="${this.sprefix}-colorPicker-gradient-angle-wrap">
+                            <input class="${this.sprefix}-colorPicker-range ${this.sprefix}-colorPicker-gradient-angle" type="range" min="0" max="360" value="0"/>
+                            <div class="${this.sprefix}-colorPicker-gradient-angle-list" style="display: none;">
+                                <span class="${this.sprefix}-colorPicker-gradient-angle-item">0</span>
+                                <span class="${this.sprefix}-colorPicker-gradient-angle-item">
+                                    <input class="dwrui-colorPicker-input dwrui-colorPicker-gradient-angle-input" type="text"/>
                                 </span>
-                                <span class="${this.sprefix}-color-picker-gradient-angle-item">360</span>
+                                <span class="${this.sprefix}-colorPicker-gradient-angle-item">360</span>
                             </div>
                         </div>
                     </div>
-                    <div class="${this.sprefix}-color-picker-center-inner">
+                    <div class="${this.sprefix}-colorPicker-center-inner">
                         <div></div>
-                        <div class="${this.sprefix}-color-picker-panel">
-                            <div class="${this.sprefix}-color-picker-hue">
-                                <div class="${this.sprefix}-color-picker-saturation">
-                                    <div class="${this.sprefix}-color-picker-brightness"></div>
+                        <div class="${this.sprefix}-colorPicker-panel">
+                            <div class="${this.sprefix}-colorPicker-hue">
+                                <div class="${this.sprefix}-colorPicker-saturation">
+                                    <div class="${this.sprefix}-colorPicker-brightness"></div>
                                 </div>
                             </div>
-                            <div class="${this.sprefix}-color-picker-pointer"></div>
+                            <div class="${this.sprefix}-colorPicker-pointer"></div>
                         </div>
-                        <div class="${this.sprefix}-color-picker-fixed">
-                            <div class="${this.sprefix}-color-picker-left">
-                                <div class="${this.sprefix}-color-picker-area-slider-bg">
-                                    <input class="${this.sprefix}-color-picker-range ${this.sprefix}-color-picker-area-slider" type="range" min="0" max="360" value="360"/>
+                        <div class="${this.sprefix}-colorPicker-fixed">
+                            <div class="${this.sprefix}-colorPicker-left">
+                                <div class="${this.sprefix}-colorPicker-area-slider-bg">
+                                    <input class="${this.sprefix}-colorPicker-range ${this.sprefix}-colorPicker-area-slider" type="range" min="0" max="360" value="360"/>
                                 </div>
-                                <div class="${this.sprefix}-color-picker-alpha-slider-bg">
-                                    <input class="${this.sprefix}-color-picker-range ${this.sprefix}-color-picker-alpha-slider" type="range" min="0" max="100" value="100"/>
+                                <div class="${this.sprefix}-colorPicker-alpha-slider-bg">
+                                    <input class="${this.sprefix}-colorPicker-range ${this.sprefix}-colorPicker-alpha-slider" type="range" min="0" max="100" value="100"/>
                                 </div>
                             </div>
-                            <div class="${this.sprefix}-color-picker-right">
-                                <div class="${this.sprefix}-color-picker-preview-bg">
-                                    <div class="${this.sprefix}-color-picker-preview"></div>
-                                    <div class="${this.sprefix}-color-picker-gradient-preview"></div>
+                            <div class="${this.sprefix}-colorPicker-right">
+                                <div class="${this.sprefix}-colorPicker-preview-bg">
+                                    <div class="${this.sprefix}-colorPicker-preview"></div>
+                                    <div class="${this.sprefix}-colorPicker-gradient-preview"></div>
                                 </div>
                             </div>
                         </div>
                         <div style="overflow: hidden;margin-top: 5px;">
                             <div style="float: left;width: 30%;padding-left: 12px;position: relative;box-sizing: border-box;">
                                 <span style="position: absolute;top: 0;left: 0;line-height: 26px;">#</span>
-                                <input class="${this.sprefix}-color-picker-input dwrui-color-picker-input-hex" type="text" style="width: 100%;padding: 0 5px;outline: none;box-sizing: border-box;"/>
-                                <div class="${this.sprefix}-color-picker-label" style="width: 100%;font-size: 12px;text-align: center;">HEX</div>
+                                <input class="${this.sprefix}-colorPicker-input dwrui-colorPicker-input-hex" type="text" style="width: 100%;padding: 0 5px;outline: none;box-sizing: border-box;"/>
+                                <div class="${this.sprefix}-colorPicker-label" style="width: 100%;font-size: 12px;text-align: center;">HEX</div>
                             </div>
                             <div style="float: left;width: 70%;box-sizing: border-box;">
                                 <div style="float: left;width: 25%;padding-left: 5px;box-sizing: border-box;">
-                                    <input class="${this.sprefix}-color-picker-input dwrui-color-picker-rgba-r" type="text" style="width: 100%;padding: 0 5px;outline: none;box-sizing: border-box;"/>
-                                    <div class="${this.sprefix}-color-picker-label" style="width: 100%;font-size: 12px;text-align: center;">R</div>
+                                    <input class="${this.sprefix}-colorPicker-input dwrui-colorPicker-rgba-r" type="text" style="width: 100%;padding: 0 5px;outline: none;box-sizing: border-box;"/>
+                                    <div class="${this.sprefix}-colorPicker-label" style="width: 100%;font-size: 12px;text-align: center;">R</div>
                                 </div>
                                 <div style="float: left;width: 25%;padding-left: 5px;box-sizing: border-box;">
-                                    <input class="${this.sprefix}-color-picker-input dwrui-color-picker-rgba-g" type="text" style="width: 100%;padding: 0 5px;outline: none;box-sizing: border-box;"/>
-                                    <div class="${this.sprefix}-color-picker-label" style="width: 100%;font-size: 12px;text-align: center;">G</div>
+                                    <input class="${this.sprefix}-colorPicker-input dwrui-colorPicker-rgba-g" type="text" style="width: 100%;padding: 0 5px;outline: none;box-sizing: border-box;"/>
+                                    <div class="${this.sprefix}-colorPicker-label" style="width: 100%;font-size: 12px;text-align: center;">G</div>
                                 </div>
                                 <div style="float: left;width: 25%;padding-left: 5px;box-sizing: border-box;">
-                                    <input class="${this.sprefix}-color-picker-input dwrui-color-picker-rgba-b" type="text" style="width: 100%;padding: 0 5px;outline: none;box-sizing: border-box;"/>
-                                    <div class="${this.sprefix}-color-picker-label" style="width: 100%;font-size: 12px;text-align: center;">B</div>
+                                    <input class="${this.sprefix}-colorPicker-input dwrui-colorPicker-rgba-b" type="text" style="width: 100%;padding: 0 5px;outline: none;box-sizing: border-box;"/>
+                                    <div class="${this.sprefix}-colorPicker-label" style="width: 100%;font-size: 12px;text-align: center;">B</div>
                                 </div>
                                 <div style="float: left;width: 25%;padding-left: 5px;box-sizing: border-box;">
-                                    <input class="${this.sprefix}-color-picker-input dwrui-color-picker-rgba-a" type="text" style="width: 100%;padding: 0 5px;outline: none;box-sizing: border-box;"/>
-                                    <div class="${this.sprefix}-color-picker-label" style="width: 100%;font-size: 12px;text-align: center;">A</div>
+                                    <input class="${this.sprefix}-colorPicker-input dwrui-colorPicker-rgba-a" type="text" style="width: 100%;padding: 0 5px;outline: none;box-sizing: border-box;"/>
+                                    <div class="${this.sprefix}-colorPicker-label" style="width: 100%;font-size: 12px;text-align: center;">A</div>
                                 </div>
                             </div>
                         </div>
@@ -105,97 +105,97 @@ class Color {
 <!--                            <div style="float: left;width: 30%;box-sizing: border-box;">&nbsp;</div>-->
 <!--                            <div style="float: left;width: 70%;box-sizing: border-box;">-->
 <!--                                <div style="float: left;width: 25%;padding-left: 5px;box-sizing: border-box;">-->
-<!--                                    <input class="dwrui-color-picker-input dwrui-color-picker-hsla-h" type="text" style="width: 100%;padding: 0 5px;outline: none;box-sizing: border-box;"/>-->
-<!--                                    <div class="dwrui-color-picker-label" style="width: 100%;font-size: 12px;text-align: center;">H</div>-->
+<!--                                    <input class="dwrui-colorPicker-input dwrui-colorPicker-hsla-h" type="text" style="width: 100%;padding: 0 5px;outline: none;box-sizing: border-box;"/>-->
+<!--                                    <div class="dwrui-colorPicker-label" style="width: 100%;font-size: 12px;text-align: center;">H</div>-->
 <!--                                </div>-->
 <!--                                <div style="float: left;width: 25%;padding-left: 5px;box-sizing: border-box;">-->
-<!--                                    <input class="dwrui-color-picker-input dwrui-color-picker-hsla-s" type="text" style="width: 100%;padding: 0 5px;outline: none;box-sizing: border-box;"/>-->
-<!--                                    <div class="dwrui-color-picker-label" style="width: 100%;font-size: 12px;text-align: center;">S</div>-->
+<!--                                    <input class="dwrui-colorPicker-input dwrui-colorPicker-hsla-s" type="text" style="width: 100%;padding: 0 5px;outline: none;box-sizing: border-box;"/>-->
+<!--                                    <div class="dwrui-colorPicker-label" style="width: 100%;font-size: 12px;text-align: center;">S</div>-->
 <!--                                </div>-->
 <!--                                <div style="float: left;width: 25%;padding-left: 5px;box-sizing: border-box;">-->
-<!--                                    <input class="dwrui-color-picker-input dwrui-color-picker-hsla-l" type="text" style="width: 100%;padding: 0 5px;outline: none;box-sizing: border-box;"/>-->
-<!--                                    <div class="dwrui-color-picker-label" style="width: 100%;font-size: 12px;text-align: center;">L</div>-->
+<!--                                    <input class="dwrui-colorPicker-input dwrui-colorPicker-hsla-l" type="text" style="width: 100%;padding: 0 5px;outline: none;box-sizing: border-box;"/>-->
+<!--                                    <div class="dwrui-colorPicker-label" style="width: 100%;font-size: 12px;text-align: center;">L</div>-->
 <!--                                </div>-->
 <!--                                <div style="float: left;width: 25%;padding-left: 5px;box-sizing: border-box;">-->
-<!--                                    <input class="dwrui-color-picker-input dwrui-color-picker-hsla-a" type="text" style="width: 100%;padding: 0 5px;outline: none;box-sizing: border-box;"/>-->
-<!--                                    <div class="dwrui-color-picker-label" style="width: 100%;font-size: 12px;text-align: center;">A</div>-->
+<!--                                    <input class="dwrui-colorPicker-input dwrui-colorPicker-hsla-a" type="text" style="width: 100%;padding: 0 5px;outline: none;box-sizing: border-box;"/>-->
+<!--                                    <div class="dwrui-colorPicker-label" style="width: 100%;font-size: 12px;text-align: center;">A</div>-->
 <!--                                </div>-->
 <!--                            </div>-->
 <!--                        </div>-->
                     </div>
                 </div>
-                <div class="${this.sprefix}-color-picker-footer">
-                    <div class="${this.sprefix}-color-picker-global">
-                        <input class="${this.sprefix}-color-picker-chk" type="checkbox"/>
-                        <div class="${this.sprefix}-color-picker-arrow-wrap">
-                            <span class="${this.sprefix}-color-picker-arrow">
+                <div class="${this.sprefix}-colorPicker-footer">
+                    <div class="${this.sprefix}-colorPicker-global">
+                        <input class="${this.sprefix}-colorPicker-chk" type="checkbox"/>
+                        <div class="${this.sprefix}-colorPicker-arrow-wrap">
+                            <span class="${this.sprefix}-colorPicker-arrow">
                                 <svg viewBox="0 0 1024 1024" focusable="false" class="" data-icon="caret-down" width="1em" height="1em" fill="currentColor" aria-hidden="true">
                                     <path d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z"></path>
                                 </svg>
                             </span>
                             <span style="font-size: 12px;">Global Colors</span>
                         </div>
-                        <div class="${this.sprefix}-color-picker-list ${this.sprefix}-color-picker-colors"></div>
+                        <div class="${this.sprefix}-colorPicker-list ${this.sprefix}-colorPicker-colors"></div>
                     </div>
-                    <div class="${this.sprefix}-color-picker-recent">
-                        <input class="${this.sprefix}-color-picker-chk" type="checkbox"/>
-                        <div class="${this.sprefix}-color-picker-arrow-wrap">
-                            <span class="${this.sprefix}-color-picker-arrow">
+                    <div class="${this.sprefix}-colorPicker-recent">
+                        <input class="${this.sprefix}-colorPicker-chk" type="checkbox"/>
+                        <div class="${this.sprefix}-colorPicker-arrow-wrap">
+                            <span class="${this.sprefix}-colorPicker-arrow">
                                 <svg viewBox="0 0 1024 1024" focusable="false" class="" data-icon="caret-down" width="1em" height="1em" fill="currentColor" aria-hidden="true">
                                     <path d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z"></path>
                                 </svg>
                             </span>
                             <span style="font-size: 12px;">Recent Colors</span>
                         </div>
-                        <div class="${this.sprefix}-color-picker-list">
-                            <div class="${this.sprefix}-color-picker-item"></div>
-                            <div class="${this.sprefix}-color-picker-item"></div>
-                            <div class="${this.sprefix}-color-picker-item"></div>
-                            <div class="${this.sprefix}-color-picker-item"></div>
-                            <div class="${this.sprefix}-color-picker-item"></div>
-                            <div class="${this.sprefix}-color-picker-item"></div>
-                            <div class="${this.sprefix}-color-picker-item"></div>
-                            <div class="${this.sprefix}-color-picker-item"></div>
-                            <div class="${this.sprefix}-color-picker-item"></div>
-                            <div class="${this.sprefix}-color-picker-item"></div>
-                            <div class="${this.sprefix}-color-picker-item"></div>
-                            <div class="${this.sprefix}-color-picker-item"></div>
-                            <div class="${this.sprefix}-color-picker-item"></div>
-                            <div class="${this.sprefix}-color-picker-item"></div>
-                            <div class="${this.sprefix}-color-picker-item"></div>
-                            <div class="${this.sprefix}-color-picker-item"></div>
-                            <div class="${this.sprefix}-color-picker-item"></div>
-                            <div class="${this.sprefix}-color-picker-item"></div>
-                            <div class="${this.sprefix}-color-picker-item"></div>
-                            <div class="${this.sprefix}-color-picker-item"></div>
+                        <div class="${this.sprefix}-colorPicker-list">
+                            <div class="${this.sprefix}-colorPicker-item"></div>
+                            <div class="${this.sprefix}-colorPicker-item"></div>
+                            <div class="${this.sprefix}-colorPicker-item"></div>
+                            <div class="${this.sprefix}-colorPicker-item"></div>
+                            <div class="${this.sprefix}-colorPicker-item"></div>
+                            <div class="${this.sprefix}-colorPicker-item"></div>
+                            <div class="${this.sprefix}-colorPicker-item"></div>
+                            <div class="${this.sprefix}-colorPicker-item"></div>
+                            <div class="${this.sprefix}-colorPicker-item"></div>
+                            <div class="${this.sprefix}-colorPicker-item"></div>
+                            <div class="${this.sprefix}-colorPicker-item"></div>
+                            <div class="${this.sprefix}-colorPicker-item"></div>
+                            <div class="${this.sprefix}-colorPicker-item"></div>
+                            <div class="${this.sprefix}-colorPicker-item"></div>
+                            <div class="${this.sprefix}-colorPicker-item"></div>
+                            <div class="${this.sprefix}-colorPicker-item"></div>
+                            <div class="${this.sprefix}-colorPicker-item"></div>
+                            <div class="${this.sprefix}-colorPicker-item"></div>
+                            <div class="${this.sprefix}-colorPicker-item"></div>
+                            <div class="${this.sprefix}-colorPicker-item"></div>
                         </div>
                     </div>
                 </div>
             </div>`;
-        //this.el.className = 'dwrui-color-picker';
+        //this.el.className = 'dwrui-colorPicker';
         this.el.innerHTML = this.template;
 
-        this.headerPanel = this.el.querySelector(`.${this.sprefix}-color-picker-header`);
+        this.headerPanel = this.el.querySelector(`.${this.sprefix}-colorPicker-header`);
 
-        this.colorsPanel = this.el.querySelector(`.${this.sprefix}-color-picker-colors`);
-        this.panel = this.el.querySelector(`.${this.sprefix}-color-picker-panel`);
-        this.pointer = this.panel.querySelector(`.${this.sprefix}-color-picker-pointer`);
+        this.colorsPanel = this.el.querySelector(`.${this.sprefix}-colorPicker-colors`);
+        this.panel = this.el.querySelector(`.${this.sprefix}-colorPicker-panel`);
+        this.pointer = this.panel.querySelector(`.${this.sprefix}-colorPicker-pointer`);
 
-        this.preview = this.el.querySelector(`.${this.sprefix}-color-picker-preview`);
-        this.hexInput = this.el.querySelector(`.${this.sprefix}-color-picker-input-hex`);
-        this.rInput = this.el.querySelector(`.${this.sprefix}-color-picker-rgba-r`);
-        this.gInput = this.el.querySelector(`.${this.sprefix}-color-picker-rgba-g`);
-        this.bInput = this.el.querySelector(`.${this.sprefix}-color-picker-rgba-b`);
-        this.aInput = this.el.querySelector(`.${this.sprefix}-color-picker-rgba-a`);
+        this.preview = this.el.querySelector(`.${this.sprefix}-colorPicker-preview`);
+        this.hexInput = this.el.querySelector(`.${this.sprefix}-colorPicker-input-hex`);
+        this.rInput = this.el.querySelector(`.${this.sprefix}-colorPicker-rgba-r`);
+        this.gInput = this.el.querySelector(`.${this.sprefix}-colorPicker-rgba-g`);
+        this.bInput = this.el.querySelector(`.${this.sprefix}-colorPicker-rgba-b`);
+        this.aInput = this.el.querySelector(`.${this.sprefix}-colorPicker-rgba-a`);
 
-        // this.hInput = this.el.querySelector(`.${this.sprefix}-color-picker-hsla-h`);
-        // this.sInput = this.el.querySelector(`.${this.sprefix}-color-picker-hsla-s`);
-        // this.lInput = this.el.querySelector(`.${this.sprefix}-color-picker-hsla-l`);
-        // this.laInput = this.el.querySelector(`.${this.sprefix}-color-picker-hsla-a`);
+        // this.hInput = this.el.querySelector(`.${this.sprefix}-colorPicker-hsla-h`);
+        // this.sInput = this.el.querySelector(`.${this.sprefix}-colorPicker-hsla-s`);
+        // this.lInput = this.el.querySelector(`.${this.sprefix}-colorPicker-hsla-l`);
+        // this.laInput = this.el.querySelector(`.${this.sprefix}-colorPicker-hsla-a`);
 
-        this.hue = this.el.querySelector(`.${this.sprefix}-color-picker-hue`);
-        this.areaInput = this.el.querySelector(`.${this.sprefix}-color-picker-area-slider`);
-        this.alphaInput = this.el.querySelector(`.${this.sprefix}-color-picker-alpha-slider`);
+        this.hue = this.el.querySelector(`.${this.sprefix}-colorPicker-hue`);
+        this.areaInput = this.el.querySelector(`.${this.sprefix}-colorPicker-area-slider`);
+        this.alphaInput = this.el.querySelector(`.${this.sprefix}-colorPicker-alpha-slider`);
 
         this.hexInput.onchange = (e) => {
             if (this.validHex(this.hexInput.value)) {
@@ -335,7 +335,7 @@ class Color {
     initColors() {
         let rs = [];
         for (let i = 0; i < this.colors.length; i++) {
-            rs.push(`<div index="${i}" class="${this.sprefix}-color-picker-colors-item" style="background-color: ${this.colors[i]};"></div>`);
+            rs.push(`<div index="${i}" class="${this.sprefix}-colorPicker-colors-item" style="background-color: ${this.colors[i]};"></div>`);
         }
         this.colorsPanel.innerHTML = rs.join('');
     }
@@ -350,10 +350,10 @@ class Color {
     }
 
     initGradient() {
-        this.gradient = this.el.querySelector(`.${this.sprefix}-color-picker-gradient`);
-        this.gradientAngle = this.el.querySelector(`.${this.sprefix}-color-picker-gradient-angle`);
-        this.gradientAngleInput = this.el.querySelector(`.${this.sprefix}-color-picker-gradient-angle-input`);
-        this.gradientPreview = this.el.querySelector(`.${this.sprefix}-color-picker-gradient-preview`);
+        this.gradient = this.el.querySelector(`.${this.sprefix}-colorPicker-gradient`);
+        this.gradientAngle = this.el.querySelector(`.${this.sprefix}-colorPicker-gradient-angle`);
+        this.gradientAngleInput = this.el.querySelector(`.${this.sprefix}-colorPicker-gradient-angle-input`);
+        this.gradientPreview = this.el.querySelector(`.${this.sprefix}-colorPicker-gradient-preview`);
         this.gradientAngle.onchange = e => {
             this.setAngle(this.gradientAngle.value);
             this.updateGradient();
@@ -385,9 +385,9 @@ class Color {
             document.removeEventListener('mousemove', this.onDragMouseMove);
             document.removeEventListener('mouseup', this.onDragMouseUp);
         }
-        this.gradientBar = this.el.querySelector(`.${this.sprefix}-color-picker-gradient-bar`);
-        this.gradientSliderBar = this.el.querySelector(`.${this.sprefix}-color-picker-gradient-slider-bar`);
-        this.angleWrap = this.el.querySelector(`.${this.sprefix}-color-picker-gradient-angle-wrap`);
+        this.gradientBar = this.el.querySelector(`.${this.sprefix}-colorPicker-gradient-bar`);
+        this.gradientSliderBar = this.el.querySelector(`.${this.sprefix}-colorPicker-gradient-slider-bar`);
+        this.angleWrap = this.el.querySelector(`.${this.sprefix}-colorPicker-gradient-angle-wrap`);
         this.gradientSliderBarWidth = this.gradientSliderBar.offsetWidth;
         this.gradientSliderBarHeight = this.gradientSliderBar.offsetHeight;
         this.gradientSliderBar.onmousedown = (e) => {
@@ -429,11 +429,11 @@ class Color {
         let rs = [];
         for (let i = 0; i < items.length; i++) {
             let drag = document.createElement('div');
-            drag.className = `${this.sprefix}-color-picker-gradient-slider-drag`;
-            drag.innerHTML = `<div class="${this.sprefix}-color-picker-gradient-slider-pointer"></div>
+            drag.className = `${this.sprefix}-colorPicker-gradient-slider-drag`;
+            drag.innerHTML = `<div class="${this.sprefix}-colorPicker-gradient-slider-pointer"></div>
                                 <input type="hidden"/>
-                                <div class="${this.sprefix}-color-picker-gradient-slider-body">
-                                <div class="${this.sprefix}-color-picker-gradient-slider-body-inner"></div>`;
+                                <div class="${this.sprefix}-colorPicker-gradient-slider-body">
+                                <div class="${this.sprefix}-colorPicker-gradient-slider-body-inner"></div>`;
             this.gradientSliderBar.appendChild(drag);
             drag.onmousedown = e => {
                 this.setCurrentDrag(drag);
@@ -460,7 +460,7 @@ class Color {
 
     setDragColor(drag, value, notUpdate) {
         drag.querySelector('input').value = value || '';
-        drag.querySelector(`.${this.sprefix}-color-picker-gradient-slider-body-inner`).style.background = value;
+        drag.querySelector(`.${this.sprefix}-colorPicker-gradient-slider-body-inner`).style.background = value;
         if (!notUpdate) {
             this.updateGradient();
         }
@@ -496,9 +496,9 @@ class Color {
         this.gradientDrag = drag;
         this.getDrags().forEach(item => {
             if (item === drag) {
-                this.addClass(drag, `${this.sprefix}-color-picker-gradient-slider-drag-selected`);
+                this.addClass(drag, `${this.sprefix}-colorPicker-gradient-slider-drag-selected`);
             } else {
-                this.removeClass(item, `${this.sprefix}-color-picker-gradient-slider-drag-selected`);
+                this.removeClass(item, `${this.sprefix}-colorPicker-gradient-slider-drag-selected`);
             }
         });
         if (drag) {
@@ -515,7 +515,7 @@ class Color {
     }
 
     getDrags() {
-        let rs = Array.prototype.slice.call(this.gradientSliderBar.querySelectorAll(`.${this.sprefix}-color-picker-gradient-slider-drag`));
+        let rs = Array.prototype.slice.call(this.gradientSliderBar.querySelectorAll(`.${this.sprefix}-colorPicker-gradient-slider-drag`));
         return rs.sort((a, b) => {
             return parseFloat(a.style.left, 10) - parseFloat(b.style.left, 10);
         });
@@ -562,14 +562,14 @@ class Color {
         }
         this.panel.addEventListener('mousedown', this.onMouseDown);
 
-        this.headerPanel.querySelectorAll(`.${this.sprefix}-color-picker-item`).forEach((item, index) => {
+        this.headerPanel.querySelectorAll(`.${this.sprefix}-colorPicker-item`).forEach((item, index) => {
             item.onclick = e => {
                 this.setType(index);
             }
         })
         this.colorsPanel.onclick = (e) => {
             let target = e.target;
-            if (this.hasClass(target, `${this.sprefix}-color-picker-colors-item`)) {
+            if (this.hasClass(target, `${this.sprefix}-colorPicker-colors-item`)) {
                 let index = target.getAttribute('index');
                 if (this.colors[index]) {
                     console.log(this.colors[index]);

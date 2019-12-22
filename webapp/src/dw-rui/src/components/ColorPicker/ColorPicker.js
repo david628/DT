@@ -5,16 +5,14 @@ import ColorPanel from "./ColorPanel";
 
 class ColorPicker extends Component {
     static propTypes = {
-        defaultValue: PropTypes.any,
-        value: PropTypes.any,
-        type: PropTypes.string,
-        placeholder: PropTypes.string,
+        defaultValue: PropTypes.string,
+        value: PropTypes.string,
+        //type: PropTypes.string,
+        //placeholder: PropTypes.string,
         onChange: PropTypes.func
     };
     static defaultProps = {
-        sprefix: 'dwrui',
-        placeholder: '请选择',
-        type: 'default'
+        sprefix: 'dwrui'
     };
     constructor(props) {
         super(props);
@@ -43,54 +41,52 @@ class ColorPicker extends Component {
             visible
         });
     };
-    onChange = (v, dateType, visible) => {
+    onChange = v => {
         const props = this.props;
-        const is = !!visible;
-        if(!('value' in props)) {
-            this.setState({
-                value: v
-            });
-            this.onPopupVisibleChange(is);
-        }
-        if(props.onChange) {
-            let ret = props.onChange(v);
-            if(!ret) {
-                this.onPopupVisibleChange(is);
+        const { value } = this.state;
+        if(v !== value) {
+            if(!('value' in props)) {
+                this.setState({
+                    value: v
+                });
+                //this.onPopupVisibleChange(false);
+            }
+            if(props.onChange) {
+                let ret = props.onChange(v);
+                //if(!ret) {
+                    //this.onPopupVisibleChange(false);
+                //}
             }
         }
     }
-    handleChange = (e) => {
-
-    }
     render() {
-        const { props, state } = this;
-        const { sprefix, format, type, placeholder } = props;
-        let value = state.value,
-        cls = [`${ sprefix }-colorPicker`],
-        inputValue = '';
-        //if(state.visible) {
-            //cls.push(`${ sprefix }-colorPicker-open`);
-            //cls.push(`${ sprefix }-colorPicker-focused`);
-        //}
+        const { value, visible } = this.state;
+        const { sprefix } = this.props;
+        const cls = [`${ sprefix }-colorPicker-wrap`];
         return (
             <Dropdown
                 sprefix={ `${ sprefix }-colorPicker` }
+                //menu={ <ColorPanel defaultValue={ '#00B7EE' }></ColorPanel> }
+                //menu={ <ColorPanel defaultValue={ 'radial-gradient(at center center, rgba(214,0,0,0.1) 4.09836%,rgba(0,37,104,0.5) 11.4754%, #00B7EE 33.1967%,rgb(98,52,0) 56.5574%,rgb(93,0,15) 71.7213%,rgba(74,20,140,1) 92.623%)' }></ColorPanel> }
                 menu={
-                    <div className={ `${ sprefix }-colorPicker-wrap` }>
-                        <ColorPanel></ColorPanel>
-                    </div>
+                    <ColorPanel
+                        value={ value }
+                        onChange={ this.onChange }
+                    ></ColorPanel>
                 }
                 width={ 'auto' }
-                visible={ this.state.visible }
+                visible={ visible }
                 onPopupVisibleChange={ this.onPopupVisibleChange }
                 trigger={ "click" }
             >
                 <div className={ cls.join(' ') }>
-                    <input className={ `${ sprefix }-input ${ sprefix }-colorPicker-input` } value={ inputValue } placeholder={ placeholder } onChange={ this.handleChange }/>
+                    <div className={ `${ sprefix }-colorPicker-content` } style={{
+                        background: value
+                    }}></div>
                     <span className={ `${ sprefix }-colorPicker-arrow` } unselectable="on">
                         <i className={ `${ sprefix }-colorPicker-arrow-icon` }>
-                            <svg viewBox="64 64 896 896" focusable="false" className="" data-icon="calendar" width="1em" height="1em" fill="currentColor" aria-hidden="true">
-                                <path d="M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zm-40 656H184V460h656v380zM184 392V256h128v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h256v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h128v136H184z"></path>
+                            <svg viewBox="64 64 896 896" focusable="false" className="" data-icon="bg-colors" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+                                <path d="M766.4 744.3c43.7 0 79.4-36.2 79.4-80.5 0-53.5-79.4-140.8-79.4-140.8S687 610.3 687 663.8c0 44.3 35.7 80.5 79.4 80.5zm-377.1-44.1c7.1 7.1 18.6 7.1 25.6 0l256.1-256c7.1-7.1 7.1-18.6 0-25.6l-256-256c-.6-.6-1.3-1.2-2-1.7l-78.2-78.2a9.11 9.11 0 0 0-12.8 0l-48 48a9.11 9.11 0 0 0 0 12.8l67.2 67.2-207.8 207.9c-7.1 7.1-7.1 18.6 0 25.6l255.9 256zm12.9-448.6l178.9 178.9H223.4l178.8-178.9zM904 816H120c-4.4 0-8 3.6-8 8v80c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-80c0-4.4-3.6-8-8-8z"></path>
                             </svg>
                         </i>
                     </span>

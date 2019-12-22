@@ -1,29 +1,31 @@
 .dwrui-colorPicker-popup-inner {
     position: absolute;
 }
-.dwrui-colorPicker {
+.dwrui-colorPicker-wrap {
     width: 100%;
     box-sizing: border-box;
     margin: 0;
-    padding: 0;
+    padding: 5px 36px 5px 5px;
     color: rgba(0,0,0,0.65);
     font-size: 14px;
     list-style: none;
     position: relative;
     display: inline-block;
     outline: 0;
+    background: rgb(255, 255, 255);
+    border-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px;
+    cursor: pointer;
 }
 .dwrui-colorPicker-dropdown {
     /*width: 280px !important;*/
     margin: 0;
     padding: 0;
-    color: rgba(0, 0, 0, 0.65);
     list-style: none;
     position: fixed;
     z-index: 1050;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    font-size: 14px;
     border-radius: 4px;
     border: 0;
     outline: none;
@@ -31,7 +33,12 @@
     -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
-.dwrui-colorPicker .dwrui-colorPicker-arrow {
+.dwrui-colorPicker-wrap .dwrui-colorPicker-content {
+    height: 20px;
+    border-radius: 2px;
+    background: #DDDDDD;
+}
+.dwrui-colorPicker-wrap .dwrui-colorPicker-arrow {
     display: inline-block;
     font-style: normal;
     text-align: center;
@@ -41,7 +48,7 @@
     right: 11px;
     margin-top: -7px;
     color: rgba(0,0,0,0.25);
-    font-size: 12px;
+    font-size: 14px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -49,4 +56,341 @@
     -webkit-transform-origin: 50% 50%;
     -ms-transform-origin: 50% 50%;
     transform-origin: 50% 50%;
+}
+.dwrui-colorPicker {
+    width: 264px;
+    border-radius: 4px;
+    background: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px, rgba(0, 0, 0, 0.15) 0px 8px 16px;
+}
+.dwrui-colorPicker .dwrui-colorPicker-input {
+    font-size: 12px;
+    border-radius: 2px;
+    border: 1px solid #cbcbcb;
+    line-height: 18px;
+}
+.dwrui-colorPicker .dwrui-colorPicker-header {
+}
+.dwrui-colorPicker .dwrui-colorPicker-center {
+    border-top: 1px solid #ddd;
+}
+.dwrui-colorPicker .dwrui-colorPicker-footer {
+    /*padding-bottom: 10px;*/
+}
+.dwrui-colorPicker .dwrui-colorPicker-center-inner {
+    padding: 10px;
+}
+.dwrui-colorPicker .dwrui-colorPicker-panel {
+    position: relative;
+}
+.dwrui-colorPicker .dwrui-colorPicker-pointer {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    border: 1px solid #fff;
+    transform: translateX(-50%) translateY(-50%);
+}
+.dwrui-colorPicker .dwrui-colorPicker-hue {
+    background-color: red;
+}
+.dwrui-colorPicker .dwrui-colorPicker-saturation {
+    background-image: linear-gradient(90deg, #fff, hsla(0, 0%, 100%, 0));
+}
+.dwrui-colorPicker .dwrui-colorPicker-brightness {
+    width: 100%;
+    height: 168px;
+    background-image: linear-gradient(0deg, #000, transparent);
+}
+.dwrui-colorPicker .dwrui-colorPicker-header-tab {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    *zoom: 1;
+}
+.dwrui-colorPicker .dwrui-colorPicker-header-tab::after {
+    content: ".";
+    display: block;
+    height: 0px;
+    font-size: 0px;
+    clear: both;
+    visibility: hidden;
+}
+.dwrui-colorPicker .dwrui-colorPicker-header-tab li {
+    width: 50px;
+    float: left;
+}
+.dwrui-colorPicker .dwrui-colorPicker-rgba-wrap .dwrui-colorPicker-col, .dwrui-colorPicker .dwrui-colorPicker-hsla-wrap .dwrui-colorPicker-col {
+    width: 25%;
+    box-sizing: border-box;
+    float: left;
+    padding: 5px 0;
+}
+.dwrui-colorPicker .dwrui-colorPicker-fixed {
+    display: flex;
+}
+.dwrui-colorPicker .dwrui-colorPicker-fixed .dwrui-colorPicker-left {
+    flex: 1;
+    padding-right: 10px;
+}
+.dwrui-colorPicker .dwrui-colorPicker-fixed .dwrui-colorPicker-right {
+
+}
+.dwrui-colorPicker .dwrui-colorPicker-preview-bg {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    margin-top: 5px;
+    border: 1px solid #171a1f;
+    border-radius: 2px;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
+}
+.dwrui-colorPicker .dwrui-colorPicker-preview-bg .dwrui-colorPicker-preview {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.dwrui-colorPicker .dwrui-colorPicker-preview-bg .dwrui-colorPicker-gradient-preview {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.dwrui-colorPicker .dwrui-colorPicker-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 1px;
+    border: 1px solid #000;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgb(204, 204, 204) 0px 0px 2px;
+    width: 8px;
+    height: 12px;
+}
+.dwrui-colorPicker .dwrui-colorPicker-range::-moz-range-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 1px;
+    border: 1px solid #000;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgb(204, 204, 204) 0px 0px 2px;
+    width: 8px;
+    height: 12px;
+}
+.dwrui-colorPicker .dwrui-colorPicker-range::-ms-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 1px;
+    border: 1px solid #000;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgb(204, 204, 204) 0px 0px 2px;
+    width: 8px;
+    height: 12px;
+}
+.dwrui-colorPicker .dwrui-colorPicker-range::-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 1px;
+    border: 1px solid #000;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgb(204, 204, 204) 0px 0px 2px;
+    width: 8px;
+    height: 12px;
+}
+.dwrui-colorPicker .dwrui-colorPicker-area-slider-bg, .dwrui-colorPicker .dwrui-colorPicker-alpha-slider-bg {
+    height: 10px;
+    padding-bottom: 10px;
+}
+.dwrui-colorPicker .dwrui-colorPicker-area-slider {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    margin: 0;
+    outline: none;
+    border: 1px solid #000;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: linear-gradient(90deg, red, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, red);
+}
+.dwrui-colorPicker .dwrui-colorPicker-alpha-slider {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border-radius: 0;
+    outline: none;
+    border: 1px solid #000;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: linear-gradient(90deg,var(--start-value),var(--end-value)),url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
+}
+.dwrui-colorPicker .dwrui-colorPicker-global, .dwrui-colorPicker .dwrui-colorPicker-recent {
+    position: relative;
+    padding: 5px 0 5px 10px;
+    border-top: 1px solid #ddd;
+}
+.dwrui-colorPicker .dwrui-colorPicker-chk {
+    width: 100%;
+    height: 28px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    box-sizing: border-box;
+    margin: 0;
+    cursor: pointer;
+    opacity: 0;
+}
+.dwrui-colorPicker .dwrui-colorPicker-arrow {
+    position: relative;
+    top: 3px;
+    color: #ccc;
+    padding-right: 5px;
+}
+.dwrui-colorPicker .dwrui-colorPicker-arrow svg {
+    -webkit-transition: -webkit-transform .3s;
+    transition: -webkit-transform .3s;
+    transition: transform .3s;
+    transition: transform .3s, -webkit-transform .3s;
+}
+.dwrui-colorPicker .dwrui-colorPicker-chk ~ .dwrui-colorPicker-list {
+    overflow: hidden;
+    padding: 10px 0 0 0;
+    display: block;
+}
+.dwrui-colorPicker .dwrui-colorPicker-chk:checked ~ .dwrui-colorPicker-arrow-wrap .dwrui-colorPicker-arrow svg {
+    -webkit-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+.dwrui-colorPicker .dwrui-colorPicker-chk:checked ~ .dwrui-colorPicker-list {
+    display: none;
+}
+.dwrui-colorPicker .dwrui-colorPicker-list .dwrui-colorPicker-item, .dwrui-colorPicker .dwrui-colorPicker-list .dwrui-colorPicker-item-add {
+    background-color: #008dff;
+    cursor: pointer;
+    float: left;
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    border-radius: 2px;
+    margin: 0 5px 5px 0;
+    /* box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset; */
+    padding: 1px;
+    /*border: 1px solid rgba(0,0,0,.1);*/
+}
+.dwrui-colorPicker .dwrui-colorPicker-list .dwrui-colorPicker-item-add {
+    line-height: 15px;
+    background: transparent;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: none;
+}
+.dwrui-colorPicker .dwrui-colorPicker-colors {
+    /*margin-bottom: 5px;*/
+    /* padding-left: 10px; */
+    overflow: hidden;
+}
+.dwrui-colorPicker .dwrui-colorPicker-colors .dwrui-colorPicker-colors-item {
+    cursor: pointer;
+    /* display: inline-block; */
+    float: left;
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    border-radius: 2px;
+    margin: 0 5px 5px 0;
+    /* box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset; */
+    padding: 0;
+    /* border: 1px solid transparent; */
+    border: 1px solid rgba(0,0,0,.1);
+}
+.dwrui-colorPicker .dwrui-colorPicker-gradient {
+    padding: 10px 10px 0 10px;
+}
+.dwrui-colorPicker .dwrui-colorPicker-gradient .dwrui-colorPicker-gradient-bar-bg {
+    height: 12px;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;
+}
+.dwrui-colorPicker .dwrui-colorPicker-gradient .dwrui-colorPicker-gradient-bar-bg .dwrui-colorPicker-gradient-bar {
+    width: 100%;
+    height: 100%;
+}
+.dwrui-colorPicker .dwrui-colorPicker-gradient .dwrui-colorPicker-gradient-slider-bar {
+    height: 16px;
+    position: relative;
+    cursor: copy;
+}
+.dwrui-colorPicker .dwrui-colorPicker-gradient-slider-drag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: default;
+    transform: translateX(-50%);
+}
+.dwrui-colorPicker .dwrui-colorPicker-gradient-slider-drag .dwrui-colorPicker-gradient-slider-pointer {
+    border-style: solid;
+    border-color: #ccc;
+    border-right-width: 4px;
+    border-left-width: 4px;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    border-top-width: 0;
+    border-bottom-width: 6px;
+}
+.dwrui-colorPicker .dwrui-colorPicker-gradient-slider-drag-selected .dwrui-colorPicker-gradient-slider-pointer {
+    border-color: #000;
+    border-right-color: transparent;
+    border-left-color: transparent;
+}
+.dwrui-colorPicker .dwrui-colorPicker-gradient-slider-drag .dwrui-colorPicker-gradient-slider-body {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
+    background-size: 50%;
+}
+.dwrui-colorPicker .dwrui-colorPicker-gradient-slider-drag .dwrui-colorPicker-gradient-slider-body .dwrui-colorPicker-gradient-slider-body-inner {
+    width: 8px;
+    height: 8px;
+    border: 1px solid rgba(0,0,0,.1);
+}
+.dwrui-colorPicker .dwrui-colorPicker-gradient-angle {
+    width: 100%;
+    height: 4px;
+    margin: 15px 0 0 0;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: #cccccc;
+}
+.dwrui-colorPicker .dwrui-colorPicker-gradient-angle-list {
+    padding: 5px 0 0 0;
+    margin: 0;
+    font-size: 12px;
+    overflow: hidden;
+}
+.dwrui-colorPicker .dwrui-colorPicker-gradient-angle-list .dwrui-colorPicker-gradient-angle-item {
+    float: left;
+    width: 70%;
+    text-align: center;
+}
+.dwrui-colorPicker .dwrui-ccolorPickergradient-angle-list .dwrui-colorPicker-gradient-angle-item:first-child {
+    width: 15%;
+    text-align: left;
+}
+.dwrui-colorPicker .dwrui-colorPicker-gradient-angle-list .dwrui-colorPicker-gradient-angle-item:last-child {
+    width: 15%;
+    text-align: right;
+}
+.dwrui-colorPicker .dwrui-colorPicker-gradient-angle-list .dwrui-colorPicker-gradient-angle-item .dwrui-colorPicker-input {
+    width: 50px;
+    padding: 0 5px;
+    outline: none;
+    box-sizing: border-box;
 }
