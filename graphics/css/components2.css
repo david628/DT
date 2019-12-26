@@ -1,0 +1,1184 @@
+.fade-leave-active[data-v-68175b34] {
+    transition: opacity 1s
+}
+
+.fade-leave-to[data-v-68175b34] {
+    opacity: 0
+}
+
+@font-face {
+    font-family: CuratorRegular;
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/commons/fonts/curator_head_st_regular-webfont.eot?#) format("eot"),url(https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/commons/fonts/curator_head_st_regular-webfont.woff) format("woff")
+}
+
+.st-content-menu {
+    background-color: #363636;
+    max-height: 40px;
+    height: 40px
+}
+
+.st-content-menu .st-content-menu-fixed {
+    background-color: #363636;
+    padding: 0 5px;
+    transition: box-shadow .5s ease-out;
+    box-shadow: 0 0 1px rgba(0,0,0,.1);
+    left: 0;
+    right: 0;
+    z-index: 99999
+}
+
+.st-content-menu .st-content-menu-fixed .navbar {
+    margin: 0 auto;
+    max-width: 1200px;
+    position: relative
+}
+
+.st-content-menu .st-content-menu-fixed .navbar:after,.st-content-menu .st-content-menu-fixed .navbar:before {
+    content: " ";
+    display: table
+}
+
+.st-content-menu .st-content-menu-fixed .navbar:after {
+    clear: both
+}
+
+.st-content-menu .st-content-menu-fixed .navbar .st-logo {
+    width: calc(1em + ((100% - 7.5em) / 16 * 3));
+    float: left;
+    margin-right: .5em;
+    margin-left: 15px
+}
+
+.st-content-menu .st-content-menu-fixed .navbar .st-logo img {
+    margin-left: 0;
+    max-width: 49px
+}
+
+.st-content-menu .st-content-menu-fixed .navbar .st-logo #long_logo {
+    display: none!important
+}
+
+@media (min-width: 768px) {
+    .st-content-menu .st-content-menu-fixed .navbar .st-logo #long_logo {
+        display:block!important;
+        max-width: 240px;
+        min-height: 23px;
+        margin-top: 15px
+    }
+}
+
+.st-content-menu .st-content-menu-fixed .navbar .st-logo #short_logo {
+    display: block!important
+}
+
+@media (min-width: 768px) {
+    .st-content-menu .st-content-menu-fixed .navbar .st-logo #short_logo {
+        display:none!important
+    }
+}
+
+.st-content-menu .st-content-menu-fixed .navbar .st-logo a {
+    display: block
+}
+
+@media (min-width: 420px) {
+    .st-content-menu .st-content-menu-fixed .navbar .st-logo {
+        width:calc(.5em + ((100% - 7.5em) / 16 * 2));
+        float: left;
+        margin-right: .5em
+    }
+}
+
+@media (min-width: 768px) {
+    .st-content-menu .st-content-menu-fixed .navbar .st-logo {
+        width:calc(2em + ((100% - 7.5em) / 16 * 5));
+        float: left;
+        margin-right: .5em
+    }
+}
+
+@media (min-width: 992px) {
+    .st-content-menu .st-content-menu-fixed .navbar .st-logo {
+        width:calc(1.5em + ((100% - 7.5em) / 16 * 4));
+        float: left;
+        margin-right: .5em
+    }
+}
+
+.st-content-menu .st-content-menu-fixed .navbar ul {
+    display: none
+}
+
+.st-content-menu .st-content-menu-fixed .navbar ul li {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 14px;
+    text-transform: uppercase
+}
+
+.st-content-menu .st-content-menu-fixed .navbar ul li a {
+    font-family: CuratorRegular,Helvetica Neue,Helvetica,Arial,sans-serif;
+    cursor: pointer;
+    color: #fff;
+    opacity: .5;
+    padding: 0 15px;
+    line-height: 1.4;
+    transition-property: color;
+    transition-duration: .5s;
+    transition-timing-function: ease-out
+}
+
+@media (min-width: 800px) {
+    .st-content-menu .st-content-menu-fixed .navbar ul li a {
+        padding:0 15px
+    }
+}
+
+@media (min-width: 900px) {
+    .st-content-menu .st-content-menu-fixed .navbar ul li a {
+        padding:0 15px
+    }
+}
+
+.st-content-menu .st-content-menu-fixed .navbar ul li a.current {
+    opacity: 1;
+    cursor: default;
+    transition-property: color;
+    transition-duration: .5s;
+    transition-timing-function: ease-in
+}
+
+@media (min-width: 768px) {
+    .st-content-menu .st-content-menu-fixed .navbar ul {
+        display:table;
+        height: 50px;
+        position: absolute;
+        right: 113px
+    }
+}
+
+.st-content-menu .st-content-menu-fixed .navbar .st-social-desktop {
+    display: none;
+    width: 80px;
+    float: right
+}
+
+.st-content-menu .st-content-menu-fixed .navbar .st-social-desktop img {
+    cursor: pointer;
+    -webkit-transform: scale(.9);
+    transform: scale(.9);
+    transition-duration: .3s;
+    float: left;
+    max-width: 40px;
+    max-height: 40px
+}
+
+.st-content-menu .st-content-menu-fixed .navbar .st-social-desktop img:hover {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    transition-duration: .3s
+}
+
+@media (min-width: 768px) {
+    .st-content-menu .st-content-menu-fixed .navbar .st-social-desktop {
+        display:block;
+        width: 103px;
+        float: right
+    }
+
+    .st-content-menu .st-content-menu-fixed .navbar .st-social-desktop img {
+        display: inline-block;
+        vertical-align: middle;
+        cursor: pointer;
+        max-width: 50px;
+        max-height: 50px
+    }
+
+    .st-content-menu .st-content-menu-fixed .navbar .st-social-desktop img:first-child {
+        margin-right: 4px
+    }
+}
+
+.st-content-menu .st-button-menu-mobile {
+    position: fixed;
+    right: 5px;
+    top: 4px;
+    z-index: 99999;
+    cursor: pointer;
+    line-height: 1
+}
+
+.st-content-menu .st-button-menu-mobile svg {
+    display: block
+}
+
+@media (min-width: 768px) {
+    .st-content-menu .st-button-menu-mobile {
+        display:none
+    }
+}
+
+.st-content-menu img {
+    max-height: 40px;
+    min-height: 40px
+}
+
+@media (min-width: 768px) {
+    .st-content-menu img {
+        max-height:50px;
+        min-height: 50px
+    }
+}
+
+@media (min-width: 768px) {
+    .st-content-menu {
+        height:50px;
+        max-height: 50px
+    }
+}
+
+.modal-menu-mobile {
+    background-color: #eee;
+    position: fixed;
+    top: 40px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: auto;
+    -webkit-overflow-scrolling: "touch";
+    opacity: 0;
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+    transition-duration: .5s
+}
+
+@media (min-width: 768px) {
+    .modal-menu-mobile {
+        display:none
+    }
+}
+
+.st-content-shared-social {
+    padding: 2px 5px;
+    background-color: #363636;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    box-sizing: border-box
+}
+
+.st-content-shared-social:after,.st-content-shared-social:before {
+    content: " ";
+    display: table
+}
+
+.st-content-shared-social:after {
+    clear: both
+}
+
+.st-content-shared-social .st-social-mobile {
+    text-align: right
+}
+
+.st-content-shared-social .st-social-mobile img {
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: middle;
+    -webkit-transform: scale(.9);
+    transform: scale(.9);
+    transition-duration: .3s
+}
+
+.st-content-shared-social .st-social-mobile img:hover {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    transition-duration: .3s
+}
+
+.st-content-menu-fixed.st_dialogIsOpen {
+    position: fixed;
+    top: 0
+}
+
+.st-content-detail-menu-mobile {
+    box-sizing: border-box;
+    padding-left: 13px;
+    padding-right: 13px;
+    padding-bottom: 45px;
+    height: 100%
+}
+
+.st-content-detail-menu-mobile #wrapper-detail-menu-mobile {
+    height: 100%;
+    position: relative
+}
+
+.st-content-detail-menu-mobile #wrapper-detail-menu-mobile .body-detail-menu-mobile {
+    position: absolute;
+    width: 100%;
+    padding-top: 13px
+}
+
+.st-content-detail-menu-mobile #wrapper-detail-menu-mobile div.iScrollVerticalScrollbar.iScrollLoneScrollbar {
+    right: -10px!important
+}
+
+.st-content-detail-menu-mobile .detail-menu-mobile {
+    font-family: CuratorRegular,Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.5
+}
+
+.st-content-detail-menu-mobile .detail-menu-mobile .transform-border-hairline {
+    margin: 5px 0
+}
+
+.st-content-detail-menu-mobile .detail-menu-mobile .title-menu-mobile:after,.st-content-detail-menu-mobile .detail-menu-mobile .title-menu-mobile:before {
+    content: " ";
+    display: table
+}
+
+.st-content-detail-menu-mobile .detail-menu-mobile .title-menu-mobile:after {
+    clear: both
+}
+
+.st-content-detail-menu-mobile .detail-menu-mobile .title-menu-mobile img {
+    width: 24px
+}
+
+.st-content-detail-menu-mobile .detail-menu-mobile .title-menu-mobile div {
+    float: left
+}
+
+.st-content-detail-menu-mobile .detail-menu-mobile .title-menu-mobile div:first-child {
+    margin-top: 7px;
+    margin-right: 50px
+}
+
+.st-content-detail-menu-mobile .detail-menu-mobile .title-menu-mobile div:nth-child(2) {
+    cursor: pointer
+}
+
+.st-content-detail-menu-mobile .detail-menu-mobile .title-menu-mobile .st-title-arrow {
+    float: right;
+    margin-top: 7px
+}
+
+.st-content-detail-menu-mobile .detail-menu-mobile .title-menu-mobile a {
+    color: #999;
+    cursor: pointer;
+    display: block
+}
+
+.st-content-detail-menu-mobile .detail-menu-mobile .title-menu-mobile a:hover {
+    color: #999
+}
+
+.st-content-detail-menu-mobile .detail-menu-mobile .title-menu-mobile a.current {
+    color: #333;
+    pointer-events: none
+}
+
+.st-content-detail-menu-mobile .detail-menu-mobile .title-menu-mobile a.current:hover {
+    color: #333
+}
+
+.st-content-detail-menu-mobile .detail-menu-mobile .content-subtitle-menu .subtitle-menu-mobile {
+    padding-left: 74px;
+    line-height: 1.5;
+    padding-top: 8px;
+    padding-bottom: 8px
+}
+
+.st-content-detail-menu-mobile .detail-menu-mobile .content-subtitle-menu .subtitle-menu-mobile a {
+    cursor: pointer;
+    text-decoration: none;
+    color: #999
+}
+
+.st-content-detail-menu-mobile .detail-menu-mobile .content-subtitle-menu .subtitle-menu-mobile:first-child a {
+    color: #333
+}
+
+.st_dialogIsOpen {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    transition-duration: .5s;
+    z-index: 99999
+}
+
+.li_menu_desktop {
+    display: none;
+    line-height: 30px;
+    padding: 5px 10px
+}
+
+.li_menu_desktop:after,.li_menu_desktop:before {
+    content: " ";
+    display: table
+}
+
+.li_menu_desktop:after {
+    clear: both
+}
+
+.li_menu_desktop .text_chapter {
+    float: left;
+    width: 28%;
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    font-family: CuratorRegular,Helvetica Neue,Helvetica,Arial,sans-serif
+}
+
+.li_menu_desktop .st_option_menu_desktop {
+    height: 100%;
+    color: #333;
+    float: left;
+    width: 12%
+}
+
+.li_menu_desktop .st_option_menu_desktop .title_menu_desktop {
+    color: #333;
+    background-color: #fff;
+    transition: background-color .5s ease-out;
+    transition: color .5s ease-out
+}
+
+.li_menu_desktop .st_option_menu_desktop .title_menu_desktop,.li_menu_desktop .tag_select_menu .title_menu_desktop {
+    font-size: 13px;
+    font-family: CuratorRegular,Helvetica Neue,Helvetica,Arial,sans-serif;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+    font-size: 16px
+}
+
+.li_menu_desktop .tag_select_menu .title_menu_desktop {
+    color: #fff;
+    background-color: #ffd100;
+    transition: background-color .5s ease-in
+}
+
+@media (min-width: 768px) {
+    .li_menu_desktop {
+        display:block;
+        margin-top: 5px;
+        width: calc(2.5em + ((100% - 7.5em) / 16 * 6));
+        float: left;
+        margin-right: .5em
+    }
+}
+
+@media (min-width: 992px) {
+    .li_menu_desktop {
+        width:calc(2em + ((100% - 7.5em) / 16 * 5));
+        float: left;
+        margin-right: .5em
+    }
+}
+
+.toggle-display-mode {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    width: 170px;
+    z-index: 1000
+}
+
+@media (min-width: 992px) {
+    .toggle-display-mode {
+        width:160px
+    }
+}
+
+.toggle-display-mode span {
+    padding-right: 3px;
+    display: inline-block
+}
+
+.st-content-banner-video[data-v-c3bc4574] {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden
+}
+
+.st-content-banner-video video[data-v-c3bc4574] {
+    min-height: 100%;
+    min-width: 100%;
+    position: absolute;
+    right: 50%;
+    bottom: 50%;
+    -webkit-transform: translate(50%,50%);
+    transform: translate(50%,50%);
+    max-width: inherit
+}
+
+.st-content-banner[data-v-c3bc4574] {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.st-content-banner[data-v-c3bc4574]:before {
+    content: "";
+    display: table
+}
+
+.st-content-banner[data-v-c3bc4574]:after {
+    content: "";
+    display: table;
+    clear: both
+}
+
+.st-content-banner img[data-v-c3bc4574] {
+    min-height: 100%;
+    min-width: 100%;
+    position: absolute;
+    right: 50%;
+    bottom: 50%;
+    -webkit-transform: translate(50%,50%);
+    transform: translate(50%,50%);
+    max-width: inherit
+}
+
+.content-columns-fullwidth {
+    margin-bottom: 30px
+}
+
+.content-columns-fullwidth:after,.content-columns-fullwidth:before {
+    content: " ";
+    display: table
+}
+
+.content-columns-fullwidth:after {
+    clear: both
+}
+
+.content-columns-fullwidth .column-paragraph-left {
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 15px
+}
+
+.content-columns-fullwidth .column-paragraph-left:after,.content-columns-fullwidth .column-paragraph-left:before {
+    content: " ";
+    display: table
+}
+
+.content-columns-fullwidth .column-paragraph-left:after {
+    clear: both
+}
+
+@font-face {
+    font-family: SelaneMinTen;
+    font-style: normal;
+    font-weight: 900;
+    src: url(https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/commons/fonts/SelaneWebSTMinTen.eot?#) format("eot"),url(https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/commons/fonts/SelaneWebSTMinTen.woff) format("woff")
+}
+
+h2[data-v-2e494099] {
+    padding: 3px 0;
+    font-family: SelaneMinTen,serif;
+    color: #333
+}
+
+ul[data-v-a54e8280] {
+    list-style-type: disc;
+    margin: 0;
+    padding: 0 20px
+}
+
+ul li[data-v-a54e8280] {
+    padding: 0;
+    margin: 10px 0
+}
+
+.st-mobile-svg {
+    display: block
+}
+
+@media (min-width: 449px) {
+    .st-mobile-svg {
+        display:none
+    }
+}
+
+.st-tablet-svg {
+    display: none
+}
+
+@media (min-width: 450px) {
+    .st-tablet-svg {
+        display:block
+    }
+}
+
+@media (min-width: 649px) {
+    .st-tablet-svg {
+        display:none
+    }
+}
+
+.st-desktop-svg {
+    margin: 0 auto;
+    max-width: 900px;
+    display: none
+}
+
+.st-desktop-svg:after,.st-desktop-svg:before {
+    content: " ";
+    display: table
+}
+
+.st-desktop-svg:after {
+    clear: both
+}
+
+@media (min-width: 650px) {
+    .st-desktop-svg {
+        display:block
+    }
+}
+
+@font-face {
+    font-family: CuratorRegular;
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/commons/fonts/curator_head_st_regular-webfont.eot?#) format("eot"),url(https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/commons/fonts/curator_head_st_regular-webfont.woff) format("woff")
+}
+
+.video-container[data-v-3fe256c2] {
+    margin: 20px 0
+}
+
+.video-container[data-v-3fe256c2]:after,.video-container[data-v-3fe256c2]:before {
+    content: " ";
+    display: table
+}
+
+.video-container[data-v-3fe256c2]:after {
+    clear: both
+}
+
+@media (min-width: 768px) {
+    .video-container .column-left[data-v-3fe256c2] {
+        float:left;
+        width: 70%;
+        margin-right: -100%
+    }
+
+    .video-container .column-right[data-v-3fe256c2] {
+        float: left;
+        width: 30%;
+        margin-left: 70%
+    }
+}
+
+.video-container .video-caption[data-v-3fe256c2] {
+    padding: 10px;
+    color: #666;
+    font-family: CuratorRegular,Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-size: 15px;
+    line-height: 140%
+}
+
+.video-wrapper[data-v-3fe256c2] {
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: cover;
+    padding: 0
+}
+
+.video-wrapper[data-v-3fe256c2]:before {
+    content: "";
+    display: block;
+    padding-bottom: 56.25%;
+    height: 0
+}
+
+.video-wrapper iframe[data-v-3fe256c2] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%
+}
+
+@font-face {
+    font-family: CuratorRegular;
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/commons/fonts/curator_head_st_regular-webfont.eot?#) format("eot"),url(https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/commons/fonts/curator_head_st_regular-webfont.woff) format("woff")
+}
+
+.youtube_container p[data-v-a3c0adaa] {
+    color: #666;
+    padding: 10px;
+    font-family: CuratorRegular,Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-size: 15px;
+    line-height: 1.4
+}
+
+.youtube_container .video-wrapper[data-v-a3c0adaa] {
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: cover;
+    padding: 0
+}
+
+.youtube_container .video-wrapper[data-v-a3c0adaa]:before {
+    content: "";
+    display: block;
+    padding-bottom: 56.25%;
+    height: 0
+}
+
+.youtube_container .video-wrapper iframe[data-v-a3c0adaa] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%
+}
+
+@font-face {
+    font-family: CuratorRegular;
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/commons/fonts/curator_head_st_regular-webfont.eot?#) format("eot"),url(https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/commons/fonts/curator_head_st_regular-webfont.woff) format("woff")
+}
+
+figure[data-v-5d3c6a81] {
+    padding: 15px 0
+}
+
+figure figcaption[data-v-5d3c6a81] {
+    color: #666;
+    padding: 10px;
+    font-family: CuratorRegular,Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-size: 15px;
+    line-height: 1.4
+}
+
+@font-face {
+    font-family: SelaneTen;
+    font-style: normal;
+    font-weight: 900;
+    src: url(https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/commons/fonts/selanedeckst_ten-webfont.eot?#) format("eot"),url(https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/commons/fonts/selanedeckst_ten-webfont.woff) format("woff")
+}
+
+@font-face {
+    font-family: CuratorBold;
+    font-style: normal;
+    font-weight: 700;
+    src: url(https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/commons/fonts/curator_head_st_bold-webfont.eot?#) format("eot"),url(https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/commons/fonts/curator_head_st_bold-webfont.woff2) format("woff2"),url(https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/commons/fonts/curator_head_st_bold-webfont.woff) format("woff")
+}
+
+@font-face {
+    font-family: CuratorRegular;
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/commons/fonts/curator_head_st_regular-webfont.eot?#) format("eot"),url(https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/commons/fonts/curator_head_st_regular-webfont.woff) format("woff")
+}
+
+.marvel-graph-container {
+    position: relative;
+    display: block;
+    width: 100%
+}
+
+.marvel-graph-container .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 10002
+}
+
+.marvel-graph-container .overlay .loading-icon {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    width: 60px;
+    height: 60px
+}
+
+@media (min-width: 768px) {
+    .marvel-graph-container .overlay .loading-icon {
+        width:100px;
+        height: 100px
+    }
+}
+
+.marvel-graph-container .overlay .loading-icon img {
+    max-width: 100%;
+    max-height: 100%
+}
+
+.marvel-graph-container .overlay .loading-icon p {
+    position: absolute;
+    font-family: CuratorRegular,Helvetica Neue,Helvetica,Arial,sans-serif;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    color: #fff;
+    margin-bottom: 0;
+    width: 100px;
+    top: 64px
+}
+
+@media (min-width: 768px) {
+    .marvel-graph-container .overlay .loading-icon p {
+        top:102px
+    }
+}
+
+.marvel-graph-container .marvel-intro-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.7);
+    z-index: 10001;
+    overflow-y: auto;
+    text-align: center
+}
+
+.marvel-graph-container .marvel-intro-container .source {
+    display: none;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    color: #fff;
+    opacity: .5;
+    font-size: 14px;
+    line-height: 14px;
+    font-family: CuratorRegular,Helvetica Neue,Helvetica,Arial,sans-serif;
+    width: 100%;
+    background-color: rgba(0,0,0,.4);
+    text-align: left;
+    padding-left: 5px
+}
+
+.marvel-graph-container .marvel-intro-container .box-info-ie {
+    z-index: 10003;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,.5)
+}
+
+.marvel-graph-container .marvel-intro-container .box-info-ie .info-ie {
+    width: 450px;
+    margin: auto;
+    background: #fff;
+    color: #333;
+    padding: 8px 15px;
+    font-size: 16px;
+    line-height: 1.5;
+    position: absolute;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+    z-index: 100;
+    font-family: CuratorRegular,Helvetica Neue,Helvetica,Arial,sans-serif
+}
+
+.marvel-graph-container .marvel-intro-container .box-info-ie .info-ie a {
+    color: #333;
+    font-family: CuratorBold,Helvetica Neue,Helvetica,Arial,sans-serif
+}
+
+.marvel-graph-container .marvel-intro-container .st-byline {
+    font-size: 13px;
+    padding-bottom: 5px
+}
+
+.marvel-graph-container .marvel-intro-container .intro-content {
+    position: relative;
+    top: auto;
+    left: auto;
+    -webkit-transform: none;
+    transform: none;
+    height: auto;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto
+}
+
+@media (min-width: 768px) {
+    .marvel-graph-container .marvel-intro-container .intro-content {
+        position:absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+        height: 480px
+    }
+}
+
+.marvel-graph-container .marvel-intro-container .intro-content h1 {
+    color: #e9f6fc;
+    line-height: 1.1em;
+    padding: 0 5px 10px
+}
+
+.marvel-graph-container .marvel-intro-container .intro-content .headline p {
+    padding: 20px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    color: #e9f6fc;
+    font-size: 20px;
+    font-family: SelaneTen,serif
+}
+
+@media (min-width: 768px) {
+    .marvel-graph-container .marvel-intro-container .intro-content .headline p {
+        font-size:25px
+    }
+}
+
+.marvel-graph-container .marvel-intro-container .intro-content .fade {
+    display: none
+}
+
+.marvel-graph-container .marvel-intro-container .intro-content .fade .produced-by {
+    opacity: .5;
+    color: #fff;
+    padding-bottom: 0
+}
+
+.marvel-graph-container .marvel-intro-container .intro-content .fade .produced-by p {
+    display: inline;
+    font-family: CuratorRegular,Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 14px;
+    margin-bottom: 5px;
+    padding: 0
+}
+
+@media (min-width: 420px) {
+    .marvel-graph-container .marvel-intro-container .intro-content .fade .produced-by {
+        padding-bottom:20px
+    }
+}
+
+.marvel-graph-container .marvel-intro-container .intro-content .fade0 {
+    border-top: none;
+    margin-top: 0;
+    margin-bottom: 10px
+}
+
+@media (min-width: 420px) {
+    .marvel-graph-container .marvel-intro-container .intro-content .fade0 {
+        margin-top:20px;
+        border-top: 1px dotted grey
+    }
+}
+
+.marvel-graph-container .marvel-intro-container .intro-content .fade1 {
+    border-bottom: 1px dotted grey
+}
+
+.marvel-graph-container .marvel-intro-container .intro-content .fade2 {
+    border-bottom: 1px dotted grey;
+    margin-bottom: 20px;
+    padding-bottom: 10px
+}
+
+@media (min-width: 420px) {
+    .marvel-graph-container .marvel-intro-container .intro-content .fade2 {
+        padding-bottom:0
+    }
+}
+
+.marvel-graph-container .marvel-intro-container .intro-content .description p {
+    line-height: 25px;
+    padding: 10px 20px;
+    color: #e9f6fc;
+    margin-bottom: 0
+}
+
+.marvel-graph-container .marvel-intro-container .intro-content .description p:last-child {
+    padding-top: 0;
+    padding-bottom: 0
+}
+
+@media (min-width: 420px) {
+    .marvel-graph-container .marvel-intro-container .intro-content .description p:last-child {
+        padding-bottom:20px
+    }
+}
+
+@media (min-width: 420px) {
+    .marvel-graph-container .marvel-intro-container .intro-content .description p {
+        line-height:normal;
+        padding: 20px 20px 10px
+    }
+}
+
+.marvel-graph-container .marvel-intro-container .intro-content button {
+    background: none;
+    border: 1px solid hsla(0,0%,100%,.5);
+    border-radius: 50px;
+    padding: 10px 30px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-family: CuratorRegular,Helvetica Neue,Helvetica,Arial,sans-serif;
+    color: #fff
+}
+
+.marvel-graph-container .marvel-intro-container .intro-content button:focus {
+    outline: 0
+}
+
+.marvel-graph-container .marvel-intro-container .intro-content button:hover {
+    border: 1px solid #fff
+}
+
+.add-to-home-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    pointer-events: none
+}
+
+@media (max-width: 768px) {
+    .add-to-home-container {
+        display:none
+    }
+}
+
+@media (max-width: 420px) {
+    .add-to-home-container {
+        display:inline;
+        display: initial
+    }
+}
+
+.add-to-home-container .add-to-home {
+    background-color: #eff3f4;
+    pointer-events: all;
+    position: absolute;
+    -webkit-transform: translate(-50%);
+    transform: translate(-50%);
+    padding: 5px;
+    text-align: center;
+    width: 100px
+}
+
+.add-to-home-container .add-to-home p {
+    font-family: CuratorRegular,Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-size: 15px;
+    line-height: 15px;
+    margin-bottom: 0
+}
+
+.add-to-home-container .add-to-home.ios {
+    bottom: 26px;
+    left: 50%;
+    -webkit-transform: translate(-50%);
+    transform: translate(-50%)
+}
+
+.add-to-home-container .add-to-home.ios:before {
+    content: " ";
+    position: absolute;
+    opacity: 1;
+    width: 0;
+    height: 0;
+    left: 45px;
+    top: 38px;
+    border: 25px solid;
+    border-width: 15px 15px 0;
+    border-color: #eff3f4 transparent
+}
+
+.add-to-home-container .add-to-home.and {
+    top: 18px;
+    right: -46px
+}
+
+.add-to-home-container .add-to-home.and:before {
+    top: -17px;
+    right: 0;
+    content: " ";
+    position: absolute;
+    opacity: 1;
+    width: 0;
+    height: 0;
+    border: 25px solid;
+    border-width: 0 13px 18px;
+    border-color: #eff3f4 transparent
+}
+
+@font-face {
+    font-family: CuratorBold;
+    font-style: normal;
+    font-weight: 700;
+    src: url(https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/commons/fonts/curator_head_st_bold-webfont.eot?#) format("eot"),url(https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/commons/fonts/curator_head_st_bold-webfont.woff2) format("woff2"),url(https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/commons/fonts/curator_head_st_bold-webfont.woff) format("woff")
+}
+
+@font-face {
+    font-family: CuratorRegular;
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/commons/fonts/curator_head_st_regular-webfont.eot?#) format("eot"),url(https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/commons/fonts/curator_head_st_regular-webfont.woff) format("woff")
+}
+
+.credits-section[data-v-67039cf6] {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #666;
+    font-size: 13px;
+    margin-top: 70px;
+    padding: 20px 15px 30px;
+    border-top: 1px dotted #ccc;
+    box-sizing: border-box;
+    font-family: CuratorRegular,Helvetica Neue,Helvetica,Arial,sans-serif
+}
+
+.credits-section[data-v-67039cf6]:before {
+    content: "";
+    display: table
+}
+
+.credits-section[data-v-67039cf6]:after {
+    content: "";
+    display: table;
+    clear: both
+}
+
+.credits-section .credits-label[data-v-67039cf6] {
+    font-family: CuratorBold,Helvetica Neue,Helvetica,Arial,sans-serif
+}
