@@ -13,6 +13,7 @@ import Table from './src/components/Table';
 import Tree, { Node } from './src/components/Tree';
 import DatePicker, { RangePicker } from './src/components/DatePicker';
 import ColorPicker from './src/components/ColorPicker';
+import Number from './src/components/Number';
 export {
     Button,
     ButtonGroup,
@@ -38,5 +39,6 @@ export {
     Node,
     DatePicker,
     RangePicker,
-    ColorPicker
+    ColorPicker,
+    Number
 };

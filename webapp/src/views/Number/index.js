@@ -1,0 +1,44 @@
+import React, { Component } from 'react';
+import { Number } from '../../dw-rui';
+class Page extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: 200
+        };
+    }
+    componentDidMount() {
+    }
+    onChange = (value) => {
+        console.log('onChange:', value);
+        this.setState({ value });
+    }
+    changeprecision = (e) => {
+        this.setState({
+            value: parseInt(e.target.value, 10),
+        });
+    }
+    render() {
+        return (
+            <div style={{ width: '100px' }}>
+                <Number
+                    value={ this.state.value }
+                    step={ 100 }
+                    //precision={ this.state.precision }
+                    onChange={ this.onChange }
+                >
+                </Number>
+                <p>
+                precision:
+                <input
+                    type="number"
+                    onChange={this.changeprecision}
+                    value={this.state.precision}
+                />
+                </p>
+            </div>
+            
+        );
+    }
+}
+export default Page;

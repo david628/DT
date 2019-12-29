@@ -41,6 +41,21 @@ class ColorPanel extends Component {
         this.gradientSliderBarWidth = 244;
         let value = props.value || props.defaultValue;
         let { color, gradient, type, angle } = this.getColor(value);
+        if(!gradient || !gradient.length) {
+            gradient = [{
+                pos: {
+                    x: 0,
+                    y: 0
+                },
+                value: '#FFFFFF'
+            }, {
+                pos: {
+                    x: 100,
+                    y: 0
+                },
+                value: '#000000'                    
+            }];
+        }
         let rgba = this.getRgba(color);
         let hex = this.rgbaToHex(rgba);
         let hsv = this.rgbToHsv(rgba);
@@ -54,7 +69,7 @@ class ColorPanel extends Component {
             hue,
             rgba,
             ...rgba,
-            currentDrag: -1,
+            currentDrag: 0,
             gradient,
             pos: [left, top]
         }
@@ -571,7 +586,7 @@ class ColorPanel extends Component {
                 type
             }
             if(type === 0) {
-                param.currentDrag = -1;
+                param.currentDrag = 0;
             }
             this.setState(param);
             this.onChange({

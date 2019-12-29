@@ -4,8 +4,8 @@ class Page extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            //value: '#00B7EE',
-            value: 'radial-gradient(at center center, rgba(4, 96, 255, 0.97) 0%, rgb(242, 9, 9) 19.6721%, rgb(14, 102, 218) 34.0164%, rgb(93, 0, 15) 46.3115%, rgb(239, 167, 41) 72.9508%, rgb(74, 20, 140) 100%)'
+            value: '#00B7EE',
+            //value: 'radial-gradient(at center center, rgba(4, 96, 255, 0.97) 0%, rgb(242, 9, 9) 19.6721%, rgb(14, 102, 218) 34.0164%, rgb(93, 0, 15) 46.3115%, rgb(239, 167, 41) 72.9508%, rgb(74, 20, 140) 100%)'
         };
     }
     componentDidMount() {
