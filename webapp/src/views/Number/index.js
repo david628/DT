@@ -4,7 +4,8 @@ class Page extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: 200
+            value: 200,
+            precision: 0
         };
     }
     componentDidMount() {
@@ -15,7 +16,7 @@ class Page extends Component {
     }
     changeprecision = (e) => {
         this.setState({
-            value: parseInt(e.target.value, 10),
+            precision: parseInt(e.target.value, 10),
         });
     }
     render() {
@@ -24,7 +25,8 @@ class Page extends Component {
                 <Number
                     value={ this.state.value }
                     step={ 100 }
-                    //precision={ this.state.precision }
+                    unit="秒"
+                    precision={ this.state.precision }
                     onChange={ this.onChange }
                 >
                 </Number>

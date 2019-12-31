@@ -30,32 +30,24 @@ class Number extends Component {
     constructor(props) {
         super(props);
         const value = props.value || props.defaultValue;
-        // const step = props.step;
-        // const min = props.min;
-        // const max = props.max;
-        // const unit = props.unit;
-        // const precision = props.precision;
-        // const disabled = props.disabled;
+        //const inputText = value;
         this.state = {
-            value
-            // step,
-            // min,
-            // max,
-            // unit,
-            // precision,
-            // disabled
+            value,
+            //inputText
         };
     }
     componentDidMount() {
 
     }
     componentWillReceiveProps(nextProps) {
-        // if('value' in nextProps) {
-        //     const { value } = nextProps;
-        //     this.setState({
-        //         value
-        //     });
-        // }
+        if('value' in nextProps) {
+            const { value } = nextProps;
+            if(value !== this.props.value) {
+                this.setState({
+                    value
+                });
+            }
+        }    
     }
     componentDidUpdate(prevProps) {
         console.log('componentDidUpdate', prevProps);
@@ -102,16 +94,38 @@ class Number extends Component {
             value: e.target.value
         });
     };
+    getInputText(v) {
+        console.log(v)
+        let value = (typeof v === 'string' ? v.trim() : v), inputText;
+        if(value === '') {
+            inputText = value + ' ' + this.props.unit;
+        } else if(value !== undefined) {
+            if(isNaN(value)) {
+                inputText = this.state.value;       
+            } else {
+                value = parseFloat(value, 10);
+            }
+            if(value < this.props.min) {
+                value = this.props.min;
+            }
+            if(value > this.props.max) {
+                value = this.max;
+            }
+            inputText = value.toFixed(this.props.precision < 0 ? 0 : this.props.precision) + this.props.unit;
+        }
+        return inputText;
+    }
     render() {
         const { value } = this.state;
         const { sprefix, placeholder } = this.props;
         const cls = [`${ sprefix }-number`];
+        const inputText = this.getInputText(value);
         return (
             <div className={ cls } onMouseDown={ this.handleMouseDown }>
                 <input className={ `${ sprefix }-number-hidden` } value={ value } type="hidden"/>
                 <input className={ `${ sprefix }-number-input` } 
                     placeholder={ placeholder }
-                    value={ value } 
+                    value={ inputText } 
                     onChange={ this.handleChange }
                     type="text"
                 />

@@ -83,7 +83,7 @@
   
   .dwrui-number .dwrui-number-input {
     width: 100%;
-    padding: 0 0 0 10px;
+    padding: 0 30px 0 10px;
     color: rgba(0,0,0,0.65);
     border-radius: 4px;
     -webkit-transition: all .3s cubic-bezier(.645, .045, .355, 1);
