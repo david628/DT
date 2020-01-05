@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 class Number extends Component {
     static propTypes = {
         defaultValue: PropTypes.string,
-        value: PropTypes.number,
+        value: PropTypes.string,
         placeholder: PropTypes.string,
         onChange: PropTypes.func,
         min: PropTypes.number,
@@ -21,7 +21,7 @@ class Number extends Component {
         onChange: function() {},
         min: -30000,
         max: 30000,
-        precision: 0,
+        precision: 2,
         step: 1,
         unit: '',
         name: '',
@@ -30,9 +30,8 @@ class Number extends Component {
     constructor(props) {
         super(props);
         const value = props.value || props.defaultValue;
-        //const inputText = value;
         this.state = {
-            value,
+            value
             //inputText
         };
     }
@@ -58,50 +57,82 @@ class Number extends Component {
         //             value
         //         });
         //     }
-        
         // }
     }
-    onChange = v => {
-        const props = this.props;
-        const { value } = this.state;
-        
-    }
     handleAdd = e => {
-        const { disabled, value, step } = this.state;
+        const { value } = this.state;
+        const { disabled, step } = this.props;
         if(disabled) {
             return;
         }
         this.setState({
-            value: value + step
+            value: parseFloat(value, 10) + step
         });
     };
     handleReduce = e => {
-        const { disabled, value, step } = this.state;
+        const { value } = this.state;
+        const { disabled, step } = this.props;
         if(disabled) {
             return;
         }
-        console.log(value, step);
         this.setState({
-            value: value - step
+            value: parseFloat(value, 10) - step
         });
     };
     handleMouseDown = e => {
-        //e.preventDefault();
-
+        // e.preventDefault();
+        // const { disabled } = this.props;
+        // if(disabled) {
+        //     return;
+        // }
+        // this.distance = 0;
+        // this.isMove = true;
+        // this.prevPointer = [e.clientX, e.clientY];
+        // this.onMouseDownValue = this.state.value;
+        // document.addEventListener('mousemove', this.handleMouseMove, false);
+        // document.addEventListener('mouseup', this.handleMouseUp, false);
+    };
+    handleMouseMove = e => {
+        //this.pointer = [e.clientX, e.clientY];
+        // this.prevPointer = [e.clientX, e.clientY];
+        // this.distance = this.prevPointer[0] - this.prevPointer[1];
+        // let value = this.onMouseDownValue + (this.distance / (e.shiftKey ? 5 : 5)) * this.props.step;
+        // console.log(this.onMouseDownValue, this.distance);
+        // value = Math.min(this.props.max, Math.max(this.props.min, value));
+        // this.setState({
+        //     value
+        // });
+    };
+    handleMouseUp = e => {
+        //document.removeEventListener('mousemove', this.handleMouseMove, false);
+        //document.removeEventListener('mouseup', this.handleMouseUp, false);
     };
     handleChange = e => {
+        let value = e.target.value;
+        if(!('value' in this.props)) {
+            this.setState({
+                value
+            });
+        }
+        this.props.onChange(value);
+    };
+    handleBlur = e => {
+        console.log('handleBlur...');
+        const { value } = this.state;
+        const inputText = this.getInputText(value);
+        //console.log('inputText', inputText);
         this.setState({
-            value: e.target.value
+            value: inputText
         });
     };
     getInputText(v) {
-        console.log(v)
         let value = (typeof v === 'string' ? v.trim() : v), inputText;
         if(value === '') {
-            inputText = value + ' ' + this.props.unit;
+            //inputText = value + ' ' + this.props.unit;
+            inputText = value;
         } else if(value !== undefined) {
             if(isNaN(value)) {
-                inputText = this.state.value;       
+                value = 0;       
             } else {
                 value = parseFloat(value, 10);
             }
@@ -111,7 +142,8 @@ class Number extends Component {
             if(value > this.props.max) {
                 value = this.max;
             }
-            inputText = value.toFixed(this.props.precision < 0 ? 0 : this.props.precision) + this.props.unit;
+            //inputText = value.toFixed(this.props.precision < 0 ? 0 : this.props.precision) + this.props.unit;
+            inputText = value.toFixed(this.props.precision < 0 ? 0 : this.props.precision);
         }
         return inputText;
     }
@@ -120,13 +152,15 @@ class Number extends Component {
         const { sprefix, placeholder } = this.props;
         const cls = [`${ sprefix }-number`];
         const inputText = this.getInputText(value);
+        //const inputText = value;
         return (
             <div className={ cls } onMouseDown={ this.handleMouseDown }>
                 <input className={ `${ sprefix }-number-hidden` } value={ value } type="hidden"/>
                 <input className={ `${ sprefix }-number-input` } 
                     placeholder={ placeholder }
-                    value={ inputText } 
+                    value={ inputText }
                     onChange={ this.handleChange }
+                    //onBlur={ this.handleBlur }
                     type="text"
                 />
                 <div className={ `${ sprefix }-number-oper-wrap` }>

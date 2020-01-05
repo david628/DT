@@ -5,7 +5,7 @@ class Page extends Component {
         super(props);
         this.state = {
             value: 200,
-            precision: 0
+            precision: 2
         };
     }
     componentDidMount() {
