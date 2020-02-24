@@ -23,6 +23,10 @@ const menuData = [
         name: 'Schema',
         text: '数据集',
         path: 'Schema'
+      },{
+        name: 'Editor',
+        text: '编辑器',
+        path: 'Editor'
       }
     ]
   },
